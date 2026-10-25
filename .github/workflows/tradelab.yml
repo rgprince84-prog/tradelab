@@ -179,7 +179,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check that GitHub Pages is switched on (Settings → Pages → Source: GitHub Actions)
+      - name: "Check that GitHub Pages is switched on (Settings → Pages → Source → GitHub Actions)"
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
