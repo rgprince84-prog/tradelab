@@ -1,0 +1,2 @@
+instrument,tf,strategy,direction,signal_bar_utc,fresh,bars_ago,ref_price,stop,target,stop_pips,atr,entry_type,note
+USDJPY,1h,ema_pullback,short,2026-10-23 20:00,True,0,156.814,157.039,156.365,22.5,0.235,market,"pullback to EMA20 in down-trend, bearish close"

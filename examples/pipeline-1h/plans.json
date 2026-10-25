@@ -1,0 +1,84 @@
+[
+  {
+    "instrument": "USDJPY",
+    "strategy": "ema_pullback",
+    "direction": "short",
+    "timeframe": "1h",
+    "as_of_utc": "2026-10-23 20:00",
+    "last_close": 156.814,
+    "entry": {
+      "price": 156.814,
+      "expected_fill": 156.807,
+      "type": "market"
+    },
+    "stop": {
+      "price": 157.039,
+      "distance": 0.232,
+      "distance_pips": 23.2,
+      "unit": "pips",
+      "distance_atr": 0.99,
+      "method": "given"
+    },
+    "targets": {
+      "1R": 156.575,
+      "2R": 156.343,
+      "3R": 156.111,
+      "custom": 156.365,
+      "custom_R": 1.91
+    },
+    "position": {
+      "units": 90514.0,
+      "lots": 0.91,
+      "unit_label": "units of base currency",
+      "risk_amount": 100.0,
+      "account_ccy": "GBP",
+      "risk_quote_ccy": 20999.58,
+      "quote_ccy": "JPY",
+      "quote_to_account_rate": 0.004762,
+      "notional_quote": 14193169.0
+    },
+    "costs": {
+      "spread_pips": 1.0,
+      "slippage_pips_per_side": 0.2,
+      "round_trip_pips": 1.4,
+      "cost_in_R": 0.06,
+      "breakeven_move_pips": 1.4
+    },
+    "context": {
+      "trend": "down",
+      "ema20": 156.849,
+      "ema50": 157.105,
+      "ema200": 157.716,
+      "adx": 26.4,
+      "rsi": 47.3,
+      "atr": 0.235
+    },
+    "warnings": [],
+    "note": "pullback to EMA20 in down-trend, bearish close",
+    "strategy_stats": {
+      "trades": 4813,
+      "win_rate": 0.34822356118844794,
+      "expectancy_R": -0.1015181887232471,
+      "median_R": -1.0123682772194755,
+      "avg_win_R": 1.5736152875410048,
+      "avg_loss_R": -0.9964890864659587,
+      "payoff_ratio": 1.5791595802838343,
+      "profit_factor": 0.8436950770021377,
+      "total_R": -488.6070423249883,
+      "total_pnl": -48860.70423249883,
+      "return_pct": -488.60704232498836,
+      "max_drawdown_R": 506.15512869180117,
+      "max_drawdown_pct": 506.1551286918011,
+      "avg_bars_held": 20.165177643881155,
+      "max_consec_losses": 27,
+      "max_consec_wins": 9,
+      "t_stat": -5.415727779977292,
+      "sharpe_daily": -2.4468185503715922,
+      "trades_per_month": 143.3539334637965,
+      "first_trade": "2024-01-05",
+      "last_trade": "2026-10-23",
+      "this_instrument_trades": 429,
+      "this_instrument_expectancy_R": -0.07888020772644128
+    }
+  }
+]

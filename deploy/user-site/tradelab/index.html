@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tradelab · live research dashboard</title>
+<meta name="description" content="Hourly chart scan, rule-based setups, sized plans and honest backtests for FX majors and index CFDs. Research only, not advice.">
+<meta name="robots" content="noindex">
+<!-- Where data.json and the run assets live. Empty = ./data/ next to this page.
+     When the page is served from one branch and the data is published to another, set e.g.
+     https://raw.githubusercontent.com/OWNER/REPO/tradelab-data/data/ -->
+<meta name="tradelab-data" content="https://raw.githubusercontent.com/rgprince84-prog/rgprince84-prog.github.io/tradelab-data/data/">
+<!-- Optional: link to the source repository / branch, shown in the footer -->
+<meta name="tradelab-repo" content="https://github.com/rgprince84-prog/rgprince84-prog.github.io/tree/tradelab">
+<style>
+:root{color-scheme:light;
+ --page:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink-2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--border:rgba(11,11,11,.10);
+ --accent:#2a78d6;--accent-wash:rgba(42,120,214,.08);--track:#cde2fb;
+ --good:#006300;--bad:#d03b3b;--warn:#fab219;--warn-wash:rgba(250,178,25,.14);
+ --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--page:#0d0d0d;--surface:#1a1a19;--ink:#f0efec;--ink-2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--border:rgba(255,255,255,.10);--accent:#3987e5;--accent-wash:rgba(57,135,229,.14);--track:#184f95;--good:#0ca30c;--bad:#e66767;--warn-wash:rgba(250,178,25,.12)}}
+:root[data-theme="dark"]{color-scheme:dark;--page:#0d0d0d;--surface:#1a1a19;--ink:#f0efec;--ink-2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--border:rgba(255,255,255,.10);--accent:#3987e5;--accent-wash:rgba(57,135,229,.14);--track:#184f95;--good:#0ca30c;--bad:#e66767;--warn-wash:rgba(250,178,25,.12)}
+*{box-sizing:border-box}
+html{background:var(--page)}
+body{margin:0;font:14px/1.45 var(--sans);color:var(--ink);background:var(--page);-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:5;background:var(--page);border-bottom:1px solid var(--grid)}
+header.top .wrap{display:flex;align-items:center;gap:14px;min-height:52px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.brand{display:flex;align-items:baseline;gap:10px;flex:1 1 auto}
+.logo{font-weight:700;font-size:18px;letter-spacing:-.01em}
+.tag{color:var(--ink-2);font-size:13px}
+.status{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-weight:600;font-size:12px;color:var(--ink-2);white-space:nowrap}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.pill.live .dot{background:var(--good)} .pill.stale .dot{background:var(--warn)} .pill.err .dot{background:var(--bad)}
+button.theme{border:1px solid var(--border);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:30px;cursor:pointer;font-size:15px}
+main{padding:18px 0 30px}
+.notice{background:var(--warn-wash);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--ink-2);font-size:13px;margin:0 0 18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:0 0 16px}
+.kpis>*,.plans>*,.bt-grid>*,.figs>*,.mini>*{min-width:0}
+.md,.plan dd,.plan .why,.plan .warn,.verdict{overflow-wrap:anywhere}
+.warnbox{margin:0 0 14px;padding:10px 14px;border-radius:10px;background:var(--warn-wash);border:1px solid var(--border);color:var(--ink-2);font-size:13px}
+.warnbox ul{margin:6px 0 0;padding-left:18px}
+.card h3{margin:0 0 10px;font-size:15px}
+h2{font-size:18px;margin:26px 0 12px;letter-spacing:-.01em}
+h3{font-size:15px;margin:20px 0 10px}
+.sechead{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:26px 0 12px}
+.sechead h2{margin:0}
+.muted{color:var(--muted)} .sub{color:var(--ink-2)} .small{font-size:12px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 8px}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.tile .label{color:var(--ink-2);font-size:13px}
+.tile .value{font-size:30px;font-weight:600;line-height:1.15;margin:4px 0 2px;letter-spacing:-.01em}
+.tile .sub{font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{border:1px solid var(--border);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:5px 14px;font:inherit;font-weight:600;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab .count{font-weight:500;opacity:.85;margin-left:4px}
+.panel[hidden]{display:none}
+.meta{display:flex;gap:18px;flex-wrap:wrap;color:var(--ink-2);font-size:13px;margin:0 0 14px}
+.meta b{color:var(--ink);font-weight:600}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--grid);border-radius:10px;background:var(--surface)}
+table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;font-variant-numeric:tabular-nums}
+.tbl th{position:sticky;top:0;background:var(--surface);text-align:left;font-weight:600;color:var(--ink-2);padding:9px 10px;border-bottom:1px solid var(--axis);white-space:nowrap;font-size:12px}
+.tbl th.num{text-align:right}
+.tbl th.sortable{cursor:pointer;user-select:none}
+.tbl th.sortable:hover{color:var(--ink)}
+.tbl th[aria-sort="ascending"]::after{content:" ▲";font-size:9px;color:var(--accent)}
+.tbl th[aria-sort="descending"]::after{content:" ▼";font-size:9px;color:var(--accent)}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--grid);white-space:nowrap;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover td{background:var(--accent-wash)}
+.tbl .num{text-align:right}
+.tbl tr.fresh td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+.tbl tr.fresh td{font-weight:600}
+.tbl td.wrap{white-space:normal;min-width:220px}
+.glyph{display:inline-block;width:1em;text-align:center;color:var(--ink-2)}
+.pos{color:var(--good)} .neg{color:var(--bad)} .na{color:var(--ink-2)}
+.meterwrap{display:inline-flex;align-items:center;gap:8px}
+.meter{display:inline-block;width:64px;height:6px;border-radius:3px;background:var(--track);overflow:hidden;vertical-align:middle}
+.meter .fill{display:block;height:100%;background:var(--accent);border-radius:3px}
+.mval{min-width:2.6em;text-align:right;display:inline-block}
+.empty{color:var(--ink-2);padding:14px 16px;border:1px dashed var(--axis);border-radius:10px}
+.plans{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:12px}
+.plan{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.plan .head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
+.plan .head .inst{font-weight:700;font-size:16px}
+.plan dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 12px;margin:0;font-size:13px}
+.plan dt{color:var(--muted)} .plan dd{margin:0;font-variant-numeric:tabular-nums}
+.plan .why{margin:10px 0 0;color:var(--ink-2);font-size:13px}
+.plan .warn{margin:10px 0 0;padding:8px 10px;border-radius:8px;background:var(--warn-wash);color:var(--ink-2);font-size:12.5px}
+.plan .warn p{margin:2px 0}
+.bt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:14px}
+@media (max-width:480px){.bt-grid,.plans{grid-template-columns:1fr}}
+.bt{margin:0}
+.bt .head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.bt .head h3{margin:0}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 12px;margin:10px 0}
+.mini .l{font-size:11.5px;color:var(--muted)} .mini .v{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.verdict{font-weight:600;margin:4px 0 10px}
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.figs{grid-template-columns:1fr}}
+figure{margin:0} figure img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--grid);background:#fff}
+figcaption{font-size:12px;color:var(--muted);margin-top:4px}
+details{margin-top:10px} summary{cursor:pointer;color:var(--accent);font-weight:600}
+.md{font-size:13.5px;margin-top:10px}
+.md h3,.md h4,.md h5,.md h6{margin:14px 0 6px;font-size:14px} .md h3{font-size:15px}
+.md table{font-size:12.5px} .md .scroll{margin:6px 0 12px}
+.md blockquote{margin:8px 0;padding:8px 12px;border-left:3px solid var(--axis);color:var(--ink-2);background:var(--accent-wash);border-radius:0 8px 8px 0}
+.md pre{font:12px/1.4 var(--mono);background:var(--page);border:1px solid var(--grid);border-radius:8px;padding:10px;overflow-x:auto}
+.md code{font:12px var(--mono);background:var(--page);padding:1px 4px;border-radius:4px}
+.md hr{border:0;border-top:1px solid var(--grid);margin:12px 0}
+.md figure{max-width:720px;margin:8px 0}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;margin-top:8px}
+footer.foot{color:var(--muted);font-size:12.5px;padding:16px 16px 40px;border-top:1px solid var(--grid);margin-top:20px}
+.card.err{border-color:var(--bad)}
+.card.err code{font:12px var(--mono);word-break:break-all}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="logo">tradelab</span><span class="tag">FX &amp; index research · live</span></div>
+    <div class="status"><span class="pill" id="pill"><span class="dot"></span><span id="pill-text">loading…</span></span><span id="updated"></span></div>
+    <button class="theme" id="theme" type="button" aria-label="Toggle colour theme" title="Theme: auto">◐</button>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <div class="notice">Research tooling. It places no orders and makes no predictions. Backtests use free mid/bid data with retail-spread costs and are not advice. A result that says “no edge” is a good result here.</div>
+  <section id="kpis" class="kpis" aria-label="Headline numbers"></section>
+  <section id="pipelines" aria-label="Scanner, setups and plans"></section>
+  <section id="backtests" aria-label="Strategy backtests"></section>
+  <section id="runlog" aria-label="Run log"></section>
+  <noscript><p class="card">This page needs JavaScript to render. The raw data is in <a href="https://raw.githubusercontent.com/rgprince84-prog/rgprince84-prog.github.io/tradelab-data/data/data.json">data.json</a>.</p></noscript>
+</main>
+<footer class="wrap foot" id="foot"></footer>
+<script>
+(function () {
+  'use strict';
+  var metaData = document.querySelector('meta[name="tradelab-data"]');
+  var BASE = ((metaData && metaData.getAttribute('content')) || '').trim() || './data/';
+  if (!/\/$/.test(BASE)) BASE += '/';
+  var metaRepo = document.querySelector('meta[name="tradelab-repo"]');
+  var REPO = ((metaRepo && metaRepo.getAttribute('content')) || '').trim();
+  var TF_ORDER = ['5m', '15m', '30m', '1h', '4h', '1d'];
+  var SAFE_ASSET = /^[A-Za-z0-9_][A-Za-z0-9_.\/-]*\.(png|csv|json|md)$/;
+  var VER = '';   // set from data.generated_utc once loaded; busts the CDN cache for charts/CSVs
+
+  // ------------------------------------------------------------------ DOM helpers (textContent only)
+  function el(tag, attrs) {
+    var n = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        var v = attrs[k];
+        if (v === null || v === undefined || v === false) return;
+        if (k === 'class') n.className = v;
+        else if (k === 'style' && typeof v === 'object') Object.assign(n.style, v);
+        else if (k.slice(0, 2) === 'on' && typeof v === 'function') n.addEventListener(k.slice(2), v);
+        else n.setAttribute(k, v === true ? '' : String(v));
+      });
+    }
+    for (var i = 2; i < arguments.length; i++) append(n, arguments[i]);
+    return n;
+  }
+  function append(n, kid) {
+    if (kid === null || kid === undefined || kid === false) return;
+    if (Array.isArray(kid)) { kid.forEach(function (k) { append(n, k); }); return; }
+    n.appendChild(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+  }
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function assetUrl(rel) {
+    if (typeof rel !== 'string') return null;
+    rel = rel.replace(/^\.\//, '');
+    if (!SAFE_ASSET.test(rel) || rel.indexOf('..') !== -1) return null;
+    return BASE + rel + (VER ? '?v=' + encodeURIComponent(VER) : '');
+  }
+  function val(x, d) { return x === null || x === undefined || x === '' ? (d === undefined ? '–' : d) : x; }
+  function joinPath(dir, rel) { rel = String(rel).replace(/^\.\//, ''); return dir ? dir + '/' + rel : rel; }
+
+  // ------------------------------------------------------------------ formatting
+  function isNum(v) { return typeof v === 'number' && isFinite(v); }
+  function fmt(v, d) { d = d === undefined ? 2 : d; return isNum(v) ? v.toLocaleString('en-GB', { minimumFractionDigits: d, maximumFractionDigits: d }) : '–'; }
+  function fmtInt(v) { return isNum(v) ? Math.round(v).toLocaleString('en-GB') : '–'; }
+  function fmtR(v, d) { d = d === undefined ? 2 : d; if (!isNum(v)) return '–'; var s = v > 0 ? '+' : v < 0 ? '−' : ''; return s + Math.abs(v).toFixed(d) + 'R'; }
+  function fmtPct(v, d) { d = d === undefined ? 0 : d; return isNum(v) ? (v * 100).toFixed(d) + '%' : '–'; }
+  function fmtPrice(v) { if (!isNum(v)) return '–'; return Math.abs(v) >= 1000 ? v.toLocaleString('en-GB', { maximumFractionDigits: 2 }) : String(v); }
+  function parseUtc(s) {
+    if (!s) return null;
+    var m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?/.exec(String(s));
+    if (!m) return null;
+    return new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +(m[6] || 0)));
+  }
+  function rel(d, now) {
+    if (!d) return '';
+    now = now || new Date();
+    var s = Math.round((now - d) / 1000), a = Math.abs(s), pre = s < 0 ? 'in ' : '', suf = s < 0 ? '' : ' ago';
+    if (a < 90) return pre + 'moments' + suf;
+    if (a < 5400) return pre + Math.round(a / 60) + ' min' + suf;
+    if (a < 172800) { var h = a / 3600; return pre + (h < 10 ? h.toFixed(1).replace(/\.0$/, '') : Math.round(h)) + ' h' + suf; }
+    return pre + Math.round(a / 86400) + ' d' + suf;
+  }
+  function utcLabel(d) { return d ? d.toISOString().slice(0, 16).replace('T', ' ') + ' UTC' : ''; }
+  function signClass(v) { return !isNum(v) ? 'na' : v > 0 ? 'pos' : v < 0 ? 'neg' : 'na'; }
+  function rCell(v, d) { return el('span', { class: signClass(v) }, fmtR(v, d)); }
+
+  // Verdict wording follows the project's own rules: <30 trades is an anecdote; t<2 or
+  // P(edge<0)>10% is "not distinguishable from zero"; negative expectancy is negative.
+  function verdict(m, mc) {
+    if (!m || !isNum(m.trades) || m.trades === 0) return { cls: 'na', icon: '·', text: 'no trades' };
+    var t = m.t_stat, e = m.expectancy_R, p = mc && isNum(mc.prob_total_R_negative) ? mc.prob_total_R_negative : null;
+    if (m.trades < 30) return { cls: 'na', icon: '~', text: 'anecdote: ' + m.trades + ' trades (fewer than 30)' };
+    if (isNum(e) && e <= 0) return { cls: 'neg', icon: '✕', text: 'negative after costs' };
+    if (!isNum(t) || t < 2 || (p !== null && p > 0.10)) return { cls: 'na', icon: '~', text: 'not distinguishable from zero' };
+    return { cls: 'pos', icon: '✓', text: 'positive after costs' };
+  }
+  function verdictNode(m, mc) {
+    var v = verdict(m, mc);
+    return el('span', { class: 'verdict-inline ' + v.cls }, el('span', { class: 'glyph ' + v.cls, 'aria-hidden': 'true' }, v.icon), ' ', v.text);
+  }
+
+  // ------------------------------------------------------------------ generic sortable table
+  function table(cols, rows, opts) {
+    opts = opts || {};
+    var state = { key: opts.sortKey || null, dir: opts.sortDir || 'desc' };
+    var tbl = el('table', { class: 'tbl' }), thead = el('thead'), hr = el('tr'), tbody = el('tbody');
+    cols.forEach(function (c) {
+      var th = el('th', { scope: 'col', class: (c.num ? 'num' : '') + (c.key ? ' sortable' : ''), 'aria-sort': 'none', title: c.title || null }, c.label);
+      th.dataset.key = c.key || '';
+      if (c.key) th.addEventListener('click', function () {
+        if (state.key === c.key) state.dir = state.dir === 'asc' ? 'desc' : 'asc';
+        else { state.key = c.key; state.dir = c.num ? 'desc' : 'asc'; }
+        draw();
+      });
+      hr.appendChild(th);
+    });
+    thead.appendChild(hr); tbl.appendChild(thead); tbl.appendChild(tbody);
+    function empty(v) { return v === null || v === undefined || v === ''; }
+    function draw() {
+      var sorted = rows.slice();
+      if (state.key) {
+        var c = cols.filter(function (x) { return x.key === state.key; })[0] || {};
+        sorted.sort(function (a, b) {
+          var av = a[state.key], bv = b[state.key];
+          if (empty(av) && empty(bv)) return 0;
+          if (empty(av)) return 1;
+          if (empty(bv)) return -1;
+          var r = (c.num && isNum(+av) && isNum(+bv)) ? (+av) - (+bv) : String(av).localeCompare(String(bv), undefined, { numeric: true });
+          return state.dir === 'asc' ? r : -r;
+        });
+      }
+      Array.prototype.forEach.call(hr.children, function (th) {
+        th.setAttribute('aria-sort', th.dataset.key && th.dataset.key === state.key ? (state.dir === 'asc' ? 'ascending' : 'descending') : 'none');
+      });
+      tbody.textContent = '';
+      sorted.forEach(function (row) {
+        var tr = el('tr', { class: opts.rowClass ? opts.rowClass(row) : null });
+        cols.forEach(function (c) {
+          tr.appendChild(el('td', { class: (c.num ? 'num' : '') + (c.wrap ? ' wrap' : '') }, c.render ? c.render(row[c.key], row) : fmtCell(row[c.key], c)));
+        });
+        tbody.appendChild(tr);
+      });
+    }
+    draw();
+    return el('div', { class: 'scroll' }, tbl);
+  }
+  function fmtCell(v, c) {
+    if (v === null || v === undefined || v === '') return el('span', { class: 'muted' }, '–');
+    if (typeof v === 'boolean') return v ? '✓' : '';
+    if (c.num && isNum(v)) return c.digits !== undefined ? fmt(v, c.digits) : String(v);
+    return String(v);
+  }
+  function trendCell(v) {
+    var g = v === 'up' ? '▲' : v === 'down' ? '▼' : '◆';
+    return el('span', null, el('span', { class: 'glyph', 'aria-hidden': 'true' }, g), ' ', v || '–');
+  }
+  function meterCell(v, max, label, text) {
+    var pct = isNum(v) ? Math.max(0, Math.min(1, v / max)) * 100 : 0;
+    return el('span', { class: 'meterwrap' },
+      el('span', { class: 'meter', role: 'img', 'aria-label': label }, el('span', { class: 'fill', style: { width: pct + '%' } })),
+      el('span', { class: 'mval' }, text));
+  }
+
+  // ------------------------------------------------------------------ column specs
+  var scanCols = [
+    { key: 'instrument', label: 'Instrument', render: function (v) { return el('b', null, v); } },
+    { key: 'last_bar_utc', label: 'Last bar (UTC)', render: function (v) { var d = parseUtc(v); return el('span', { title: d ? rel(d) : null }, v || '–'); } },
+    { key: 'close', label: 'Close', num: true, render: function (v) { return fmtPrice(v); } },
+    { key: 'trend', label: 'Trend', render: trendCell },
+    { key: 'regime', label: 'Regime', render: function (v) { return (v || '–').replace(/_/g, ' '); } },
+    { key: 'adx', label: 'ADX', num: true, digits: 1 },
+    { key: 'rsi', label: 'RSI', num: true, digits: 1 },
+    { key: 'atr_pct', label: 'ATR %', num: true, digits: 3, title: 'ATR(14) as % of price' },
+    { key: 'bb_width_pctile', label: 'BB width %ile', num: true, digits: 0, title: 'Bollinger band width, percentile of the trailing 120 bars' },
+    { key: 'squeeze', label: 'Squeeze', title: 'Band width in the bottom 15% of its trailing range' },
+    { key: 'donchian_pos', label: 'Donchian pos', num: true, title: '0 = at the 20-bar low, 1 = at the 20-bar high',
+      render: function (v) { return isNum(v) ? meterCell(v, 1, 'position in 20-bar channel ' + fmt(v, 2), fmt(v, 2)) : el('span', { class: 'muted' }, '–'); } },
+    { key: 'breakout_20', label: '20-bar break', render: function (v) { return v ? (v === 'up' ? '▲ up' : '▼ down') : ''; } },
+    { key: 'ema20_dist_atr', label: 'EMA20 dist (ATR)', num: true, digits: 2 },
+    { key: 'pattern', label: 'Candle', render: function (v) { return v ? String(v).replace(/_/g, ' ') : ''; } },
+    { key: 'setups', label: 'Live signals', render: function (v) { return v ? el('b', null, v) : ''; } },
+    { key: 'score', label: 'Score', num: true, title: 'Interest score, max 13: live signals, breakout, squeeze, candle pattern, EMA20 proximity in a trend, RSI extreme, trending regime',
+      render: function (v) { return meterCell(v, 13, 'interest score ' + fmt(v, 1) + ' of 13', fmt(v, 1)); } }
+  ];
+  var setupCols = [
+    { key: 'instrument', label: 'Instrument', render: function (v) { return el('b', null, v); } },
+    { key: 'strategy', label: 'Strategy' },
+    { key: 'direction', label: 'Direction', render: function (v) { return el('span', null, el('span', { class: 'glyph', 'aria-hidden': 'true' }, v === 'long' ? '▲' : '▼'), ' ', v); } },
+    { key: 'signal_bar_utc', label: 'Signal bar (UTC)' },
+    { key: 'bars_ago', label: 'Bars ago', num: true },
+    { key: 'fresh', label: 'Fresh', render: function (v) { return v === true || v === 'True' ? el('b', null, '● fresh') : ''; } },
+    { key: 'ref_price', label: 'Ref price', num: true, render: function (v) { return fmtPrice(v); } },
+    { key: 'stop', label: 'Stop', num: true, render: function (v) { return fmtPrice(v); } },
+    { key: 'target', label: 'Target', num: true, render: function (v) { return fmtPrice(v); } },
+    { key: 'stop_pips', label: 'Stop (pips/pts)', num: true, digits: 1 },
+    { key: 'atr', label: 'ATR', num: true, render: function (v) { return fmtPrice(v); } },
+    { key: 'entry_type', label: 'Entry' },
+    { key: 'note', label: 'Why', wrap: true }
+  ];
+  var statCols = [
+    { key: 'strategy', label: 'Strategy', render: function (v) { return el('b', null, v); } },
+    { key: 'first_trade', label: 'First trade' },
+    { key: 'last_trade', label: 'Last trade' },
+    { key: 'trades', label: 'Trades', num: true, render: function (v) { return fmtInt(v); } },
+    { key: 'win_rate', label: 'Win', num: true, render: function (v) { return fmtPct(v, 1); } },
+    { key: 'expectancy_R', label: 'Expectancy', num: true, render: function (v) { return rCell(v, 3); } },
+    { key: 'profit_factor', label: 'PF', num: true, digits: 2 },
+    { key: 't_stat', label: 't-stat', num: true, digits: 2 },
+    { key: 'max_drawdown_R', label: 'Max DD (R)', num: true, digits: 1 },
+    { key: 'prob_neg', label: 'P(edge<0)', num: true, render: function (v) { return fmtPct(v); } },
+    { key: 'verdict_rank', label: 'Verdict', num: true, render: function (v, row) { return verdictNode(row.m, row.mc); } }
+  ];
+  var logCols = [
+    { key: 'run_stamp', label: 'Run (UTC)', render: function (v) { var d = parseUtc(v); return el('span', { title: d ? rel(d) : null }, v ? String(v).replace('T', ' ').replace(/Z$/, '') : '–'); } },
+    { key: 'kind', label: 'Kind' },
+    { key: 'instruments', label: 'Instruments', num: true },
+    { key: 'setups', label: 'Setups', num: true },
+    { key: 'fresh', label: 'Fresh', num: true },
+    { key: 'strategies_fired', label: 'Fired', render: function (v) { return Array.isArray(v) ? v.join(', ') : ''; } },
+    { key: 'trades', label: 'Trades', num: true, render: function (v) { return isNum(v) ? fmtInt(v) : ''; } },
+    { key: 'expectancy_R', label: 'Expectancy', num: true, render: function (v) { return isNum(v) ? rCell(v, 3) : ''; } },
+    { key: 't_stat', label: 't-stat', num: true, render: function (v) { return isNum(v) ? fmt(v, 2) : ''; } }
+  ];
+
+  // ------------------------------------------------------------------ markdown (safe, DOM-built)
+  function inline(text, assetDir) {
+    var out = [], re = /(\*\*[^*\n]+\*\*|`[^`\n]+`|\[([^\]\n]+)\]\(([^)\s]+)\))/g, last = 0, m;
+    text = String(text);
+    while ((m = re.exec(text))) {
+      if (m.index > last) out.push(text.slice(last, m.index));
+      var tok = m[0];
+      if (tok.charAt(0) === '*') out.push(el('strong', null, tok.slice(2, -2)));
+      else if (tok.charAt(0) === '`') out.push(el('code', null, tok.slice(1, -1)));
+      else {
+        var url = m[3], label = m[2], u = /^[a-z]+:/i.test(url) ? null : assetUrl(joinPath(assetDir, url));
+        out.push(u ? el('a', { href: u, target: '_blank', rel: 'noopener' }, label) : label);
+      }
+      last = m.index + tok.length;
+    }
+    if (last < text.length) out.push(text.slice(last));
+    return out;
+  }
+  function mdTable(lines, assetDir) {
+    var rows = lines.map(function (l) { return l.replace(/^\|/, '').replace(/\|\s*$/, '').split('|').map(function (c) { return c.trim(); }); });
+    var header = rows[0], body = rows.slice(1).filter(function (r) { return !r.every(function (c) { return /^:?-{3,}:?$/.test(c); }); });
+    var t = el('table', { class: 'tbl' });
+    t.appendChild(el('thead', null, el('tr', null, header.map(function (h) { return el('th', { scope: 'col' }, inline(h, assetDir)); }))));
+    t.appendChild(el('tbody', null, body.map(function (r) {
+      return el('tr', null, r.map(function (c) { return el('td', { class: /^[-+−]?[\d,.]+%?$/.test(c) || c === 'n/a' || c === 'inf' ? 'num' : null }, inline(c, assetDir)); }));
+    })));
+    return el('div', { class: 'scroll' }, t);
+  }
+  function renderMd(md, assetDir) {
+    var root = el('div', { class: 'md' }), lines = String(md || '').replace(/\r/g, '').split('\n'), i = 0, para = [], m;
+    function flush() { if (para.length) { root.appendChild(el('p', null, inline(para.join(' '), assetDir))); para = []; } }
+    while (i < lines.length) {
+      var line = lines[i];
+      if (/^\s*$/.test(line)) { flush(); i++; continue; }
+      if ((m = /^(#{1,6})\s+(.*)$/.exec(line))) { flush(); root.appendChild(el('h' + Math.min(6, m[1].length + 2), null, inline(m[2], assetDir))); i++; continue; }
+      if (/^-{3,}\s*$/.test(line)) { flush(); root.appendChild(el('hr')); i++; continue; }
+      if ((m = /^!\[([^\]]*)\]\(([^)\s]+)\)\s*$/.exec(line))) {
+        flush(); var u = assetUrl(joinPath(assetDir, m[2]));
+        if (u) root.appendChild(el('figure', null, el('a', { href: u, target: '_blank', rel: 'noopener' }, el('img', { src: u, alt: m[1] || 'chart', loading: 'lazy' })), el('figcaption', null, m[1] || '')));
+        i++; continue;
+      }
+      if (line.charAt(0) === '|') { flush(); var tl = []; while (i < lines.length && lines[i].charAt(0) === '|') tl.push(lines[i++]); root.appendChild(mdTable(tl, assetDir)); continue; }
+      if (/^>\s?/.test(line)) { flush(); var q = []; while (i < lines.length && (m = /^>\s?(.*)$/.exec(lines[i]))) { q.push(m[1]); i++; } root.appendChild(el('blockquote', null, inline(q.join(' '), assetDir))); continue; }
+      if (/^[-*]\s+/.test(line)) { flush(); var ul = el('ul'); while (i < lines.length && /^[-*]\s+/.test(lines[i])) { ul.appendChild(el('li', null, inline(lines[i].replace(/^[-*]\s+/, ''), assetDir))); i++; } root.appendChild(ul); continue; }
+      if (/^```/.test(line)) { flush(); var code = []; i++; while (i < lines.length && !/^```/.test(lines[i])) code.push(lines[i++]); i++; root.appendChild(el('pre', null, code.join('\n'))); continue; }
+      if ((m = /^_(.+)_\s*$/.exec(line))) { flush(); root.appendChild(el('p', null, el('em', null, inline(m[1], assetDir)))); i++; continue; }
+      para.push(line); i++;
+    }
+    flush();
+    return root;
+  }
+
+  // ------------------------------------------------------------------ sections
+  function tile(label, value, sub, cls) {
+    return el('div', { class: 'tile' }, el('div', { class: 'label' }, label), el('div', { class: 'value ' + (cls || '') }, value), sub ? el('div', { class: 'sub' }, sub) : null);
+  }
+  function tfSorted(obj) { return Object.keys(obj || {}).sort(function (a, b) { return TF_ORDER.indexOf(a) - TF_ORDER.indexOf(b); }); }
+  function isFresh(s) { return s && (s.fresh === true || s.fresh === 'True' || s.fresh === 1); }
+
+  function renderKpis(data) {
+    var sec = $('#kpis'), tfs = tfSorted(data.pipelines), setups = 0, fresh = 0, newest = null, insts = {};
+    tfs.forEach(function (tf) {
+      var p = data.pipelines[tf];
+      (p.setups || []).forEach(function (s) { setups++; if (isFresh(s)) fresh++; insts[s.instrument] = 1; });
+      (p.scan || []).forEach(function (r) { var d = parseUtc(r.last_bar_utc); if (d && (!newest || d > newest)) newest = d; });
+    });
+    var bts = Object.keys(data.backtests || {}), positive = 0, negative = 0;
+    bts.forEach(function (k) { var b = data.backtests[k], v = verdict(b.metrics, b.monte_carlo); if (v.cls === 'pos') positive++; if (v.cls === 'neg') negative++; });
+    sec.appendChild(tile('Fresh setups', String(fresh), 'on the last closed bar · ' + (tfs.join(' + ') || 'no runs')));
+    sec.appendChild(tile('Setups on recent bars', String(setups), Object.keys(insts).length + ' instrument' + (Object.keys(insts).length === 1 ? '' : 's') + ' · ' + tfs.length + ' timeframe' + (tfs.length === 1 ? '' : 's')));
+    sec.appendChild(tile('Newest closed bar', newest ? rel(newest) : '–', newest ? utcLabel(newest) : 'no scan data'));
+    sec.appendChild(tile('Strategies with an edge', bts.length ? positive + ' of ' + bts.length : '–', bts.length ? negative + ' negative after costs · rest not distinguishable from zero' : 'no backtests exported'));
+  }
+
+  function planCard(p) {
+    var get = function (path, d) { try { return path.split('.').reduce(function (o, k) { return o[k]; }, p); } catch (e) { return d; } };
+    var s = p.strategy_stats || null, isLong = p.direction === 'long';
+    var rows = [
+      ['entry', fmtPrice(get('entry.price')) + ' (expected fill ' + fmtPrice(get('entry.expected_fill')) + ', ' + val(get('entry.type'), 'market') + ')'],
+      ['stop', fmtPrice(get('stop.price')) + ' (' + val(get('stop.distance_pips')) + ' ' + val(get('stop.unit'), '') + ', ' + val(get('stop.distance_atr')) + ' ATR)'],
+      ['targets', Object.keys(p.targets || {}).filter(function (k) { return k !== 'custom_R'; }).map(function (k) {
+        return k + ' ' + fmtPrice(p.targets[k]) + (k === 'custom' && isNum(p.targets.custom_R) ? ' (' + fmt(p.targets.custom_R, 2) + 'R)' : '');
+      }).join(' · ')],
+      ['size', fmtInt(get('position.units')) + ' ' + val(get('position.unit_label'), '') + (isNum(get('position.lots')) ? ' = ' + get('position.lots') + ' lots' : '') + ' · risking ' + val(get('position.account_ccy'), '') + ' ' + fmt(get('position.risk_amount'), 2)],
+      ['costs', val(get('costs.round_trip_pips')) + ' ' + val(get('stop.unit'), '') + ' round trip = ' + fmtPct(get('costs.cost_in_R'), 1) + ' of 1R'],
+      ['context', 'trend ' + val(get('context.trend')) + ' · ADX ' + val(get('context.adx')) + ' · RSI ' + val(get('context.rsi'))]
+    ];
+    var dl = el('dl');
+    rows.forEach(function (r) { dl.appendChild(el('dt', null, r[0])); dl.appendChild(el('dd', null, r[1])); });
+    if (s) {
+      dl.appendChild(el('dt', null, 'history'));
+      dl.appendChild(el('dd', null,
+        fmtInt(s.trades) + ' trades, win ' + fmtPct(s.win_rate) + ', expectancy ', rCell(s.expectancy_R, 2), ', max DD ' + fmt(s.max_drawdown_R, 1) + 'R' + (isNum(s.t_stat) ? ' (t ' + s.t_stat.toFixed(1) + ')' : ''),
+        isNum(s.this_instrument_trades) ? el('div', { class: 'muted' }, p.instrument + ' alone: ' + fmtInt(s.this_instrument_trades) + ' trades, ', rCell(s.this_instrument_expectancy_R, 2)) : null));
+    }
+    var warns = (p.warnings || []).slice();
+    if (s && isNum(s.expectancy_R) && s.expectancy_R <= 0) warns.unshift('This strategy has not been profitable after costs on this universe and timeframe. The setup is information, not a trade.');
+    return el('article', { class: 'plan' },
+      el('div', { class: 'head' },
+        el('span', null, el('span', { class: 'inst' }, p.instrument), ' ', el('span', { class: 'dir' }, el('span', { class: 'glyph', 'aria-hidden': 'true' }, isLong ? '▲' : '▼'), ' ' + String(p.direction || '').toUpperCase())),
+        el('span', { class: 'sub small' }, (p.strategy || '') + ' · ' + (p.timeframe || '') + ' · as of ' + (p.as_of_utc || '') + ' UTC')),
+      dl,
+      warns.length ? el('div', { class: 'warn' }, warns.map(function (w) { return el('p', null, '⚠ ' + w); })) : null,
+      p.note ? el('p', { class: 'why' }, 'why: ' + p.note) : null);
+  }
+
+  function strategyRows(stats, cfgStart) {
+    return Object.keys(stats || {}).map(function (name) {
+      var b = stats[name], m = b.metrics || {}, mc = b.monte_carlo || {}, v = verdict(m, mc);
+      return { strategy: name, first_trade: m.first_trade || cfgStart || '', last_trade: m.last_trade || '', trades: m.trades, win_rate: m.win_rate,
+        expectancy_R: m.expectancy_R, profit_factor: m.profit_factor, t_stat: m.t_stat, max_drawdown_R: m.max_drawdown_R,
+        prob_neg: isNum(mc.prob_total_R_negative) ? mc.prob_total_R_negative : null, verdict_rank: v.cls === 'pos' ? 2 : v.cls === 'na' ? 1 : 0, m: m, mc: mc, b: b };
+    });
+  }
+
+  function renderPipeline(panel, p, data) {
+    var runAt = parseUtc(p.run_stamp), newest = null;
+    (p.scan || []).forEach(function (r) { var d = parseUtc(r.last_bar_utc); if (d && (!newest || d > newest)) newest = d; });
+    var fresh = (p.setups || []).filter(isFresh).length;
+    panel.appendChild(el('div', { class: 'meta' },
+      el('span', null, 'Run ', el('b', null, runAt ? utcLabel(runAt) : (p.run_stamp || '–')), runAt ? ' (' + rel(runAt) + ')' : ''),
+      el('span', null, 'Newest closed bar ', el('b', null, newest ? utcLabel(newest) : '–')),
+      el('span', null, el('b', null, String((p.scan || []).length)), ' instruments scanned'),
+      el('span', null, el('b', null, String((p.setups || []).length)), ' setups on recent bars, ', el('b', null, String(fresh)), ' fresh')));
+
+    if (Array.isArray(p.warnings) && p.warnings.length) {
+      panel.appendChild(el('div', { class: 'warnbox', role: 'status' }, el('b', null, '⚠ This run was degraded'), ' — the feed failed for some instruments or a plan could not be built; rows below may rest on cached bars.',
+        el('ul', null, p.warnings.slice(0, 20).map(function (w) { return el('li', null, String(w)); })),
+        p.warnings.length > 20 ? el('div', { class: 'muted small' }, '… and ' + (p.warnings.length - 20) + ' more') : null));
+    }
+    panel.appendChild(el('h3', null, 'Setups on the last closed bars'));
+    if ((p.setups || []).length) panel.appendChild(table(setupCols, p.setups, { sortKey: null, rowClass: function (r) { return isFresh(r) ? 'fresh' : null; } }));
+    else panel.appendChild(el('div', { class: 'empty' }, 'No rule-based setups fired on the last closed bars for ' + p.tf + '.'));
+
+    panel.appendChild(el('h3', null, 'Plans for fresh setups'));
+    if ((p.plans || []).length) panel.appendChild(el('div', { class: 'plans' }, p.plans.map(planCard)));
+    else panel.appendChild(el('div', { class: 'empty' }, 'No fresh setup on the last closed bar, so nothing to size.'));
+
+    var stats = strategyRows(p.strategy_stats, p.backtest_window && p.backtest_window.start);
+    if (stats.length) {
+      panel.appendChild(el('h3', null, 'Strategy history on this timeframe (same universe, since ' + ((p.backtest_window && p.backtest_window.start) || 'config start') + ')'));
+      panel.appendChild(table(statCols, stats, { sortKey: 'expectancy_R' }));
+      stats.forEach(function (row) {
+        var kindDir = p.kind + '/backtest-' + row.strategy, a = row.b.assets || {};
+        var det = el('details', null, el('summary', null, 'Full report: ' + row.strategy + ' ' + p.tf));
+        det.addEventListener('toggle', function () { if (det.open && !det.dataset.done) { det.dataset.done = '1'; det.appendChild(renderMd(row.b.report_md, kindDir)); det.appendChild(assetLinks(a)); } });
+        panel.appendChild(det);
+      });
+    }
+
+    panel.appendChild(el('h3', null, 'Chart scan, ranked by interest'));
+    if ((p.scan || []).length) panel.appendChild(table(scanCols, p.scan, { sortKey: 'score', sortDir: 'desc' }));
+    else panel.appendChild(el('div', { class: 'empty' }, 'No scan rows: the data feed returned nothing this run.'));
+    var pa = p.assets || {};
+    panel.appendChild(assetLinks(pa));
+  }
+  function assetLinks(assets) {
+    var names = Object.keys(assets || {}).filter(function (k) { return assetUrl(assets[k]); });
+    if (!names.length) return el('span');
+    return el('div', { class: 'links' }, names.map(function (k) { return el('a', { href: assetUrl(assets[k]), target: '_blank', rel: 'noopener' }, k); }));
+  }
+
+  function renderPipelines(data) {
+    var sec = $('#pipelines'), tfs = tfSorted(data.pipelines);
+    if (!tfs.length) { sec.appendChild(el('h2', null, 'Scanner, setups & plans')); sec.appendChild(el('div', { class: 'empty' }, 'No pipeline runs have been exported yet.')); return; }
+    var tablist = el('div', { class: 'tabs', role: 'tablist' }), panels = [];
+    tfs.forEach(function (tf) {
+      var p = data.pipelines[tf], fresh = (p.setups || []).filter(isFresh).length;
+      var btn = el('button', { type: 'button', role: 'tab', id: 'tab-' + tf, class: 'tab', 'aria-selected': 'false', 'aria-controls': 'panel-' + tf }, tf, el('span', { class: 'count' }, '· ' + fresh + ' fresh'));
+      var panel = el('section', { id: 'panel-' + tf, role: 'tabpanel', 'aria-labelledby': 'tab-' + tf, class: 'panel', hidden: true });
+      renderPipeline(panel, p, data);
+      panels.push([btn, panel]); tablist.appendChild(btn);
+    });
+    sec.appendChild(el('div', { class: 'sechead' }, el('h2', null, 'Scanner, setups & plans'), tablist));
+    panels.forEach(function (x) { sec.appendChild(x[1]); });
+    var saved = null; try { saved = localStorage.getItem('tradelab.tf'); } catch (e) { }
+    function select(tf) {
+      panels.forEach(function (x) { var on = x[0].id === 'tab-' + tf; x[0].setAttribute('aria-selected', on ? 'true' : 'false'); x[1].hidden = !on; });
+      try { localStorage.setItem('tradelab.tf', tf); } catch (e) { }
+    }
+    panels.forEach(function (x) { x[0].addEventListener('click', function () { select(x[0].id.slice(4)); }); });
+    select(tfs.indexOf(saved) >= 0 ? saved : tfs[0]);
+  }
+
+  function miniStat(label, node) { return el('div', null, el('div', { class: 'l' }, label), el('div', { class: 'v' }, node)); }
+  function backtestCard(b, universeSize) {
+    var m = b.metrics || {}, mc = b.monte_carlo || {}, v = verdict(m, mc), a = b.assets || {}, runAt = parseUtc(b.run_stamp);
+    var card = el('article', { class: 'card bt' },
+      el('div', { class: 'head' },
+        el('h3', null, b.strategy + ' · ' + b.tf),
+        el('span', { class: 'sub small' }, (m.first_trade || '?') + ' → ' + (m.last_trade || '?') + (universeSize ? ' · ' + universeSize + ' instruments' : '') + (runAt ? ' · run ' + rel(runAt) : ''))),
+      el('div', { class: 'mini' },
+        miniStat('Trades', fmtInt(m.trades)),
+        miniStat('Expectancy', rCell(m.expectancy_R, 3)),
+        miniStat('t-stat', isNum(m.t_stat) ? m.t_stat.toFixed(2) : '–'),
+        miniStat('Profit factor', isNum(m.profit_factor) ? m.profit_factor.toFixed(2) : '–'),
+        miniStat('Max drawdown', isNum(m.max_drawdown_R) ? fmt(m.max_drawdown_R, 1) + 'R' : '–'),
+        miniStat('P(edge < 0)', isNum(mc.prob_total_R_negative) ? fmtPct(mc.prob_total_R_negative) : '–')),
+      el('div', { class: 'verdict ' + v.cls }, el('span', { class: 'glyph ' + v.cls, 'aria-hidden': 'true' }, v.icon), ' ', v.text,
+        isNum(mc.bootstrap_max_dd_R_p95) ? el('span', { class: 'muted' }, ' · Monte Carlo p95 drawdown ' + fmt(mc.bootstrap_max_dd_R_p95, 1) + 'R') : null));
+    var figs = [];
+    if (assetUrl(a['equity.png'])) figs.push(el('figure', null, el('a', { href: assetUrl(a['equity.png']), target: '_blank', rel: 'noopener' }, el('img', { src: assetUrl(a['equity.png']), alt: 'Equity curve and drawdown for ' + b.strategy + ' on ' + b.tf, loading: 'lazy' })), el('figcaption', null, 'Equity (fixed 1% risk) and drawdown')));
+    if (assetUrl(a['r_distribution.png'])) figs.push(el('figure', null, el('a', { href: assetUrl(a['r_distribution.png']), target: '_blank', rel: 'noopener' }, el('img', { src: assetUrl(a['r_distribution.png']), alt: 'Distribution of trade outcomes in R for ' + b.strategy + ' on ' + b.tf, loading: 'lazy' })), el('figcaption', null, 'R multiples per trade, after costs')));
+    if (figs.length) card.appendChild(el('div', { class: 'figs' }, figs));
+    var det = el('details', null, el('summary', null, 'Full report (by instrument, year, direction, exit reason, Monte Carlo)'));
+    det.addEventListener('toggle', function () { if (det.open && !det.dataset.done) { det.dataset.done = '1'; det.appendChild(renderMd(b.report_md, b.kind)); } });
+    card.appendChild(det);
+    card.appendChild(assetLinks(a));
+    return card;
+  }
+  function renderBacktests(data) {
+    var sec = $('#backtests'), keys = Object.keys(data.backtests || {});
+    sec.appendChild(el('h2', null, 'Strategy backtests'));
+    if (!keys.length) { sec.appendChild(el('div', { class: 'empty' }, 'No standalone backtests exported yet. The weekly run writes them.')); return; }
+    sec.appendChild(el('p', { class: 'sub', style: { margin: '0 0 12px' } }, 'Same engine, same costs, whole universe. Six numbers travel together: window, timeframe, trades, expectancy in R, t-stat, max drawdown in R. Fewer than 30 trades is an anecdote; t below 2 or P(edge<0) above 10% is not distinguishable from zero.'));
+    keys.sort(function (x, y) { var a = data.backtests[x], b = data.backtests[y]; return a.strategy === b.strategy ? TF_ORDER.indexOf(a.tf) - TF_ORDER.indexOf(b.tf) : a.strategy.localeCompare(b.strategy); });
+    var universe = data.config && data.config.universe ? data.config.universe.length : 0;
+    sec.appendChild(el('div', { class: 'bt-grid' }, keys.map(function (k) { return backtestCard(data.backtests[k], universe); })));
+  }
+
+  function renderRunLog(data) {
+    var sec = $('#runlog'), hist = (data.history || []).slice(0, 40);
+    sec.appendChild(el('h2', null, 'Run log'));
+    if (!hist.length) { sec.appendChild(el('div', { class: 'empty' }, 'No runs recorded yet.')); return; }
+    sec.appendChild(table(logCols, hist, { sortKey: null }));
+    var total = isNum(data.history_total) ? data.history_total : (data.history || []).length;
+    if (total > hist.length) sec.appendChild(el('p', { class: 'muted small' }, 'Showing the latest ' + hist.length + ' of ' + total + ' recorded runs.'));
+  }
+
+  function renderStatus(data) {
+    var gen = parseUtc(data.generated_utc), pill = $('#pill'), txt = $('#pill-text'), upd = $('#updated');
+    var now = new Date(), ageMin = gen ? (now - gen) / 60000 : null, dow = now.getUTCDay(), hr = now.getUTCHours();
+    var weekend = dow === 6 || (dow === 0 && hr < 21) || (dow === 5 && hr >= 22);
+    // hourly cron at :12 plus GitHub's scheduling jitter: anything under ~2 h is on time;
+    // over a weekend the last run is Friday night, but data older than ~60 h is a dead feed.
+    var state = ageMin === null ? 'err' : ageMin <= 125 ? 'live' : (weekend && ageMin <= 60 * 60) ? 'weekend' : 'stale';
+    pill.className = 'pill ' + (state === 'weekend' ? '' : state);
+    txt.textContent = state === 'err' ? 'unknown' : state === 'live' ? 'live' : state === 'weekend' ? 'weekend · markets closed' : 'stale';
+    upd.textContent = gen ? 'updated ' + rel(gen) + ' · ' + utcLabel(gen) : '';
+    document.title = 'tradelab · ' + (gen ? utcLabel(gen) : 'live research dashboard');
+  }
+  function renderFooter(data) {
+    var f = $('#foot'), v = data.tool && data.tool.version ? ' v' + data.tool.version : '', cfg = data.config || {}, acct = cfg.account || {}, costs = cfg.costs || {};
+    f.appendChild(el('p', null, 'Generated by tradelab' + v + ' · data source ' + (cfg.data_source || '?') + ' · sizing ' + (acct.risk_pct !== undefined ? acct.risk_pct + '% of ' + (acct.currency || '') + ' ' + fmtInt(acct.equity) : '?') + ' per trade · slippage ' + (costs.slippage !== undefined ? costs.slippage : '?') + ' pips/pts per side · same-bar stop+target → ' + (costs.same_bar_stop || '?') + '.'));
+    f.appendChild(el('p', null, 'Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice. ',
+      el('a', { href: BASE + 'data.json', target: '_blank', rel: 'noopener' }, 'data.json'),
+      REPO && /^https:\/\//.test(REPO) ? [' · ', el('a', { href: REPO, target: '_blank', rel: 'noopener' }, 'source')] : null));
+  }
+  function renderError(err, url) {
+    var pill = $('#pill'); pill.className = 'pill err'; $('#pill-text').textContent = 'no data';
+    $('#main').appendChild(el('div', { class: 'card err' }, el('h3', null, 'Could not load the dashboard data'),
+      el('p', null, String(err && err.message || err)), el('p', null, 'Tried: ', el('code', null, url)),
+      el('p', { class: 'sub' }, 'If the data branch was just updated, the raw CDN can take a few minutes to catch up. Reload to retry.')));
+  }
+
+  // ------------------------------------------------------------------ theme toggle
+  (function theme() {
+    var btn = $('#theme'), order = ['auto', 'light', 'dark'], cur = 'auto';
+    try { cur = localStorage.getItem('tradelab.theme') || 'auto'; } catch (e) { }
+    function apply() {
+      if (cur === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', cur);
+      btn.title = 'Theme: ' + cur; btn.textContent = cur === 'dark' ? '●' : cur === 'light' ? '○' : '◐';
+    }
+    btn.addEventListener('click', function () { cur = order[(order.indexOf(cur) + 1) % order.length]; try { localStorage.setItem('tradelab.theme', cur); } catch (e) { } apply(); });
+    apply();
+  })();
+
+  // ------------------------------------------------------------------ boot
+  var url = BASE + 'data.json?t=' + Date.now();
+  fetch(url, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' fetching data.json'); return r.json(); })
+    .then(function (data) {
+      VER = String(data.generated_utc || '');
+      renderStatus(data); renderKpis(data); renderPipelines(data); renderBacktests(data); renderRunLog(data); renderFooter(data);
+    })
+    .catch(function (e) { renderError(e, url); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+# ---------------------------------------------------------------------------
+# tradelab configuration
+# Edit this file, not the code, to change universe, costs or strategy rules.
+# ---------------------------------------------------------------------------
+
+account:
+  currency: GBP          # account currency used for position sizing
+  equity: 10000          # starting equity
+  risk_pct: 1.0          # % of equity risked per trade
+  compounding: false     # backtest sizing: false = fixed £ risk from starting equity
+
+costs:
+  slippage: 0.2          # pips/points per side, on top of spread
+  commission: 0.0        # account ccy per round trip (most FX/CFD brokers: 0)
+  same_bar_stop: pessimistic   # SL and TP both touched in one bar -> count the loss
+
+data:
+  source: yfinance       # yfinance (free, ~2 yrs hourly) | dukascopy (free, years of intraday + bid/ask)
+  cache_dir: .cache
+  default_tf: 1h
+  dk_start: "2018-01-01" # earliest history pulled from Dukascopy on first run
+
+backtest:
+  start: "2024-01-01"
+  end: null              # null = latest available
+  mc_runs: 1000          # Monte Carlo resamples of the trade sequence
+  oos_fraction: 0.3      # last 30% of the window held out for walk-forward
+  min_trades_for_stats: 30
+
+# Trading sessions in *local* time; the tool converts to UTC itself (handles DST).
+sessions:
+  LONDON:    { tz: Europe/London,    open: "08:00", close: "16:30" }
+  NEWYORK:   { tz: America/New_York, open: "09:30", close: "16:00" }
+  FRANKFURT: { tz: Europe/Berlin,    open: "09:00", close: "17:30" }
+  TOKYO:     { tz: Asia/Tokyo,       open: "09:00", close: "15:00" }
+
+# Default universe scanned / backtested when --instruments is not given.
+universe: [EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF, EURGBP, EURJPY, GBPJPY,
+           SPX500, NAS100, US30, UK100, GER40, JPN225]
+
+# Instrument specs. spread = typical retail spread in pips (fx) or points (index).
+# Tighten/widen to match your broker — it materially changes backtest results.
+instruments:
+  EURUSD: { type: fx, yf: "EURUSD=X", dk: "EUR/USD", pip: 0.0001, spread: 0.8, base_ccy: EUR, quote_ccy: USD, session: LONDON }
+  GBPUSD: { type: fx, yf: "GBPUSD=X", dk: "GBP/USD", pip: 0.0001, spread: 1.2, base_ccy: GBP, quote_ccy: USD, session: LONDON }
+  USDJPY: { type: fx, yf: "USDJPY=X", dk: "USD/JPY", pip: 0.01,   spread: 1.0, base_ccy: USD, quote_ccy: JPY, session: LONDON, digits: 3 }
+  AUDUSD: { type: fx, yf: "AUDUSD=X", dk: "AUD/USD", pip: 0.0001, spread: 1.0, base_ccy: AUD, quote_ccy: USD, session: LONDON }
+  USDCAD: { type: fx, yf: "USDCAD=X", dk: "USD/CAD", pip: 0.0001, spread: 1.5, base_ccy: USD, quote_ccy: CAD, session: NEWYORK }
+  USDCHF: { type: fx, yf: "USDCHF=X", dk: "USD/CHF", pip: 0.0001, spread: 1.5, base_ccy: USD, quote_ccy: CHF, session: LONDON }
+  EURGBP: { type: fx, yf: "EURGBP=X", dk: "EUR/GBP", pip: 0.0001, spread: 1.2, base_ccy: EUR, quote_ccy: GBP, session: LONDON }
+  EURJPY: { type: fx, yf: "EURJPY=X", dk: "EUR/JPY", pip: 0.01,   spread: 1.5, base_ccy: EUR, quote_ccy: JPY, session: LONDON, digits: 3 }
+  GBPJPY: { type: fx, yf: "GBPJPY=X", dk: "GBP/JPY", pip: 0.01,   spread: 2.5, base_ccy: GBP, quote_ccy: JPY, session: LONDON, digits: 3 }
+
+  SPX500: { type: index, yf: "^GSPC",  dk: "USA500.IDX/USD", pip: 1.0, spread: 0.6,  base_ccy: SPX500, quote_ccy: USD, session: NEWYORK }
+  NAS100: { type: index, yf: "^NDX",   dk: "E_NQ-100",       pip: 1.0, spread: 1.5,  base_ccy: NAS100, quote_ccy: USD, session: NEWYORK }
+  US30:   { type: index, yf: "^DJI",   dk: "E_D&J-Ind",      pip: 1.0, spread: 2.5,  base_ccy: US30,   quote_ccy: USD, session: NEWYORK }
+  UK100:  { type: index, yf: "^FTSE",  dk: "GBR.IDX/GBP",    pip: 1.0, spread: 1.0,  base_ccy: UK100,  quote_ccy: GBP, session: LONDON }
+  GER40:  { type: index, yf: "^GDAXI", dk: "DEU.IDX/EUR",    pip: 1.0, spread: 1.5,  base_ccy: GER40,  quote_ccy: EUR, session: FRANKFURT }
+  JPN225: { type: index, yf: "^N225",  dk: "E_N225Jap",      pip: 1.0, spread: 10.0, base_ccy: JPN225, quote_ccy: JPY, session: TOKYO, digits: 0 }
+
+# Strategy rules. Each block is passed to the strategy function as params.
+# `grid` is only used by `backtest --optimize` for walk-forward parameter search.
+strategies:
+  ema_pullback:            # trend continuation: pullback to EMA20 inside an EMA50/200 trend
+    ema_fast: 20
+    ema_mid: 50
+    ema_slow: 200
+    pullback_bars: 3
+    rsi_max: 70            # long signals need RSI below this (mirror for shorts)
+    sl_atr_buffer: 0.5     # stop = swing low/high of pullback -/+ this many ATRs
+    rr: 2.0
+    max_bars: 48
+    grid: { rr: [1.5, 2.0, 3.0], sl_atr_buffer: [0.25, 0.5, 1.0] }
+
+  donchian_breakout:       # trend following: 20-bar channel break with ADX filter, ATR trailing stop
+    lookback: 20
+    adx_min: 20
+    sl_atr: 2.0
+    trail_atr: 2.0
+    rr: null               # null = no fixed target, exit on trailing stop / time
+    max_bars: 200
+    grid: { lookback: [20, 40, 55], sl_atr: [1.5, 2.0, 3.0] }
+
+  bb_mean_reversion:       # range trading: re-entry into Bollinger band when ADX says ranging
+    period: 20
+    std: 2.0
+    adx_max: 20
+    sl_atr_buffer: 0.5
+    max_bars: 30
+    grid: { adx_max: [18, 22, 26], sl_atr_buffer: [0.25, 0.5, 1.0] }
+
+  session_orb:             # opening-range breakout of the instrument's home session
+    session: auto          # auto = instrument default (LONDON for FX, home exchange for indices)
+    range_bars: 1          # number of bars that define the opening range
+    max_range_atr: 1.5     # skip sessions whose opening range is wider than this many ATRs
+    min_bars_left: 2       # need at least this many bars left in the session to enter
+    rr: 1.5
+    flat_at_session_end: true
+    grid: { rr: [1.0, 1.5, 2.0], max_range_atr: [1.0, 1.5, 2.5] }

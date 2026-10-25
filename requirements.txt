@@ -1,0 +1,7 @@
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8
+pyyaml>=6.0
+yfinance>=0.2.50
+dukascopy-python>=4.0      # optional: deep intraday history (data.source: dukascopy / --source dukascopy)
+pyarrow>=15                # optional: faster parquet cache instead of CSV
