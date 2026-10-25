@@ -1,5 +1,9 @@
 # tradelab — FX & index research pipeline
 
+[![tradelab](https://github.com/rgprince84-prog/tradelab/actions/workflows/tradelab.yml/badge.svg)](https://github.com/rgprince84-prog/tradelab/actions/workflows/tradelab.yml)
+**Live dashboard:** https://rgprince84-prog.github.io/tradelab/ — refreshed hourly on weekdays by GitHub Actions. Research only, not advice.
+
+
 Four tools in one Python package, driven from the command line or by Claude Code:
 
 | Tool | Command | What it does |
