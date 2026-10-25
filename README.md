@@ -142,9 +142,11 @@ python -m http.server 8000 --directory site        # then open http://localhost:
 
 Running it in its own repository is the simplest setup: push this branch as `main` of any
 repository whose name does not end in `.github.io`. The workflow then restores and publishes
-the data branch exactly as above *and* deploys `site/` (page + data) to GitHub Pages itself —
-Pages is enabled on the first run, nothing to click in Settings — and the page reads `./data/`
-because the `<meta name="tradelab-data">` tag is empty. (GitHub Pages on a private repository
+the data branch exactly as above *and* deploys `site/` (page + data) to GitHub Pages itself, and
+the page reads `./data/` because the `<meta name="tradelab-data">` tag is empty. One setting to
+flip, once: *Settings → Pages → Build and deployment → Source: GitHub Actions* (the workflow's
+own token is not allowed to do that for you; until it is set the `pages` job fails with that
+message while the data branch is still published). (GitHub Pages on a private repository
 needs a paid plan; on the free plan make the repository public.)
 
 ## Roadmap

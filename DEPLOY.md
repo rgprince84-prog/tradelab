@@ -22,8 +22,10 @@ Everything needed is in this folder. Pick one of the two layouts.
        cd site && cp -r data /tmp/tl-data && cd /tmp/tl-data && git init -b tradelab-data && git add -A \
          && git commit -m "tradelab data seed" && git push --force https://github.com/rgprince84-prog/tradelab.git HEAD:tradelab-data
 
-4. Actions → **tradelab** → *Run workflow* (tick **backtests** if you skipped step 3).
-   The first run enables GitHub Pages and deploys. The page is then at
+4. Settings → **Pages** → *Build and deployment* → Source: **GitHub Actions** (one click; the
+   workflow's token cannot switch Pages on by itself).
+5. Actions → **tradelab** → *Run workflow* (tick **backtests** if you skipped step 3), or just
+   push to `main`. The page is then at
 
        https://rgprince84-prog.github.io/tradelab/
 
