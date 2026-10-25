@@ -20,6 +20,8 @@
 name: tradelab
 
 on:
+  push:
+    branches: [main]                # a code change redeploys: runs the pipelines and the page
   schedule:
     - cron: "12 * * * 1-5"          # hourly, Monday-Friday (UTC): 1h + 4h pipelines
     - cron: "12 20,22,23 * * 0"     # Sunday 20:12 UTC deep backtests; 22:12/23:12 as FX reopens

@@ -117,8 +117,8 @@ P(edge<0) above 10% is "not distinguishable from zero").
   fetches `data.json` and renders it in the browser. No framework, no build step.
 - **Schedule:** hourly at :12 UTC Monday–Friday on 1h and 4h; Sunday 20:12 UTC re-runs the
   deep backtests (1d since 2016 and 1h since 2024, all with Monte Carlo); Sunday 22:12 and
-  23:12 as FX reopens. Run it on demand from *Actions → tradelab → Run workflow*
-  (tick **backtests** to refresh the deep set).
+  23:12 as FX reopens. Every push to `main` also runs it. Run it on demand from
+  *Actions → tradelab → Run workflow* (tick **backtests** to refresh the deep set).
 - **Branches:**
   - `tradelab` — this code (the `.github/workflows/tradelab.yml` here is the reference copy);
   - `tradelab-data` — a single orphan commit holding the latest exported data
