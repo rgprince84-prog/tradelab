@@ -65,7 +65,11 @@ and delete files that are not in the source. Whatever produces them must keep
   never grows), and in layout A deploys `site/` to GitHub Pages.
 
 Yahoo Finance rate-limits shared runners now and then; the data layer then keeps the
-cached bars and the run still completes. Scheduled workflows are disabled by GitHub after
+cached bars and the run still completes.
+
+If only the `pages` job is red and its first step says *GitHub Pages is not enabled yet*,
+the pipeline ran fine; flip Settings → Pages → Source to **GitHub Actions** and the next run
+deploys the page. Scheduled workflows are disabled by GitHub after
 60 days without any commit to the repository; the hourly bot commits keep it alive.
 
 ## Local preview
