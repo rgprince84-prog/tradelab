@@ -1,0 +1,6 @@
+instrument,tf,strategy,direction,signal_bar_utc,fresh,bars_ago,ref_price,stop,target,stop_pips,atr,entry_type,note
+GBPJPY,4h,ema_pullback,long,2026-10-30 16:00,False,1,211.005,210.007,213.0,99.8,0.539,market,"pullback to EMA20 in up-trend, bullish close"
+NAS100,4h,donchian_breakout,short,2026-10-30 12:00,False,1,28385.75,29092.2,,706.4,353.22,market,"close below 20-bar low, ADX>20"
+EURUSD,4h,ema_pullback,short,2026-10-30 12:00,False,2,1.11657,1.12205,1.1056,54.8,0.00246,market,"pullback to EMA20 in down-trend, bearish close"
+GER40,4h,bb_mean_reversion,short,2026-10-30 08:00,False,2,25817.48,26172.16,25560.51,354.7,162.84,market,"re-entry below upper band, ADX<20"
+USDJPY,4h,bb_mean_reversion,long,2026-10-30 12:00,False,2,157.519,156.754,157.785,76.5,0.407,market,"re-entry above lower band, ADX<20"

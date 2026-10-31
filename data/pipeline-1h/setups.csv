@@ -1,0 +1,5 @@
+instrument,tf,strategy,direction,signal_bar_utc,fresh,bars_ago,ref_price,stop,target,stop_pips,atr,entry_type,note
+EURJPY,1h,ema_pullback,short,2026-10-30 20:00,False,1,175.816,176.156,175.137,34.0,0.305,market,"pullback to EMA20 in down-trend, bearish close"
+EURUSD,1h,ema_pullback,short,2026-10-30 20:00,False,1,1.11657,1.11816,1.11339,15.9,0.00143,market,"pullback to EMA20 in down-trend, bearish close"
+GBPJPY,1h,ema_pullback,long,2026-10-30 19:00,False,2,211.005,210.504,212.008,50.1,0.335,market,"pullback to EMA20 in up-trend, bullish close"
+USDJPY,1h,ema_pullback,short,2026-10-30 18:00,False,2,157.519,157.767,157.023,24.8,0.25,market,"pullback to EMA20 in down-trend, bearish close"

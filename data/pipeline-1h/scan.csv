@@ -1,0 +1,16 @@
+instrument,tf,last_bar_utc,close,trend,regime,adx,rsi,atr,atr_pct,bb_width_pctile,squeeze,donchian_pos,breakout_20,ema20_dist_atr,pattern,setups,score
+UK100,1h,2026-10-30 16:00,10736.14,up,trending,28.5,52.2,29.94,0.279,1.0,True,0.56,,0.17,bullish_engulfing,,4.0
+EURJPY,1h,2026-10-30 21:00,175.816,down,trending,25.4,48.1,0.296,0.169,94.0,False,0.53,,-0.13,inside_bar,,2.5
+GER40,1h,2026-10-30 16:00,25817.48,up,trending,26.9,49.9,83.54,0.324,28.0,False,0.36,,-0.45,hammer,,2.5
+GBPJPY,1h,2026-10-30 21:00,211.005,up,ranging,15.6,54.1,0.318,0.151,54.0,False,0.69,,0.41,inside_bar,,2.0
+AUDUSD,1h,2026-10-30 23:00,0.70353,mixed,ranging,10.8,50.6,0.00068,0.097,11.0,True,0.64,,0.12,,,1.5
+EURGBP,1h,2026-10-30 21:00,0.8332,down,trending,34.8,38.3,0.00069,0.083,95.0,False,0.27,,-0.99,inside_bar,,1.5
+NAS100,1h,2026-10-30 19:30,28385.75,down,trending,36.9,29.7,188.86,0.665,100.0,False,0.17,,-2.83,,,1.5
+EURUSD,1h,2026-10-30 21:00,1.11657,down,weak_trend,21.0,46.5,0.00136,0.122,90.0,False,0.38,,-0.51,inside_bar,,1.0
+GBPUSD,1h,2026-10-30 21:00,1.33894,up,weak_trend,22.3,50.5,0.00131,0.098,62.0,False,0.25,,-0.29,,,1.0
+JPN225,1h,2026-10-30 06:00,63082.0,down,weak_trend,21.7,41.6,425.0,0.674,42.0,False,0.17,,-1.12,inside_bar,,1.0
+USDCAD,1h,2026-10-30 23:00,1.3973,down,weak_trend,21.0,52.6,0.00138,0.099,16.0,False,0.84,,0.45,,,1.0
+USDJPY,1h,2026-10-30 20:00,157.519,down,weak_trend,22.4,51.3,0.243,0.154,67.0,False,0.71,,0.3,,,1.0
+SPX500,1h,2026-10-30 19:30,7580.95,down,trending,32.6,34.3,30.47,0.402,100.0,False,0.23,,-2.12,,,0.5
+US30,1h,2026-10-30 19:30,51774.18,mixed,trending,35.0,34.7,171.59,0.331,91.0,False,0.2,,-1.85,,,0.5
+USDCHF,1h,2026-10-30 23:00,0.8249,mixed,weak_trend,22.5,55.6,0.00128,0.155,81.0,False,0.88,,0.87,,,0.0

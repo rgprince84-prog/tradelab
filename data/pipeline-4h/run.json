@@ -1,0 +1,24 @@
+{
+ "run_id": "20261031-004345-pipeline-4h",
+ "kind": "pipeline-4h",
+ "stamp": "2026-10-31T00:43:45Z",
+ "files": [
+  "plans.json",
+  "scan.csv",
+  "setups.csv",
+  "summary.md",
+  "warnings.json",
+  "backtest-ema_pullback/equity.png",
+  "backtest-ema_pullback/metrics.json",
+  "backtest-ema_pullback/r_distribution.png",
+  "backtest-ema_pullback/report.md",
+  "backtest-bb_mean_reversion/equity.png",
+  "backtest-bb_mean_reversion/metrics.json",
+  "backtest-bb_mean_reversion/r_distribution.png",
+  "backtest-bb_mean_reversion/report.md",
+  "backtest-donchian_breakout/equity.png",
+  "backtest-donchian_breakout/metrics.json",
+  "backtest-donchian_breakout/r_distribution.png",
+  "backtest-donchian_breakout/report.md"
+ ]
+}

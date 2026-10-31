@@ -1,0 +1,2424 @@
+{
+ "generated_utc": "2026-10-31T00:43:56Z",
+ "tool": {
+  "name": "tradelab",
+  "version": "0.1.0"
+ },
+ "config": {
+  "account": {
+   "currency": "GBP",
+   "equity": 10000,
+   "risk_pct": 1.0,
+   "compounding": false
+  },
+  "costs": {
+   "slippage": 0.2,
+   "commission": 0.0,
+   "same_bar_stop": "pessimistic"
+  },
+  "data_source": "yfinance",
+  "backtest": {
+   "start": "2024-01-01",
+   "end": null,
+   "mc_runs": 1000,
+   "oos_fraction": 0.3,
+   "min_trades_for_stats": 30
+  },
+  "universe": [
+   "EURUSD",
+   "GBPUSD",
+   "USDJPY",
+   "AUDUSD",
+   "USDCAD",
+   "USDCHF",
+   "EURGBP",
+   "EURJPY",
+   "GBPJPY",
+   "SPX500",
+   "NAS100",
+   "US30",
+   "UK100",
+   "GER40",
+   "JPN225"
+  ],
+  "instruments": {
+   "EURUSD": {
+    "type": "fx",
+    "spread": 0.8,
+    "pip": 0.0001,
+    "session": "LONDON",
+    "digits": 5,
+    "quote_ccy": "USD"
+   },
+   "GBPUSD": {
+    "type": "fx",
+    "spread": 1.2,
+    "pip": 0.0001,
+    "session": "LONDON",
+    "digits": 5,
+    "quote_ccy": "USD"
+   },
+   "USDJPY": {
+    "type": "fx",
+    "spread": 1.0,
+    "pip": 0.01,
+    "session": "LONDON",
+    "digits": 3,
+    "quote_ccy": "JPY"
+   },
+   "AUDUSD": {
+    "type": "fx",
+    "spread": 1.0,
+    "pip": 0.0001,
+    "session": "LONDON",
+    "digits": 5,
+    "quote_ccy": "USD"
+   },
+   "USDCAD": {
+    "type": "fx",
+    "spread": 1.5,
+    "pip": 0.0001,
+    "session": "NEWYORK",
+    "digits": 5,
+    "quote_ccy": "CAD"
+   },
+   "USDCHF": {
+    "type": "fx",
+    "spread": 1.5,
+    "pip": 0.0001,
+    "session": "LONDON",
+    "digits": 5,
+    "quote_ccy": "CHF"
+   },
+   "EURGBP": {
+    "type": "fx",
+    "spread": 1.2,
+    "pip": 0.0001,
+    "session": "LONDON",
+    "digits": 5,
+    "quote_ccy": "GBP"
+   },
+   "EURJPY": {
+    "type": "fx",
+    "spread": 1.5,
+    "pip": 0.01,
+    "session": "LONDON",
+    "digits": 3,
+    "quote_ccy": "JPY"
+   },
+   "GBPJPY": {
+    "type": "fx",
+    "spread": 2.5,
+    "pip": 0.01,
+    "session": "LONDON",
+    "digits": 3,
+    "quote_ccy": "JPY"
+   },
+   "SPX500": {
+    "type": "index",
+    "spread": 0.6,
+    "pip": 1.0,
+    "session": "NEWYORK",
+    "digits": 2,
+    "quote_ccy": "USD"
+   },
+   "NAS100": {
+    "type": "index",
+    "spread": 1.5,
+    "pip": 1.0,
+    "session": "NEWYORK",
+    "digits": 2,
+    "quote_ccy": "USD"
+   },
+   "US30": {
+    "type": "index",
+    "spread": 2.5,
+    "pip": 1.0,
+    "session": "NEWYORK",
+    "digits": 2,
+    "quote_ccy": "USD"
+   },
+   "UK100": {
+    "type": "index",
+    "spread": 1.0,
+    "pip": 1.0,
+    "session": "LONDON",
+    "digits": 2,
+    "quote_ccy": "GBP"
+   },
+   "GER40": {
+    "type": "index",
+    "spread": 1.5,
+    "pip": 1.0,
+    "session": "FRANKFURT",
+    "digits": 2,
+    "quote_ccy": "EUR"
+   },
+   "JPN225": {
+    "type": "index",
+    "spread": 10.0,
+    "pip": 1.0,
+    "session": "TOKYO",
+    "digits": 0,
+    "quote_ccy": "JPY"
+   }
+  },
+  "strategies": {
+   "ema_pullback": {
+    "ema_fast": 20,
+    "ema_mid": 50,
+    "ema_slow": 200,
+    "pullback_bars": 3,
+    "rsi_max": 70,
+    "sl_atr_buffer": 0.5,
+    "rr": 2.0,
+    "max_bars": 48
+   },
+   "donchian_breakout": {
+    "lookback": 20,
+    "adx_min": 20,
+    "sl_atr": 2.0,
+    "trail_atr": 2.0,
+    "rr": null,
+    "max_bars": 200
+   },
+   "bb_mean_reversion": {
+    "period": 20,
+    "std": 2.0,
+    "adx_max": 20,
+    "sl_atr_buffer": 0.5,
+    "max_bars": 30
+   },
+   "session_orb": {
+    "session": "auto",
+    "range_bars": 1,
+    "max_range_atr": 1.5,
+    "min_bars_left": 2,
+    "rr": 1.5,
+    "flat_at_session_end": true
+   }
+  }
+ },
+ "pipelines": {
+  "1h": {
+   "kind": "pipeline-1h",
+   "tf": "1h",
+   "run_id": "20261031-004334-pipeline-1h",
+   "run_stamp": "2026-10-31T00:43:34Z",
+   "scan": [
+    {
+     "instrument": "UK100",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 16:00",
+     "close": 10736.14,
+     "trend": "up",
+     "regime": "trending",
+     "adx": 28.5,
+     "rsi": 52.2,
+     "atr": 29.94,
+     "atr_pct": 0.279,
+     "bb_width_pctile": 1.0,
+     "squeeze": true,
+     "donchian_pos": 0.56,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.17,
+     "pattern": "bullish_engulfing",
+     "setups": null,
+     "score": 4.0
+    },
+    {
+     "instrument": "EURJPY",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 21:00",
+     "close": 175.816,
+     "trend": "down",
+     "regime": "trending",
+     "adx": 25.4,
+     "rsi": 48.1,
+     "atr": 0.296,
+     "atr_pct": 0.169,
+     "bb_width_pctile": 94.0,
+     "squeeze": false,
+     "donchian_pos": 0.53,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.13,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 2.5
+    },
+    {
+     "instrument": "GER40",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 16:00",
+     "close": 25817.48,
+     "trend": "up",
+     "regime": "trending",
+     "adx": 26.9,
+     "rsi": 49.9,
+     "atr": 83.54,
+     "atr_pct": 0.324,
+     "bb_width_pctile": 28.0,
+     "squeeze": false,
+     "donchian_pos": 0.36,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.45,
+     "pattern": "hammer",
+     "setups": null,
+     "score": 2.5
+    },
+    {
+     "instrument": "GBPJPY",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 21:00",
+     "close": 211.005,
+     "trend": "up",
+     "regime": "ranging",
+     "adx": 15.6,
+     "rsi": 54.1,
+     "atr": 0.318,
+     "atr_pct": 0.151,
+     "bb_width_pctile": 54.0,
+     "squeeze": false,
+     "donchian_pos": 0.69,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.41,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 2.0
+    },
+    {
+     "instrument": "AUDUSD",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 23:00",
+     "close": 0.70353,
+     "trend": "mixed",
+     "regime": "ranging",
+     "adx": 10.8,
+     "rsi": 50.6,
+     "atr": 0.00068,
+     "atr_pct": 0.097,
+     "bb_width_pctile": 11.0,
+     "squeeze": true,
+     "donchian_pos": 0.64,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.12,
+     "pattern": null,
+     "setups": null,
+     "score": 1.5
+    },
+    {
+     "instrument": "EURGBP",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 21:00",
+     "close": 0.8332,
+     "trend": "down",
+     "regime": "trending",
+     "adx": 34.8,
+     "rsi": 38.3,
+     "atr": 0.00069,
+     "atr_pct": 0.083,
+     "bb_width_pctile": 95.0,
+     "squeeze": false,
+     "donchian_pos": 0.27,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.99,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 1.5
+    },
+    {
+     "instrument": "NAS100",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 19:30",
+     "close": 28385.75,
+     "trend": "down",
+     "regime": "trending",
+     "adx": 36.9,
+     "rsi": 29.7,
+     "atr": 188.86,
+     "atr_pct": 0.665,
+     "bb_width_pctile": 100.0,
+     "squeeze": false,
+     "donchian_pos": 0.17,
+     "breakout_20": null,
+     "ema20_dist_atr": -2.83,
+     "pattern": null,
+     "setups": null,
+     "score": 1.5
+    },
+    {
+     "instrument": "EURUSD",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 21:00",
+     "close": 1.11657,
+     "trend": "down",
+     "regime": "weak_trend",
+     "adx": 21.0,
+     "rsi": 46.5,
+     "atr": 0.00136,
+     "atr_pct": 0.122,
+     "bb_width_pctile": 90.0,
+     "squeeze": false,
+     "donchian_pos": 0.38,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.51,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 1.0
+    },
+    {
+     "instrument": "GBPUSD",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 21:00",
+     "close": 1.33894,
+     "trend": "up",
+     "regime": "weak_trend",
+     "adx": 22.3,
+     "rsi": 50.5,
+     "atr": 0.00131,
+     "atr_pct": 0.098,
+     "bb_width_pctile": 62.0,
+     "squeeze": false,
+     "donchian_pos": 0.25,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.29,
+     "pattern": null,
+     "setups": null,
+     "score": 1.0
+    },
+    {
+     "instrument": "JPN225",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 06:00",
+     "close": 63082.0,
+     "trend": "down",
+     "regime": "weak_trend",
+     "adx": 21.7,
+     "rsi": 41.6,
+     "atr": 425.0,
+     "atr_pct": 0.674,
+     "bb_width_pctile": 42.0,
+     "squeeze": false,
+     "donchian_pos": 0.17,
+     "breakout_20": null,
+     "ema20_dist_atr": -1.12,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 1.0
+    },
+    {
+     "instrument": "USDCAD",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 23:00",
+     "close": 1.3973,
+     "trend": "down",
+     "regime": "weak_trend",
+     "adx": 21.0,
+     "rsi": 52.6,
+     "atr": 0.00138,
+     "atr_pct": 0.099,
+     "bb_width_pctile": 16.0,
+     "squeeze": false,
+     "donchian_pos": 0.84,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.45,
+     "pattern": null,
+     "setups": null,
+     "score": 1.0
+    },
+    {
+     "instrument": "USDJPY",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 157.519,
+     "trend": "down",
+     "regime": "weak_trend",
+     "adx": 22.4,
+     "rsi": 51.3,
+     "atr": 0.243,
+     "atr_pct": 0.154,
+     "bb_width_pctile": 67.0,
+     "squeeze": false,
+     "donchian_pos": 0.71,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.3,
+     "pattern": null,
+     "setups": null,
+     "score": 1.0
+    },
+    {
+     "instrument": "SPX500",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 19:30",
+     "close": 7580.95,
+     "trend": "down",
+     "regime": "trending",
+     "adx": 32.6,
+     "rsi": 34.3,
+     "atr": 30.47,
+     "atr_pct": 0.402,
+     "bb_width_pctile": 100.0,
+     "squeeze": false,
+     "donchian_pos": 0.23,
+     "breakout_20": null,
+     "ema20_dist_atr": -2.12,
+     "pattern": null,
+     "setups": null,
+     "score": 0.5
+    },
+    {
+     "instrument": "US30",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 19:30",
+     "close": 51774.18,
+     "trend": "mixed",
+     "regime": "trending",
+     "adx": 35.0,
+     "rsi": 34.7,
+     "atr": 171.59,
+     "atr_pct": 0.331,
+     "bb_width_pctile": 91.0,
+     "squeeze": false,
+     "donchian_pos": 0.2,
+     "breakout_20": null,
+     "ema20_dist_atr": -1.85,
+     "pattern": null,
+     "setups": null,
+     "score": 0.5
+    },
+    {
+     "instrument": "USDCHF",
+     "tf": "1h",
+     "last_bar_utc": "2026-10-30 23:00",
+     "close": 0.8249,
+     "trend": "mixed",
+     "regime": "weak_trend",
+     "adx": 22.5,
+     "rsi": 55.6,
+     "atr": 0.00128,
+     "atr_pct": 0.155,
+     "bb_width_pctile": 81.0,
+     "squeeze": false,
+     "donchian_pos": 0.88,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.87,
+     "pattern": null,
+     "setups": null,
+     "score": 0.0
+    }
+   ],
+   "setups": [
+    {
+     "instrument": "EURJPY",
+     "tf": "1h",
+     "strategy": "ema_pullback",
+     "direction": "short",
+     "signal_bar_utc": "2026-10-30 20:00",
+     "fresh": false,
+     "bars_ago": 1,
+     "ref_price": 175.816,
+     "stop": 176.156,
+     "target": 175.137,
+     "stop_pips": 34.0,
+     "atr": 0.305,
+     "entry_type": "market",
+     "note": "pullback to EMA20 in down-trend, bearish close"
+    },
+    {
+     "instrument": "EURUSD",
+     "tf": "1h",
+     "strategy": "ema_pullback",
+     "direction": "short",
+     "signal_bar_utc": "2026-10-30 20:00",
+     "fresh": false,
+     "bars_ago": 1,
+     "ref_price": 1.11657,
+     "stop": 1.11816,
+     "target": 1.11339,
+     "stop_pips": 15.9,
+     "atr": 0.00143,
+     "entry_type": "market",
+     "note": "pullback to EMA20 in down-trend, bearish close"
+    },
+    {
+     "instrument": "GBPJPY",
+     "tf": "1h",
+     "strategy": "ema_pullback",
+     "direction": "long",
+     "signal_bar_utc": "2026-10-30 19:00",
+     "fresh": false,
+     "bars_ago": 2,
+     "ref_price": 211.005,
+     "stop": 210.504,
+     "target": 212.008,
+     "stop_pips": 50.1,
+     "atr": 0.335,
+     "entry_type": "market",
+     "note": "pullback to EMA20 in up-trend, bullish close"
+    },
+    {
+     "instrument": "USDJPY",
+     "tf": "1h",
+     "strategy": "ema_pullback",
+     "direction": "short",
+     "signal_bar_utc": "2026-10-30 18:00",
+     "fresh": false,
+     "bars_ago": 2,
+     "ref_price": 157.519,
+     "stop": 157.767,
+     "target": 157.023,
+     "stop_pips": 24.8,
+     "atr": 0.25,
+     "entry_type": "market",
+     "note": "pullback to EMA20 in down-trend, bearish close"
+    }
+   ],
+   "plans": [],
+   "summary_md": "# Pipeline run \u2014 1h \u2014 2026-10-31 00:43 UTC\n\n## Scan\n\n| instrument | tf | last_bar_utc | close | trend | regime | adx | rsi | atr | atr_pct | bb_width_pctile | squeeze | donchian_pos | breakout_20 | ema20_dist_atr | pattern | setups | score |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| UK100 | 1h | 2026-10-30 16:00 | 10,736.1 | up | trending | 28.500 | 52.200 | 29.940 | 0.279 | 1.000 | True | 0.560 |  | 0.170 | bullish_engulfing |  | 4.000 |\n| EURJPY | 1h | 2026-10-30 21:00 | 175.8 | down | trending | 25.400 | 48.100 | 0.296 | 0.169 | 94.000 | False | 0.530 |  | -0.130 | inside_bar |  | 2.500 |\n| GER40 | 1h | 2026-10-30 16:00 | 25,817.5 | up | trending | 26.900 | 49.900 | 83.540 | 0.324 | 28.000 | False | 0.360 |  | -0.450 | hammer |  | 2.500 |\n| GBPJPY | 1h | 2026-10-30 21:00 | 211.0 | up | ranging | 15.600 | 54.100 | 0.318 | 0.151 | 54.000 | False | 0.690 |  | 0.410 | inside_bar |  | 2.000 |\n| AUDUSD | 1h | 2026-10-30 23:00 | 0.704 | mixed | ranging | 10.800 | 50.600 | 0.001 | 0.097 | 11.000 | True | 0.640 |  | 0.120 |  |  | 1.500 |\n| EURGBP | 1h | 2026-10-30 21:00 | 0.833 | down | trending | 34.800 | 38.300 | 0.001 | 0.083 | 95.000 | False | 0.270 |  | -0.990 | inside_bar |  | 1.500 |\n| NAS100 | 1h | 2026-10-30 19:30 | 28,385.8 | down | trending | 36.900 | 29.700 | 188.9 | 0.665 | 100.0 | False | 0.170 |  | -2.830 |  |  | 1.500 |\n| EURUSD | 1h | 2026-10-30 21:00 | 1.117 | down | weak_trend | 21.000 | 46.500 | 0.001 | 0.122 | 90.000 | False | 0.380 |  | -0.510 | inside_bar |  | 1.000 |\n| GBPUSD | 1h | 2026-10-30 21:00 | 1.339 | up | weak_trend | 22.300 | 50.500 | 0.001 | 0.098 | 62.000 | False | 0.250 |  | -0.290 |  |  | 1.000 |\n| JPN225 | 1h | 2026-10-30 06:00 | 63,082.0 | down | weak_trend | 21.700 | 41.600 | 425.0 | 0.674 | 42.000 | False | 0.170 |  | -1.120 | inside_bar |  | 1.000 |\n| USDCAD | 1h | 2026-10-30 23:00 | 1.397 | down | weak_trend | 21.000 | 52.600 | 0.001 | 0.099 | 16.000 | False | 0.840 |  | 0.450 |  |  | 1.000 |\n| USDJPY | 1h | 2026-10-30 20:00 | 157.5 | down | weak_trend | 22.400 | 51.300 | 0.243 | 0.154 | 67.000 | False | 0.710 |  | 0.300 |  |  | 1.000 |\n| SPX500 | 1h | 2026-10-30 19:30 | 7,580.9 | down | trending | 32.600 | 34.300 | 30.470 | 0.402 | 100.0 | False | 0.230 |  | -2.120 |  |  | 0.500 |\n| US30 | 1h | 2026-10-30 19:30 | 51,774.2 | mixed | trending | 35.000 | 34.700 | 171.6 | 0.331 | 91.000 | False | 0.200 |  | -1.850 |  |  | 0.500 |\n| USDCHF | 1h | 2026-10-30 23:00 | 0.825 | mixed | weak_trend | 22.500 | 55.600 | 0.001 | 0.155 | 81.000 | False | 0.880 |  | 0.870 |  |  | 0.000 |\n\n## Setups\n\n| instrument | tf | strategy | direction | signal_bar_utc | fresh | bars_ago | ref_price | stop | target | stop_pips | atr | entry_type | note |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| EURJPY | 1h | ema_pullback | short | 2026-10-30 20:00 | False | 1 | 175.8 | 176.2 | 175.1 | 34.000 | 0.305 | market | pullback to EMA20 in down-trend, bearish close |\n| EURUSD | 1h | ema_pullback | short | 2026-10-30 20:00 | False | 1 | 1.117 | 1.118 | 1.113 | 15.900 | 0.001 | market | pullback to EMA20 in down-trend, bearish close |\n| GBPJPY | 1h | ema_pullback | long | 2026-10-30 19:00 | False | 2 | 211.0 | 210.5 | 212.0 | 50.100 | 0.335 | market | pullback to EMA20 in up-trend, bullish close |\n| USDJPY | 1h | ema_pullback | short | 2026-10-30 18:00 | False | 2 | 157.5 | 157.8 | 157.0 | 24.800 | 0.250 | market | pullback to EMA20 in down-trend, bearish close |\n\n## Strategy history (same universe, same timeframe)\n\n- **ema_pullback**: 4842 trades, win 35%, expectancy -0.101R, max DD 500.0R \u2014 [report](backtest-ema_pullback/report.md)\n\n## Plans\n\n_No fresh setups on the last closed bar._\n",
+   "backtest_window": {
+    "start": "2024-01-01",
+    "end": null
+   },
+   "warnings": [],
+   "assets": {
+    "scan.csv": "pipeline-1h/scan.csv",
+    "setups.csv": "pipeline-1h/setups.csv",
+    "plans.json": "pipeline-1h/plans.json",
+    "summary.md": "pipeline-1h/summary.md"
+   },
+   "strategy_stats": {
+    "ema_pullback": {
+     "metrics": {
+      "trades": 4842,
+      "win_rate": 0.3479966955803387,
+      "expectancy_R": -0.10129296784269355,
+      "median_R": -1.0123162519191005,
+      "avg_win_R": 1.5734523979416069,
+      "avg_loss_R": -0.9951624456211371,
+      "payoff_ratio": 1.5811010602992823,
+      "profit_factor": 0.8438882757694934,
+      "total_R": -490.46055029432216,
+      "total_pnl": -49046.05502943223,
+      "return_pct": -490.46055029432233,
+      "max_drawdown_R": 499.9849073139711,
+      "max_drawdown_pct": 499.98490731397106,
+      "avg_bars_held": 20.20466749277158,
+      "max_consec_losses": 27,
+      "max_consec_wins": 9,
+      "t_stat": -5.423078115176803,
+      "sharpe_daily": -2.460576245391527,
+      "trades_per_month": 143.23661807580174,
+      "first_trade": "2024-01-05",
+      "last_trade": "2026-10-30"
+     },
+     "monte_carlo": {
+      "runs": 1000,
+      "shuffle_max_dd_R_p50": 503.2477428727748,
+      "shuffle_max_dd_R_p95": 528.6433880199428,
+      "bootstrap_max_dd_R_p50": 506.16309850730846,
+      "bootstrap_max_dd_R_p95": 655.2628946520422,
+      "bootstrap_total_R_p05": -645.4817387156029,
+      "bootstrap_total_R_p50": -490.62815905787636,
+      "bootstrap_total_R_p95": -345.1121154347673,
+      "prob_total_R_negative": 1.0
+     },
+     "params": {
+      "ema_fast": 20,
+      "ema_mid": 50,
+      "ema_slow": 200,
+      "pullback_bars": 3,
+      "rsi_max": 70,
+      "sl_atr_buffer": 0.5,
+      "rr": 2.0,
+      "max_bars": 48
+     },
+     "report_md": "# ema_pullback 1h\n\n**Parameters:** ema_fast=20, ema_mid=50, ema_slow=200, pullback_bars=3, rsi_max=70, sl_atr_buffer=0.5, rr=2.0, max_bars=48\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 4,842 |\n| Win rate | 34.8% |\n| Expectancy (R) | -0.101 |\n| Profit factor | 0.844 |\n| Payoff ratio | 1.581 |\n| Total R | -490.5 |\n| Return % | -490.5 |\n| Max drawdown (R) | 500.0 |\n| Max drawdown % | 500.0 |\n| Sharpe (daily) | -2.461 |\n| t-stat of mean R | -5.423 |\n| Avg bars held | 20.205 |\n| Max consecutive losses | 27 |\n| Trades / month | 143.2 |\n| First trade | 2024-01-05 |\n| Last trade | 2026-10-30 |\n\n> Return below -100%: with fixed-size risk this strategy would have emptied the account. Read the R figures; the % is just arithmetic.\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 477 | 0.342 | -0.112 | -53.436 | 57.774 |\n| EURGBP | 443 | 0.302 | -0.236 | -104.5 | 119.1 |\n| EURJPY | 441 | 0.349 | -0.103 | -45.221 | 46.849 |\n| EURUSD | 467 | 0.364 | -0.037 | -17.491 | 32.706 |\n| GBPJPY | 448 | 0.333 | -0.122 | -54.490 | 65.550 |\n| GBPUSD | 463 | 0.337 | -0.144 | -66.846 | 68.902 |\n| GER40 | 161 | 0.348 | -0.069 | -11.104 | 21.563 |\n| JPN225 | 110 | 0.427 | 0.147 | 16.206 | 8.131 |\n| NAS100 | 122 | 0.377 | -0.054 | -6.637 | 12.906 |\n| SPX500 | 130 | 0.385 | -0.014 | -1.846 | 14.393 |\n| UK100 | 184 | 0.353 | -0.008 | -1.517 | 20.425 |\n| US30 | 128 | 0.336 | -0.121 | -15.541 | 18.616 |\n| USDCAD | 396 | 0.399 | -0.004 | -1.483 | 44.377 |\n| USDCHF | 441 | 0.317 | -0.205 | -90.324 | 95.481 |\n| USDJPY | 431 | 0.357 | -0.084 | -36.247 | 41.561 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2024 | 1,675 | 0.355 | -0.091 | -151.7 | 191.3 |\n| 2025 | 1,715 | 0.341 | -0.103 | -177.3 | 180.6 |\n| 2026 | 1,452 | 0.349 | -0.111 | -161.5 | 196.3 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 2,801 | 0.365 | -0.066 | -184.7 | 191.7 |\n| short | 2,041 | 0.325 | -0.150 | -305.7 | 329.2 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 11 | 0.273 | -0.079 | -0.872 | 1.515 |\n| stop | 2,917 | 0.000 | -1.050 | -3,061.5 | 3,061.5 |\n| target | 1,136 | 1.000 | 1.987 | 2,257.7 | 0.000 |\n| time | 778 | 0.702 | 0.404 | 314.2 | 2.335 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 141 | 0.348 | -0.048 | -6.796 | 17.397 |\n| 1 | 268 | 0.414 | 0.079 | 21.290 | 14.469 |\n| 2 | 161 | 0.342 | -0.099 | -16.012 | 32.832 |\n| 3 | 138 | 0.304 | -0.221 | -30.535 | 33.128 |\n| 4 | 144 | 0.299 | -0.184 | -26.537 | 34.222 |\n| 5 | 127 | 0.394 | 0.092 | 11.729 | 10.946 |\n| 6 | 151 | 0.318 | -0.132 | -19.881 | 30.246 |\n| 7 | 211 | 0.355 | -0.007 | -1.430 | 20.617 |\n| 8 | 349 | 0.312 | -0.182 | -63.667 | 64.594 |\n| 9 | 266 | 0.286 | -0.270 | -71.869 | 76.920 |\n| 10 | 213 | 0.385 | -0.002 | -0.496 | 18.489 |\n| 11 | 182 | 0.313 | -0.168 | -30.538 | 42.003 |\n| 12 | 227 | 0.352 | -0.097 | -21.925 | 22.585 |\n| 13 | 310 | 0.423 | 0.023 | 7.162 | 27.115 |\n| 14 | 390 | 0.351 | -0.123 | -48.000 | 57.210 |\n| 15 | 405 | 0.373 | -0.082 | -33.152 | 49.378 |\n| 16 | 282 | 0.397 | -0.023 | -6.513 | 33.624 |\n| 17 | 187 | 0.364 | -0.097 | -18.123 | 26.396 |\n| 18 | 182 | 0.346 | -0.054 | -9.785 | 34.595 |\n| 19 | 179 | 0.313 | -0.165 | -29.536 | 40.349 |\n| 20 | 133 | 0.293 | -0.261 | -34.673 | 50.425 |\n| 21 | 95 | 0.232 | -0.414 | -39.324 | 41.252 |\n| 22 | 47 | 0.298 | -0.192 | -9.041 | 12.026 |\n| 23 | 54 | 0.278 | -0.237 | -12.808 | 17.618 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 503.2 | 528.6 |\n| Max drawdown, bootstrap (R) | 506.2 | 655.3 |\n\nBootstrap total R: p5 -645.5, p50 -490.6, p95 -345.1. Probability the edge is actually negative: **100%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+     "assets": {
+      "equity.png": "pipeline-1h/backtest-ema_pullback/equity.png",
+      "r_distribution.png": "pipeline-1h/backtest-ema_pullback/r_distribution.png",
+      "metrics.json": "pipeline-1h/backtest-ema_pullback/metrics.json",
+      "report.md": "pipeline-1h/backtest-ema_pullback/report.md"
+     }
+    }
+   }
+  },
+  "4h": {
+   "kind": "pipeline-4h",
+   "tf": "4h",
+   "run_id": "20261031-004345-pipeline-4h",
+   "run_stamp": "2026-10-31T00:43:45Z",
+   "scan": [
+    {
+     "instrument": "AUDUSD",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 0.70353,
+     "trend": "up",
+     "regime": "ranging",
+     "adx": 14.0,
+     "rsi": 50.7,
+     "atr": 0.00153,
+     "atr_pct": 0.218,
+     "bb_width_pctile": 15.0,
+     "squeeze": true,
+     "donchian_pos": 0.35,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.02,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 3.5
+    },
+    {
+     "instrument": "NAS100",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 16:00",
+     "close": 28385.75,
+     "trend": "mixed",
+     "regime": "trending",
+     "adx": 32.5,
+     "rsi": 31.1,
+     "atr": 356.15,
+     "atr_pct": 1.255,
+     "bb_width_pctile": 68.0,
+     "squeeze": false,
+     "donchian_pos": 0.16,
+     "breakout_20": "down",
+     "ema20_dist_atr": -2.8,
+     "pattern": "hammer",
+     "setups": null,
+     "score": 3.5
+    },
+    {
+     "instrument": "UK100",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 16:00",
+     "close": 10736.14,
+     "trend": "up",
+     "regime": "ranging",
+     "adx": 15.3,
+     "rsi": 54.1,
+     "atr": 47.89,
+     "atr_pct": 0.446,
+     "bb_width_pctile": 6.0,
+     "squeeze": true,
+     "donchian_pos": 0.71,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.43,
+     "pattern": "bullish_engulfing",
+     "setups": null,
+     "score": 3.5
+    },
+    {
+     "instrument": "JPN225",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 04:00",
+     "close": 63082.0,
+     "trend": "mixed",
+     "regime": "trending",
+     "adx": 25.2,
+     "rsi": 40.6,
+     "atr": 907.0,
+     "atr_pct": 1.437,
+     "bb_width_pctile": 15.0,
+     "squeeze": true,
+     "donchian_pos": 0.41,
+     "breakout_20": null,
+     "ema20_dist_atr": -1.08,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 3.0
+    },
+    {
+     "instrument": "SPX500",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 16:00",
+     "close": 7580.95,
+     "trend": "mixed",
+     "regime": "ranging",
+     "adx": 16.5,
+     "rsi": 34.6,
+     "atr": 52.48,
+     "atr_pct": 0.692,
+     "bb_width_pctile": 57.0,
+     "squeeze": false,
+     "donchian_pos": 0.22,
+     "breakout_20": "down",
+     "ema20_dist_atr": -2.11,
+     "pattern": "hammer",
+     "setups": null,
+     "score": 3.0
+    },
+    {
+     "instrument": "EURGBP",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 0.8332,
+     "trend": "down",
+     "regime": "trending",
+     "adx": 30.4,
+     "rsi": 29.2,
+     "atr": 0.00115,
+     "atr_pct": 0.138,
+     "bb_width_pctile": 68.0,
+     "squeeze": false,
+     "donchian_pos": 0.18,
+     "breakout_20": null,
+     "ema20_dist_atr": -1.9,
+     "pattern": "bearish_engulfing",
+     "setups": null,
+     "score": 2.5
+    },
+    {
+     "instrument": "EURUSD",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 1.11657,
+     "trend": "down",
+     "regime": "ranging",
+     "adx": 18.4,
+     "rsi": 47.4,
+     "atr": 0.00235,
+     "atr_pct": 0.21,
+     "bb_width_pctile": 51.0,
+     "squeeze": false,
+     "donchian_pos": 0.5,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.19,
+     "pattern": "bearish_engulfing",
+     "setups": null,
+     "score": 2.0
+    },
+    {
+     "instrument": "US30",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 16:00",
+     "close": 51774.18,
+     "trend": "mixed",
+     "regime": "ranging",
+     "adx": 19.4,
+     "rsi": 39.2,
+     "atr": 326.72,
+     "atr_pct": 0.631,
+     "bb_width_pctile": 39.0,
+     "squeeze": false,
+     "donchian_pos": 0.15,
+     "breakout_20": "down",
+     "ema20_dist_atr": -1.41,
+     "pattern": null,
+     "setups": null,
+     "score": 2.0
+    },
+    {
+     "instrument": "USDJPY",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 157.519,
+     "trend": "down",
+     "regime": "ranging",
+     "adx": 19.2,
+     "rsi": 47.6,
+     "atr": 0.386,
+     "atr_pct": 0.245,
+     "bb_width_pctile": 70.0,
+     "squeeze": false,
+     "donchian_pos": 0.4,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.27,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 2.0
+    },
+    {
+     "instrument": "EURJPY",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 175.816,
+     "trend": "down",
+     "regime": "trending",
+     "adx": 28.6,
+     "rsi": 45.0,
+     "atr": 0.467,
+     "atr_pct": 0.266,
+     "bb_width_pctile": 48.0,
+     "squeeze": false,
+     "donchian_pos": 0.49,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.43,
+     "pattern": null,
+     "setups": null,
+     "score": 1.5
+    },
+    {
+     "instrument": "GBPJPY",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 211.005,
+     "trend": "up",
+     "regime": "ranging",
+     "adx": 16.9,
+     "rsi": 57.7,
+     "atr": 0.523,
+     "atr_pct": 0.248,
+     "bb_width_pctile": 57.0,
+     "squeeze": false,
+     "donchian_pos": 0.81,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.6,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 1.0
+    },
+    {
+     "instrument": "GBPUSD",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 1.33894,
+     "trend": "up",
+     "regime": "weak_trend",
+     "adx": 22.5,
+     "rsi": 58.8,
+     "atr": 0.00267,
+     "atr_pct": 0.2,
+     "bb_width_pctile": 94.0,
+     "squeeze": false,
+     "donchian_pos": 0.72,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.85,
+     "pattern": "inside_bar",
+     "setups": null,
+     "score": 1.0
+    },
+    {
+     "instrument": "GER40",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 16:00",
+     "close": 25817.48,
+     "trend": "up",
+     "regime": "ranging",
+     "adx": 16.3,
+     "rsi": 58.8,
+     "atr": 151.7,
+     "atr_pct": 0.588,
+     "bb_width_pctile": 100.0,
+     "squeeze": false,
+     "donchian_pos": 0.74,
+     "breakout_20": null,
+     "ema20_dist_atr": 0.99,
+     "pattern": "hammer",
+     "setups": null,
+     "score": 1.0
+    },
+    {
+     "instrument": "USDCAD",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 1.3973,
+     "trend": "down",
+     "regime": "trending",
+     "adx": 33.3,
+     "rsi": 40.0,
+     "atr": 0.00277,
+     "atr_pct": 0.198,
+     "bb_width_pctile": 86.0,
+     "squeeze": false,
+     "donchian_pos": 0.27,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.55,
+     "pattern": null,
+     "setups": null,
+     "score": 0.5
+    },
+    {
+     "instrument": "USDCHF",
+     "tf": "4h",
+     "last_bar_utc": "2026-10-30 20:00",
+     "close": 0.8249,
+     "trend": "mixed",
+     "regime": "weak_trend",
+     "adx": 23.7,
+     "rsi": 47.4,
+     "atr": 0.00231,
+     "atr_pct": 0.28,
+     "bb_width_pctile": 89.0,
+     "squeeze": false,
+     "donchian_pos": 0.47,
+     "breakout_20": null,
+     "ema20_dist_atr": -0.17,
+     "pattern": null,
+     "setups": null,
+     "score": 0.0
+    }
+   ],
+   "setups": [
+    {
+     "instrument": "GBPJPY",
+     "tf": "4h",
+     "strategy": "ema_pullback",
+     "direction": "long",
+     "signal_bar_utc": "2026-10-30 16:00",
+     "fresh": false,
+     "bars_ago": 1,
+     "ref_price": 211.005,
+     "stop": 210.007,
+     "target": 213.0,
+     "stop_pips": 99.8,
+     "atr": 0.539,
+     "entry_type": "market",
+     "note": "pullback to EMA20 in up-trend, bullish close"
+    },
+    {
+     "instrument": "NAS100",
+     "tf": "4h",
+     "strategy": "donchian_breakout",
+     "direction": "short",
+     "signal_bar_utc": "2026-10-30 12:00",
+     "fresh": false,
+     "bars_ago": 1,
+     "ref_price": 28385.75,
+     "stop": 29092.2,
+     "target": null,
+     "stop_pips": 706.4,
+     "atr": 353.22,
+     "entry_type": "market",
+     "note": "close below 20-bar low, ADX>20"
+    },
+    {
+     "instrument": "EURUSD",
+     "tf": "4h",
+     "strategy": "ema_pullback",
+     "direction": "short",
+     "signal_bar_utc": "2026-10-30 12:00",
+     "fresh": false,
+     "bars_ago": 2,
+     "ref_price": 1.11657,
+     "stop": 1.12205,
+     "target": 1.1056,
+     "stop_pips": 54.8,
+     "atr": 0.00246,
+     "entry_type": "market",
+     "note": "pullback to EMA20 in down-trend, bearish close"
+    },
+    {
+     "instrument": "GER40",
+     "tf": "4h",
+     "strategy": "bb_mean_reversion",
+     "direction": "short",
+     "signal_bar_utc": "2026-10-30 08:00",
+     "fresh": false,
+     "bars_ago": 2,
+     "ref_price": 25817.48,
+     "stop": 26172.16,
+     "target": 25560.51,
+     "stop_pips": 354.7,
+     "atr": 162.84,
+     "entry_type": "market",
+     "note": "re-entry below upper band, ADX<20"
+    },
+    {
+     "instrument": "USDJPY",
+     "tf": "4h",
+     "strategy": "bb_mean_reversion",
+     "direction": "long",
+     "signal_bar_utc": "2026-10-30 12:00",
+     "fresh": false,
+     "bars_ago": 2,
+     "ref_price": 157.519,
+     "stop": 156.754,
+     "target": 157.785,
+     "stop_pips": 76.5,
+     "atr": 0.407,
+     "entry_type": "market",
+     "note": "re-entry above lower band, ADX<20"
+    }
+   ],
+   "plans": [],
+   "summary_md": "# Pipeline run \u2014 4h \u2014 2026-10-31 00:43 UTC\n\n## Scan\n\n| instrument | tf | last_bar_utc | close | trend | regime | adx | rsi | atr | atr_pct | bb_width_pctile | squeeze | donchian_pos | breakout_20 | ema20_dist_atr | pattern | setups | score |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| AUDUSD | 4h | 2026-10-30 20:00 | 0.704 | up | ranging | 14.000 | 50.700 | 0.002 | 0.218 | 15.000 | True | 0.350 |  | -0.020 | inside_bar |  | 3.500 |\n| NAS100 | 4h | 2026-10-30 16:00 | 28,385.8 | mixed | trending | 32.500 | 31.100 | 356.1 | 1.255 | 68.000 | False | 0.160 | down | -2.800 | hammer |  | 3.500 |\n| UK100 | 4h | 2026-10-30 16:00 | 10,736.1 | up | ranging | 15.300 | 54.100 | 47.890 | 0.446 | 6.000 | True | 0.710 |  | 0.430 | bullish_engulfing |  | 3.500 |\n| JPN225 | 4h | 2026-10-30 04:00 | 63,082.0 | mixed | trending | 25.200 | 40.600 | 907.0 | 1.437 | 15.000 | True | 0.410 |  | -1.080 | inside_bar |  | 3.000 |\n| SPX500 | 4h | 2026-10-30 16:00 | 7,580.9 | mixed | ranging | 16.500 | 34.600 | 52.480 | 0.692 | 57.000 | False | 0.220 | down | -2.110 | hammer |  | 3.000 |\n| EURGBP | 4h | 2026-10-30 20:00 | 0.833 | down | trending | 30.400 | 29.200 | 0.001 | 0.138 | 68.000 | False | 0.180 |  | -1.900 | bearish_engulfing |  | 2.500 |\n| EURUSD | 4h | 2026-10-30 20:00 | 1.117 | down | ranging | 18.400 | 47.400 | 0.002 | 0.210 | 51.000 | False | 0.500 |  | -0.190 | bearish_engulfing |  | 2.000 |\n| US30 | 4h | 2026-10-30 16:00 | 51,774.2 | mixed | ranging | 19.400 | 39.200 | 326.7 | 0.631 | 39.000 | False | 0.150 | down | -1.410 |  |  | 2.000 |\n| USDJPY | 4h | 2026-10-30 20:00 | 157.5 | down | ranging | 19.200 | 47.600 | 0.386 | 0.245 | 70.000 | False | 0.400 |  | -0.270 | inside_bar |  | 2.000 |\n| EURJPY | 4h | 2026-10-30 20:00 | 175.8 | down | trending | 28.600 | 45.000 | 0.467 | 0.266 | 48.000 | False | 0.490 |  | -0.430 |  |  | 1.500 |\n| GBPJPY | 4h | 2026-10-30 20:00 | 211.0 | up | ranging | 16.900 | 57.700 | 0.523 | 0.248 | 57.000 | False | 0.810 |  | 0.600 | inside_bar |  | 1.000 |\n| GBPUSD | 4h | 2026-10-30 20:00 | 1.339 | up | weak_trend | 22.500 | 58.800 | 0.003 | 0.200 | 94.000 | False | 0.720 |  | 0.850 | inside_bar |  | 1.000 |\n| GER40 | 4h | 2026-10-30 16:00 | 25,817.5 | up | ranging | 16.300 | 58.800 | 151.7 | 0.588 | 100.0 | False | 0.740 |  | 0.990 | hammer |  | 1.000 |\n| USDCAD | 4h | 2026-10-30 20:00 | 1.397 | down | trending | 33.300 | 40.000 | 0.003 | 0.198 | 86.000 | False | 0.270 |  | -0.550 |  |  | 0.500 |\n| USDCHF | 4h | 2026-10-30 20:00 | 0.825 | mixed | weak_trend | 23.700 | 47.400 | 0.002 | 0.280 | 89.000 | False | 0.470 |  | -0.170 |  |  | 0.000 |\n\n## Setups\n\n| instrument | tf | strategy | direction | signal_bar_utc | fresh | bars_ago | ref_price | stop | target | stop_pips | atr | entry_type | note |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| GBPJPY | 4h | ema_pullback | long | 2026-10-30 16:00 | False | 1 | 211.0 | 210.0 | 213.0 | 99.800 | 0.539 | market | pullback to EMA20 in up-trend, bullish close |\n| NAS100 | 4h | donchian_breakout | short | 2026-10-30 12:00 | False | 1 | 28,385.8 | 29,092.2 | n/a | 706.4 | 353.2 | market | close below 20-bar low, ADX>20 |\n| EURUSD | 4h | ema_pullback | short | 2026-10-30 12:00 | False | 2 | 1.117 | 1.122 | 1.106 | 54.800 | 0.002 | market | pullback to EMA20 in down-trend, bearish close |\n| GER40 | 4h | bb_mean_reversion | short | 2026-10-30 08:00 | False | 2 | 25,817.5 | 26,172.2 | 25,560.5 | 354.7 | 162.8 | market | re-entry below upper band, ADX<20 |\n| USDJPY | 4h | bb_mean_reversion | long | 2026-10-30 12:00 | False | 2 | 157.5 | 156.8 | 157.8 | 76.500 | 0.407 | market | re-entry above lower band, ADX<20 |\n\n## Strategy history (same universe, same timeframe)\n\n- **bb_mean_reversion**: 824 trades, win 51%, expectancy -0.021R, max DD 58.9R \u2014 [report](backtest-bb_mean_reversion/report.md)\n- **donchian_breakout**: 1228 trades, win 36%, expectancy -0.033R, max DD 113.2R \u2014 [report](backtest-donchian_breakout/report.md)\n- **ema_pullback**: 1287 trades, win 38%, expectancy +0.006R, max DD 72.0R \u2014 [report](backtest-ema_pullback/report.md)\n\n## Plans\n\n_No fresh setups on the last closed bar._\n",
+   "backtest_window": {
+    "start": "2024-01-01",
+    "end": null
+   },
+   "warnings": [],
+   "assets": {
+    "scan.csv": "pipeline-4h/scan.csv",
+    "setups.csv": "pipeline-4h/setups.csv",
+    "plans.json": "pipeline-4h/plans.json",
+    "summary.md": "pipeline-4h/summary.md"
+   },
+   "strategy_stats": {
+    "bb_mean_reversion": {
+     "metrics": {
+      "trades": 824,
+      "win_rate": 0.5097087378640777,
+      "expectancy_R": -0.020629793261151566,
+      "median_R": 0.030922426288713924,
+      "avg_win_R": 0.9585732914163689,
+      "avg_loss_R": -1.0386131981239204,
+      "payoff_ratio": 0.9229357889422838,
+      "profit_factor": 0.9594877013756417,
+      "total_R": -16.99894964718889,
+      "total_pnl": -1699.8949647188897,
+      "return_pct": -16.998949647188898,
+      "max_drawdown_R": 58.941151639078996,
+      "max_drawdown_pct": 58.941151639079,
+      "avg_bars_held": 4.091019417475728,
+      "max_consec_losses": 11,
+      "max_consec_wins": 9,
+      "t_stat": -0.5164660759632536,
+      "sharpe_daily": -0.1536924083414611,
+      "trades_per_month": 24.352,
+      "first_trade": "2024-01-04",
+      "last_trade": "2026-10-30"
+     },
+     "monte_carlo": {
+      "runs": 1000,
+      "shuffle_max_dd_R_p50": 42.9771551955053,
+      "shuffle_max_dd_R_p95": 61.337468517620636,
+      "bootstrap_max_dd_R_p50": 45.10978324463835,
+      "bootstrap_max_dd_R_p95": 86.44666601484525,
+      "bootstrap_total_R_p05": -73.45932920230881,
+      "bootstrap_total_R_p50": -19.33924168406577,
+      "bootstrap_total_R_p95": 38.97947309397273,
+      "prob_total_R_negative": 0.715
+     },
+     "params": {
+      "period": 20,
+      "std": 2.0,
+      "adx_max": 20,
+      "sl_atr_buffer": 0.5,
+      "max_bars": 30
+     },
+     "report_md": "# bb_mean_reversion 4h\n\n**Parameters:** period=20, std=2.0, adx_max=20, sl_atr_buffer=0.5, max_bars=30\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 824 |\n| Win rate | 51.0% |\n| Expectancy (R) | -0.021 |\n| Profit factor | 0.959 |\n| Payoff ratio | 0.923 |\n| Total R | -16.999 |\n| Return % | -16.999 |\n| Max drawdown (R) | 58.941 |\n| Max drawdown % | 58.941 |\n| Sharpe (daily) | -0.154 |\n| t-stat of mean R | -0.516 |\n| Avg bars held | 4.091 |\n| Max consecutive losses | 11 |\n| Trades / month | 24.352 |\n| First trade | 2024-01-04 |\n| Last trade | 2026-10-30 |\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 65 | 0.554 | 0.092 | 5.980 | 7.613 |\n| EURGBP | 68 | 0.471 | -0.166 | -11.278 | 15.849 |\n| EURJPY | 80 | 0.388 | -0.341 | -27.296 | 29.860 |\n| EURUSD | 61 | 0.475 | -0.050 | -3.029 | 12.397 |\n| GBPJPY | 92 | 0.576 | 0.097 | 8.916 | 7.045 |\n| GBPUSD | 73 | 0.521 | 0.093 | 6.812 | 8.658 |\n| GER40 | 43 | 0.558 | 0.063 | 2.703 | 7.105 |\n| JPN225 | 27 | 0.444 | -0.292 | -7.872 | 9.688 |\n| NAS100 | 18 | 0.556 | -0.004 | -0.079 | 5.109 |\n| SPX500 | 26 | 0.538 | 0.198 | 5.141 | 7.520 |\n| UK100 | 47 | 0.511 | 0.041 | 1.913 | 6.781 |\n| US30 | 32 | 0.531 | 0.070 | 2.245 | 7.058 |\n| USDCAD | 55 | 0.564 | -0.007 | -0.371 | 6.088 |\n| USDCHF | 76 | 0.566 | 0.125 | 9.476 | 6.789 |\n| USDJPY | 61 | 0.426 | -0.168 | -10.260 | 14.412 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2024 | 268 | 0.515 | 0.018 | 4.916 | 20.206 |\n| 2025 | 307 | 0.479 | -0.118 | -36.111 | 46.416 |\n| 2026 | 249 | 0.542 | 0.057 | 14.196 | 14.267 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 355 | 0.580 | 0.047 | 16.805 | 19.223 |\n| short | 469 | 0.456 | -0.072 | -33.804 | 53.144 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 2 | 0.500 | -0.004 | -0.008 | 0.065 |\n| stop | 398 | 0.000 | -1.052 | -418.6 | 418.6 |\n| target | 417 | 0.995 | 0.958 | 399.6 | 0.027 |\n| time | 7 | 0.571 | 0.277 | 1.940 | 0.717 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 144 | 0.396 | -0.102 | -14.738 | 28.308 |\n| 4 | 136 | 0.507 | -0.039 | -5.273 | 17.538 |\n| 8 | 112 | 0.607 | 0.211 | 23.667 | 7.141 |\n| 12 | 138 | 0.478 | -0.117 | -16.128 | 30.436 |\n| 16 | 145 | 0.524 | -0.115 | -16.627 | 23.729 |\n| 20 | 149 | 0.564 | 0.081 | 12.100 | 17.010 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 43.0 | 61.3 |\n| Max drawdown, bootstrap (R) | 45.1 | 86.4 |\n\nBootstrap total R: p5 -73.5, p50 -19.3, p95 +39.0. Probability the edge is actually negative: **72%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+     "assets": {
+      "equity.png": "pipeline-4h/backtest-bb_mean_reversion/equity.png",
+      "r_distribution.png": "pipeline-4h/backtest-bb_mean_reversion/r_distribution.png",
+      "metrics.json": "pipeline-4h/backtest-bb_mean_reversion/metrics.json",
+      "report.md": "pipeline-4h/backtest-bb_mean_reversion/report.md"
+     }
+    },
+    "donchian_breakout": {
+     "metrics": {
+      "trades": 1228,
+      "win_rate": 0.36074918566775244,
+      "expectancy_R": -0.032894877428821793,
+      "median_R": -0.4236675993472575,
+      "avg_win_R": 1.1857427287166737,
+      "avg_loss_R": -0.7206101124892733,
+      "payoff_ratio": 1.6454705646867038,
+      "profit_factor": 0.928590395103452,
+      "total_R": -40.394909482593164,
+      "total_pnl": -4039.4909482593166,
+      "return_pct": -40.394909482593164,
+      "max_drawdown_R": 113.16694492200953,
+      "max_drawdown_pct": 113.16694492200956,
+      "avg_bars_held": 13.906351791530945,
+      "max_consec_losses": 15,
+      "max_consec_wins": 8,
+      "t_stat": -0.9584726347239736,
+      "sharpe_daily": -0.4083927976210051,
+      "trades_per_month": 36.22124031007752,
+      "first_trade": "2024-01-02",
+      "last_trade": "2026-10-30"
+     },
+     "monte_carlo": {
+      "runs": 1000,
+      "shuffle_max_dd_R_p50": 65.2798630837925,
+      "shuffle_max_dd_R_p95": 90.4644892488185,
+      "bootstrap_max_dd_R_p50": 68.9020884049734,
+      "bootstrap_max_dd_R_p95": 123.91965219720628,
+      "bootstrap_total_R_p05": -107.45324018527104,
+      "bootstrap_total_R_p50": -41.69336471742764,
+      "bootstrap_total_R_p95": 26.23374518610998,
+      "prob_total_R_negative": 0.841
+     },
+     "params": {
+      "lookback": 20,
+      "adx_min": 20,
+      "sl_atr": 2.0,
+      "trail_atr": 2.0,
+      "rr": null,
+      "max_bars": 200
+     },
+     "report_md": "# donchian_breakout 4h\n\n**Parameters:** lookback=20, adx_min=20, sl_atr=2.0, trail_atr=2.0, rr=None, max_bars=200\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 1,228 |\n| Win rate | 36.1% |\n| Expectancy (R) | -0.033 |\n| Profit factor | 0.929 |\n| Payoff ratio | 1.645 |\n| Total R | -40.395 |\n| Return % | -40.395 |\n| Max drawdown (R) | 113.2 |\n| Max drawdown % | 113.2 |\n| Sharpe (daily) | -0.408 |\n| t-stat of mean R | -0.958 |\n| Avg bars held | 13.906 |\n| Max consecutive losses | 15 |\n| Trades / month | 36.221 |\n| First trade | 2024-01-02 |\n| Last trade | 2026-10-30 |\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 112 | 0.312 | -0.117 | -13.064 | 18.941 |\n| EURGBP | 108 | 0.222 | -0.219 | -23.661 | 26.240 |\n| EURJPY | 98 | 0.408 | 0.051 | 5.010 | 10.272 |\n| EURUSD | 110 | 0.336 | -0.064 | -7.022 | 8.024 |\n| GBPJPY | 104 | 0.356 | -0.058 | -6.060 | 19.514 |\n| GBPUSD | 105 | 0.438 | 0.108 | 11.385 | 7.709 |\n| GER40 | 47 | 0.426 | 0.024 | 1.147 | 11.383 |\n| JPN225 | 41 | 0.415 | 0.004 | 0.159 | 9.746 |\n| NAS100 | 51 | 0.333 | -0.120 | -6.145 | 11.665 |\n| SPX500 | 47 | 0.319 | -0.190 | -8.931 | 14.743 |\n| UK100 | 46 | 0.522 | 0.125 | 5.752 | 4.132 |\n| US30 | 42 | 0.476 | 0.081 | 3.394 | 6.665 |\n| USDCAD | 106 | 0.302 | -0.057 | -6.003 | 17.685 |\n| USDCHF | 104 | 0.365 | -0.013 | -1.381 | 17.818 |\n| USDJPY | 107 | 0.383 | 0.047 | 5.025 | 14.332 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2024 | 414 | 0.394 | 0.129 | 53.423 | 27.457 |\n| 2025 | 446 | 0.345 | -0.136 | -60.726 | 65.559 |\n| 2026 | 368 | 0.342 | -0.090 | -33.092 | 58.531 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 641 | 0.388 | 0.007 | 4.595 | 30.691 |\n| short | 587 | 0.330 | -0.077 | -44.990 | 92.991 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 3 | 0.667 | 0.217 | 0.651 | 0.100 |\n| stop | 242 | 0.000 | -1.024 | -247.9 | 247.9 |\n| time | 1 | 1.000 | 3.392 | 3.392 | 0.000 |\n| trail_stop | 982 | 0.448 | 0.207 | 203.5 | 14.640 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 65 | 0.354 | 0.151 | 9.795 | 11.320 |\n| 4 | 203 | 0.374 | -0.064 | -12.895 | 18.124 |\n| 8 | 194 | 0.376 | 0.089 | 17.239 | 12.461 |\n| 12 | 232 | 0.418 | 0.056 | 13.007 | 25.606 |\n| 16 | 382 | 0.348 | -0.089 | -34.166 | 45.566 |\n| 20 | 152 | 0.270 | -0.220 | -33.375 | 40.127 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 65.3 | 90.5 |\n| Max drawdown, bootstrap (R) | 68.9 | 123.9 |\n\nBootstrap total R: p5 -107.5, p50 -41.7, p95 +26.2. Probability the edge is actually negative: **84%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+     "assets": {
+      "equity.png": "pipeline-4h/backtest-donchian_breakout/equity.png",
+      "r_distribution.png": "pipeline-4h/backtest-donchian_breakout/r_distribution.png",
+      "metrics.json": "pipeline-4h/backtest-donchian_breakout/metrics.json",
+      "report.md": "pipeline-4h/backtest-donchian_breakout/report.md"
+     }
+    },
+    "ema_pullback": {
+     "metrics": {
+      "trades": 1287,
+      "win_rate": 0.37995337995337997,
+      "expectancy_R": 0.006196519806667604,
+      "median_R": -1.0052060818494217,
+      "avg_win_R": 1.6196962330121483,
+      "avg_loss_R": -0.9825269886613527,
+      "payoff_ratio": 1.648500500957138,
+      "profit_factor": 1.0101713596090733,
+      "total_R": 7.974920991181207,
+      "total_pnl": 797.4920991181207,
+      "return_pct": 7.974920991181207,
+      "max_drawdown_R": 71.98353596797268,
+      "max_drawdown_pct": 71.98353596797281,
+      "avg_bars_held": 19.53846153846154,
+      "max_consec_losses": 14,
+      "max_consec_wins": 13,
+      "t_stat": 0.16725632319322778,
+      "sharpe_daily": 0.11139998278505485,
+      "trades_per_month": 39.93504587155964,
+      "first_trade": "2024-02-22",
+      "last_trade": "2026-10-30"
+     },
+     "monte_carlo": {
+      "runs": 1000,
+      "shuffle_max_dd_R_p50": 48.6158534742112,
+      "shuffle_max_dd_R_p95": 73.77138341733817,
+      "bootstrap_max_dd_R_p50": 49.65628094763643,
+      "bootstrap_max_dd_R_p95": 97.36728275010537,
+      "bootstrap_total_R_p05": -68.80054035475133,
+      "bootstrap_total_R_p50": 10.253101225278947,
+      "bootstrap_total_R_p95": 92.56516303488496,
+      "prob_total_R_negative": 0.416
+     },
+     "params": {
+      "ema_fast": 20,
+      "ema_mid": 50,
+      "ema_slow": 200,
+      "pullback_bars": 3,
+      "rsi_max": 70,
+      "sl_atr_buffer": 0.5,
+      "rr": 2.0,
+      "max_bars": 48
+     },
+     "report_md": "# ema_pullback 4h\n\n**Parameters:** ema_fast=20, ema_mid=50, ema_slow=200, pullback_bars=3, rsi_max=70, sl_atr_buffer=0.5, rr=2.0, max_bars=48\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 1,287 |\n| Win rate | 38.0% |\n| Expectancy (R) | 0.006 |\n| Profit factor | 1.010 |\n| Payoff ratio | 1.649 |\n| Total R | 7.975 |\n| Return % | 7.975 |\n| Max drawdown (R) | 71.984 |\n| Max drawdown % | 71.984 |\n| Sharpe (daily) | 0.111 |\n| t-stat of mean R | 0.167 |\n| Avg bars held | 19.538 |\n| Max consecutive losses | 14 |\n| Trades / month | 39.935 |\n| First trade | 2024-02-22 |\n| Last trade | 2026-10-30 |\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 105 | 0.352 | -0.083 | -8.694 | 19.691 |\n| EURGBP | 103 | 0.330 | -0.138 | -14.169 | 20.141 |\n| EURJPY | 126 | 0.333 | -0.057 | -7.244 | 20.929 |\n| EURUSD | 125 | 0.384 | 0.031 | 3.912 | 16.053 |\n| GBPJPY | 122 | 0.320 | -0.164 | -20.018 | 29.827 |\n| GBPUSD | 114 | 0.351 | -0.051 | -5.783 | 11.291 |\n| GER40 | 59 | 0.322 | -0.127 | -7.507 | 12.641 |\n| JPN225 | 36 | 0.500 | 0.347 | 12.498 | 7.203 |\n| NAS100 | 33 | 0.545 | 0.308 | 10.161 | 3.652 |\n| SPX500 | 39 | 0.462 | 0.174 | 6.800 | 5.062 |\n| UK100 | 54 | 0.444 | 0.198 | 10.687 | 11.113 |\n| US30 | 39 | 0.410 | 0.100 | 3.890 | 4.939 |\n| USDCAD | 100 | 0.410 | 0.093 | 9.265 | 9.549 |\n| USDCHF | 118 | 0.415 | 0.062 | 7.303 | 29.119 |\n| USDJPY | 114 | 0.404 | 0.060 | 6.874 | 10.680 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2024 | 411 | 0.399 | 0.069 | 28.399 | 27.754 |\n| 2025 | 479 | 0.405 | 0.072 | 34.414 | 19.652 |\n| 2026 | 397 | 0.330 | -0.138 | -54.838 | 71.984 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 822 | 0.398 | 0.034 | 28.307 | 33.158 |\n| short | 465 | 0.348 | -0.044 | -20.332 | 62.062 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 7 | 0.429 | 0.203 | 1.419 | 0.274 |\n| stop | 744 | 0.000 | -1.024 | -762.1 | 762.1 |\n| target | 341 | 1.000 | 1.989 | 678.3 | 0.000 |\n| time | 195 | 0.744 | 0.464 | 90.414 | 2.610 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 88 | 0.273 | -0.255 | -22.406 | 22.406 |\n| 4 | 235 | 0.413 | 0.113 | 26.578 | 18.092 |\n| 8 | 219 | 0.342 | -0.093 | -20.322 | 29.387 |\n| 12 | 254 | 0.398 | 0.092 | 23.261 | 17.311 |\n| 16 | 375 | 0.405 | 0.053 | 19.919 | 25.971 |\n| 20 | 116 | 0.345 | -0.164 | -19.055 | 19.055 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 48.6 | 73.8 |\n| Max drawdown, bootstrap (R) | 49.7 | 97.4 |\n\nBootstrap total R: p5 -68.8, p50 +10.3, p95 +92.6. Probability the edge is actually negative: **42%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+     "assets": {
+      "equity.png": "pipeline-4h/backtest-ema_pullback/equity.png",
+      "r_distribution.png": "pipeline-4h/backtest-ema_pullback/r_distribution.png",
+      "metrics.json": "pipeline-4h/backtest-ema_pullback/metrics.json",
+      "report.md": "pipeline-4h/backtest-ema_pullback/report.md"
+     }
+    }
+   }
+  }
+ },
+ "backtests": {
+  "bb_mean_reversion-1d": {
+   "kind": "backtest-bb_mean_reversion-1d",
+   "strategy": "bb_mean_reversion",
+   "tf": "1d",
+   "run_id": "20261023-233536-backtest-bb_mean_reversion-1d",
+   "run_stamp": "2026-10-23T23:35:36Z",
+   "metrics": {
+    "trades": 798,
+    "win_rate": 0.45112781954887216,
+    "expectancy_R": -0.08212672666360604,
+    "median_R": -1.0031286645048754,
+    "avg_win_R": 1.0810392767454888,
+    "avg_loss_R": -1.0381535787806702,
+    "payoff_ratio": 1.0413095892952453,
+    "profit_factor": 0.8558708953111606,
+    "total_R": -65.53712787755762,
+    "total_pnl": -6553.712787755761,
+    "return_pct": -65.53712787755761,
+    "max_drawdown_R": 106.95426242467704,
+    "max_drawdown_pct": 106.95426242467703,
+    "avg_bars_held": 4.016290726817043,
+    "max_consec_losses": 14,
+    "max_consec_wins": 6,
+    "t_stat": -1.7436254731002256,
+    "sharpe_daily": -0.5069588335675086,
+    "trades_per_month": 6.19513389441469,
+    "first_trade": "2016-01-27",
+    "last_trade": "2026-10-22"
+   },
+   "monte_carlo": {
+    "runs": 1000,
+    "shuffle_max_dd_R_p50": 80.59065218716896,
+    "shuffle_max_dd_R_p95": 102.08852127872231,
+    "bootstrap_max_dd_R_p50": 84.04513315366847,
+    "bootstrap_max_dd_R_p95": 139.7221558921891,
+    "bootstrap_total_R_p05": -127.61072139054639,
+    "bootstrap_total_R_p50": -66.69954773663832,
+    "bootstrap_total_R_p95": -2.6282014074363214,
+    "prob_total_R_negative": 0.959
+   },
+   "params": {
+    "period": 20,
+    "std": 2.0,
+    "adx_max": 20,
+    "sl_atr_buffer": 0.5,
+    "max_bars": 30
+   },
+   "report_md": "# bb_mean_reversion 1d\n\n**Parameters:** period=20, std=2.0, adx_max=20, sl_atr_buffer=0.5, max_bars=30\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 798 |\n| Win rate | 45.1% |\n| Expectancy (R) | -0.082 |\n| Profit factor | 0.856 |\n| Payoff ratio | 1.041 |\n| Total R | -65.537 |\n| Return % | -65.537 |\n| Max drawdown (R) | 107.0 |\n| Max drawdown % | 107.0 |\n| Sharpe (daily) | -0.507 |\n| t-stat of mean R | -1.744 |\n| Avg bars held | 4.016 |\n| Max consecutive losses | 14 |\n| Trades / month | 6.195 |\n| First trade | 2016-01-27 |\n| Last trade | 2026-10-22 |\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 59 | 0.508 | -0.059 | -3.505 | 13.320 |\n| EURGBP | 49 | 0.571 | 0.184 | 9.038 | 3.369 |\n| EURJPY | 48 | 0.479 | -0.234 | -11.237 | 12.276 |\n| EURUSD | 49 | 0.449 | -0.193 | -9.477 | 13.942 |\n| GBPJPY | 47 | 0.340 | -0.546 | -25.646 | 25.646 |\n| GBPUSD | 54 | 0.444 | -0.213 | -11.507 | 15.139 |\n| GER40 | 71 | 0.521 | 0.138 | 9.799 | 13.684 |\n| JPN225 | 52 | 0.500 | 0.196 | 10.199 | 9.214 |\n| NAS100 | 50 | 0.320 | -0.149 | -7.439 | 12.909 |\n| SPX500 | 57 | 0.509 | 0.082 | 4.649 | 7.536 |\n| UK100 | 52 | 0.500 | -0.032 | -1.665 | 9.569 |\n| US30 | 48 | 0.333 | -0.320 | -15.373 | 17.177 |\n| USDCAD | 59 | 0.305 | -0.492 | -29.051 | 31.513 |\n| USDCHF | 56 | 0.500 | 0.233 | 13.048 | 5.879 |\n| USDJPY | 47 | 0.447 | 0.056 | 2.632 | 10.510 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2016 | 65 | 0.523 | 0.323 | 21.007 | 5.577 |\n| 2017 | 90 | 0.422 | -0.254 | -22.885 | 26.328 |\n| 2018 | 64 | 0.328 | -0.253 | -16.205 | 16.587 |\n| 2019 | 74 | 0.527 | 0.141 | 10.449 | 8.378 |\n| 2020 | 71 | 0.465 | -0.085 | -6.010 | 20.834 |\n| 2021 | 76 | 0.382 | -0.213 | -16.170 | 23.132 |\n| 2022 | 63 | 0.365 | -0.318 | -20.059 | 23.499 |\n| 2023 | 99 | 0.444 | -0.156 | -15.482 | 15.482 |\n| 2024 | 56 | 0.589 | 0.024 | 1.352 | 9.320 |\n| 2025 | 89 | 0.494 | -0.045 | -4.025 | 19.571 |\n| 2026 | 51 | 0.431 | 0.049 | 2.492 | 10.182 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 347 | 0.516 | 0.009 | 3.046 | 21.548 |\n| short | 451 | 0.401 | -0.152 | -68.583 | 98.179 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 1 | 0.000 | -0.803 | -0.803 | 0.803 |\n| stop | 435 | 0.000 | -1.042 | -453.5 | 453.5 |\n| target | 357 | 1.000 | 1.086 | 387.8 | 0.000 |\n| time | 5 | 0.600 | 0.185 | 0.924 | 0.281 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 798 | 0.451 | -0.082 | -65.537 | 107.0 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 80.6 | 102.1 |\n| Max drawdown, bootstrap (R) | 84.0 | 139.7 |\n\nBootstrap total R: p5 -127.6, p50 -66.7, p95 -2.6. Probability the edge is actually negative: **96%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+   "assets": {
+    "equity.png": "backtest-bb_mean_reversion-1d/equity.png",
+    "r_distribution.png": "backtest-bb_mean_reversion-1d/r_distribution.png",
+    "metrics.json": "backtest-bb_mean_reversion-1d/metrics.json",
+    "report.md": "backtest-bb_mean_reversion-1d/report.md",
+    "trades.csv": "backtest-bb_mean_reversion-1d/trades.csv"
+   }
+  },
+  "bb_mean_reversion-1h": {
+   "kind": "backtest-bb_mean_reversion-1h",
+   "strategy": "bb_mean_reversion",
+   "tf": "1h",
+   "run_id": "20261023-233554-backtest-bb_mean_reversion-1h",
+   "run_stamp": "2026-10-23T23:35:54Z",
+   "metrics": {
+    "trades": 2933,
+    "win_rate": 0.5356290487555404,
+    "expectancy_R": -0.08642344626528513,
+    "median_R": 0.10276813523837974,
+    "avg_win_R": 0.7631193415866654,
+    "avg_loss_R": -1.0663292610343116,
+    "payoff_ratio": 0.7156507557960657,
+    "profit_factor": 0.8254679422581639,
+    "total_R": -253.47996789608126,
+    "total_pnl": -25347.996789608125,
+    "return_pct": -253.47996789608123,
+    "max_drawdown_R": 260.9250041376022,
+    "max_drawdown_pct": 260.9250041376021,
+    "avg_bars_held": 4.283327650869417,
+    "max_consec_losses": 15,
+    "max_consec_wins": 15,
+    "t_stat": -4.287111078830939,
+    "sharpe_daily": -2.2677849833723887,
+    "trades_per_month": 87.3586301369863,
+    "first_trade": "2024-01-05",
+    "last_trade": "2026-10-23"
+   },
+   "monte_carlo": {
+    "runs": 1000,
+    "shuffle_max_dd_R_p50": 263.9492298250894,
+    "shuffle_max_dd_R_p95": 282.0397350895622,
+    "bootstrap_max_dd_R_p50": 266.8097589138121,
+    "bootstrap_max_dd_R_p95": 366.13709049734604,
+    "bootstrap_total_R_p05": -355.19200724554076,
+    "bootstrap_total_R_p50": -251.68706738016192,
+    "bootstrap_total_R_p95": -150.78695696138163,
+    "prob_total_R_negative": 1.0
+   },
+   "params": {
+    "period": 20,
+    "std": 2.0,
+    "adx_max": 20,
+    "sl_atr_buffer": 0.5,
+    "max_bars": 30
+   },
+   "report_md": "# bb_mean_reversion 1h\n\n**Parameters:** period=20, std=2.0, adx_max=20, sl_atr_buffer=0.5, max_bars=30\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 2,933 |\n| Win rate | 53.6% |\n| Expectancy (R) | -0.086 |\n| Profit factor | 0.825 |\n| Payoff ratio | 0.716 |\n| Total R | -253.5 |\n| Return % | -253.5 |\n| Max drawdown (R) | 260.9 |\n| Max drawdown % | 260.9 |\n| Sharpe (daily) | -2.268 |\n| t-stat of mean R | -4.287 |\n| Avg bars held | 4.283 |\n| Max consecutive losses | 15 |\n| Trades / month | 87.359 |\n| First trade | 2024-01-05 |\n| Last trade | 2026-10-23 |\n\n> Return below -100%: with fixed-size risk this strategy would have emptied the account. Read the R figures; the % is just arithmetic.\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 293 | 0.505 | -0.146 | -42.906 | 46.717 |\n| EURGBP | 282 | 0.624 | 0.025 | 7.093 | 13.192 |\n| EURJPY | 278 | 0.543 | -0.039 | -10.807 | 25.934 |\n| EURUSD | 278 | 0.482 | -0.155 | -43.189 | 46.308 |\n| GBPJPY | 308 | 0.565 | -0.054 | -16.774 | 30.566 |\n| GBPUSD | 276 | 0.518 | -0.049 | -13.556 | 35.851 |\n| GER40 | 89 | 0.393 | -0.294 | -26.195 | 30.963 |\n| JPN225 | 36 | 0.361 | -0.265 | -9.554 | 12.005 |\n| NAS100 | 51 | 0.451 | -0.334 | -17.055 | 20.180 |\n| SPX500 | 48 | 0.458 | -0.295 | -14.147 | 16.928 |\n| UK100 | 80 | 0.500 | -0.015 | -1.240 | 15.905 |\n| US30 | 72 | 0.417 | -0.187 | -13.499 | 18.922 |\n| USDCAD | 270 | 0.611 | -0.050 | -13.533 | 21.404 |\n| USDCHF | 315 | 0.584 | -0.060 | -18.871 | 29.940 |\n| USDJPY | 257 | 0.518 | -0.075 | -19.247 | 24.752 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2024 | 1,027 | 0.547 | -0.095 | -97.075 | 101.7 |\n| 2025 | 1,065 | 0.529 | -0.087 | -92.349 | 114.5 |\n| 2026 | 841 | 0.530 | -0.076 | -64.056 | 82.079 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 1,310 | 0.550 | -0.074 | -97.567 | 106.7 |\n| short | 1,623 | 0.524 | -0.096 | -155.9 | 182.6 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 1 | 1.000 | 0.003 | 0.003 | 0.000 |\n| stop | 1,329 | 0.000 | -1.091 | -1,450.1 | 1,450.1 |\n| target | 1,588 | 0.982 | 0.752 | 1,193.5 | 0.068 |\n| time | 15 | 0.667 | 0.212 | 3.180 | 0.688 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 25 | 0.680 | 0.035 | 0.886 | 3.145 |\n| 1 | 32 | 0.594 | -0.066 | -2.116 | 4.522 |\n| 2 | 74 | 0.554 | -0.052 | -3.862 | 13.645 |\n| 3 | 109 | 0.495 | -0.119 | -13.023 | 21.038 |\n| 4 | 80 | 0.438 | -0.227 | -18.129 | 18.943 |\n| 5 | 56 | 0.357 | -0.280 | -15.666 | 23.798 |\n| 6 | 71 | 0.479 | -0.035 | -2.455 | 14.098 |\n| 7 | 91 | 0.505 | -0.185 | -16.825 | 20.636 |\n| 8 | 105 | 0.590 | -0.097 | -10.181 | 20.394 |\n| 9 | 170 | 0.618 | -0.041 | -7.030 | 12.905 |\n| 10 | 204 | 0.534 | -0.123 | -25.189 | 31.408 |\n| 11 | 207 | 0.522 | -0.125 | -25.948 | 36.564 |\n| 12 | 182 | 0.516 | -0.055 | -10.068 | 24.035 |\n| 13 | 157 | 0.548 | -0.124 | -19.499 | 25.934 |\n| 14 | 197 | 0.584 | -0.106 | -20.851 | 32.379 |\n| 15 | 226 | 0.584 | -0.048 | -10.945 | 16.037 |\n| 16 | 220 | 0.541 | -0.143 | -31.444 | 38.902 |\n| 17 | 229 | 0.546 | -0.039 | -8.984 | 25.631 |\n| 18 | 154 | 0.494 | -0.174 | -26.821 | 41.162 |\n| 19 | 115 | 0.496 | -0.067 | -7.718 | 12.757 |\n| 20 | 80 | 0.612 | 0.194 | 15.493 | 6.528 |\n| 21 | 78 | 0.449 | 0.028 | 2.184 | 11.615 |\n| 22 | 45 | 0.400 | 0.085 | 3.822 | 9.836 |\n| 23 | 26 | 0.577 | 0.034 | 0.889 | 4.979 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 263.9 | 282.0 |\n| Max drawdown, bootstrap (R) | 266.8 | 366.1 |\n\nBootstrap total R: p5 -355.2, p50 -251.7, p95 -150.8. Probability the edge is actually negative: **100%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+   "assets": {
+    "equity.png": "backtest-bb_mean_reversion-1h/equity.png",
+    "r_distribution.png": "backtest-bb_mean_reversion-1h/r_distribution.png",
+    "metrics.json": "backtest-bb_mean_reversion-1h/metrics.json",
+    "report.md": "backtest-bb_mean_reversion-1h/report.md",
+    "trades.csv": "backtest-bb_mean_reversion-1h/trades.csv"
+   }
+  },
+  "donchian_breakout-1d": {
+   "kind": "backtest-donchian_breakout-1d",
+   "strategy": "donchian_breakout",
+   "tf": "1d",
+   "run_id": "20261023-233532-backtest-donchian_breakout-1d",
+   "run_stamp": "2026-10-23T23:35:32Z",
+   "metrics": {
+    "trades": 813,
+    "win_rate": 0.34071340713407133,
+    "expectancy_R": -0.06600102784238285,
+    "median_R": -0.4104315438511526,
+    "avg_win_R": 1.1438150101484885,
+    "avg_loss_R": -0.6912231221025907,
+    "payoff_ratio": 1.654769601267367,
+    "profit_factor": 0.855170111102725,
+    "total_R": -53.65883563585725,
+    "total_pnl": -5365.883563585726,
+    "return_pct": -53.65883563585726,
+    "max_drawdown_R": 87.1046357812652,
+    "max_drawdown_pct": 87.10463578126517,
+    "avg_bars_held": 14.317343173431734,
+    "max_consec_losses": 26,
+    "max_consec_wins": 6,
+    "t_stat": -1.6299617820744796,
+    "sharpe_daily": -0.42215824115146955,
+    "trades_per_month": 6.274776876267749,
+    "first_trade": "2016-01-04",
+    "last_trade": "2026-10-22"
+   },
+   "monte_carlo": {
+    "runs": 1000,
+    "shuffle_max_dd_R_p50": 67.59211498593797,
+    "shuffle_max_dd_R_p95": 85.09891889747746,
+    "bootstrap_max_dd_R_p50": 66.36934502474838,
+    "bootstrap_max_dd_R_p95": 115.5374800606782,
+    "bootstrap_total_R_p05": -105.72910301713624,
+    "bootstrap_total_R_p50": -51.02768766909511,
+    "bootstrap_total_R_p95": 5.15028735775174,
+    "prob_total_R_negative": 0.935
+   },
+   "params": {
+    "lookback": 20,
+    "adx_min": 20,
+    "sl_atr": 2.0,
+    "trail_atr": 2.0,
+    "rr": null,
+    "max_bars": 200
+   },
+   "report_md": "# donchian_breakout 1d\n\n**Parameters:** lookback=20, adx_min=20, sl_atr=2.0, trail_atr=2.0, rr=None, max_bars=200\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 813 |\n| Win rate | 34.1% |\n| Expectancy (R) | -0.066 |\n| Profit factor | 0.855 |\n| Payoff ratio | 1.655 |\n| Total R | -53.659 |\n| Return % | -53.659 |\n| Max drawdown (R) | 87.105 |\n| Max drawdown % | 87.105 |\n| Sharpe (daily) | -0.422 |\n| t-stat of mean R | -1.630 |\n| Avg bars held | 14.317 |\n| Max consecutive losses | 26 |\n| Trades / month | 6.275 |\n| First trade | 2016-01-04 |\n| Last trade | 2026-10-22 |\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 43 | 0.279 | -0.351 | -15.098 | 17.506 |\n| EURGBP | 41 | 0.317 | -0.190 | -7.805 | 10.456 |\n| EURJPY | 50 | 0.320 | -0.203 | -10.152 | 12.434 |\n| EURUSD | 48 | 0.292 | -0.215 | -10.297 | 13.566 |\n| GBPJPY | 48 | 0.354 | -0.004 | -0.197 | 4.130 |\n| GBPUSD | 49 | 0.286 | -0.145 | -7.123 | 10.956 |\n| GER40 | 56 | 0.393 | -0.109 | -6.076 | 11.450 |\n| JPN225 | 59 | 0.424 | 0.244 | 14.403 | 5.719 |\n| NAS100 | 78 | 0.385 | 0.047 | 3.680 | 7.204 |\n| SPX500 | 67 | 0.373 | 0.123 | 8.256 | 7.273 |\n| UK100 | 66 | 0.242 | -0.286 | -18.877 | 20.813 |\n| US30 | 66 | 0.394 | 0.153 | 10.117 | 10.452 |\n| USDCAD | 51 | 0.294 | -0.131 | -6.704 | 16.370 |\n| USDCHF | 45 | 0.356 | -0.193 | -8.705 | 8.705 |\n| USDJPY | 46 | 0.348 | 0.020 | 0.920 | 6.783 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2016 | 60 | 0.300 | -0.222 | -13.321 | 19.866 |\n| 2017 | 77 | 0.377 | 0.186 | 14.354 | 9.409 |\n| 2018 | 86 | 0.326 | -0.062 | -5.301 | 25.744 |\n| 2019 | 74 | 0.378 | -0.167 | -12.384 | 13.891 |\n| 2020 | 72 | 0.417 | 0.157 | 11.324 | 8.780 |\n| 2021 | 80 | 0.250 | -0.285 | -22.833 | 26.444 |\n| 2022 | 80 | 0.325 | -0.277 | -22.173 | 24.312 |\n| 2023 | 65 | 0.308 | -0.171 | -11.090 | 15.682 |\n| 2024 | 94 | 0.319 | 0.025 | 2.348 | 16.388 |\n| 2025 | 60 | 0.317 | -0.046 | -2.759 | 10.050 |\n| 2026 | 65 | 0.446 | 0.126 | 8.175 | 5.468 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 417 | 0.400 | 0.138 | 57.457 | 21.388 |\n| short | 396 | 0.278 | -0.281 | -111.1 | 115.3 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 2 | 0.500 | 0.510 | 1.021 | 0.517 |\n| stop | 129 | 0.000 | -1.019 | -131.5 | 131.5 |\n| trail_stop | 682 | 0.405 | 0.113 | 76.813 | 29.444 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 813 | 0.341 | -0.066 | -53.659 | 87.105 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 67.6 | 85.1 |\n| Max drawdown, bootstrap (R) | 66.4 | 115.5 |\n\nBootstrap total R: p5 -105.7, p50 -51.0, p95 +5.2. Probability the edge is actually negative: **94%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+   "assets": {
+    "equity.png": "backtest-donchian_breakout-1d/equity.png",
+    "r_distribution.png": "backtest-donchian_breakout-1d/r_distribution.png",
+    "metrics.json": "backtest-donchian_breakout-1d/metrics.json",
+    "report.md": "backtest-donchian_breakout-1d/report.md",
+    "trades.csv": "backtest-donchian_breakout-1d/trades.csv"
+   }
+  },
+  "donchian_breakout-1h": {
+   "kind": "backtest-donchian_breakout-1h",
+   "strategy": "donchian_breakout",
+   "tf": "1h",
+   "run_id": "20261023-233548-backtest-donchian_breakout-1h",
+   "run_stamp": "2026-10-23T23:35:48Z",
+   "metrics": {
+    "trades": 4591,
+    "win_rate": 0.3230233064691788,
+    "expectancy_R": -0.1029276288320833,
+    "median_R": -0.5354026457030766,
+    "avg_win_R": 1.2787805510512094,
+    "avg_loss_R": -0.7622176001213122,
+    "payoff_ratio": 1.677710605013165,
+    "profit_factor": 0.8005292236919317,
+    "total_R": -472.54074396809443,
+    "total_pnl": -47254.07439680944,
+    "return_pct": -472.5407439680944,
+    "max_drawdown_R": 478.83526333739695,
+    "max_drawdown_pct": 478.83526333739576,
+    "avg_bars_held": 13.668699629710304,
+    "max_consec_losses": 30,
+    "max_consec_wins": 11,
+    "t_stat": -5.632856201106329,
+    "sharpe_daily": -2.3905093398485993,
+    "trades_per_month": 136.3415024390244,
+    "first_trade": "2024-01-02",
+    "last_trade": "2026-10-23"
+   },
+   "monte_carlo": {
+    "runs": 1000,
+    "shuffle_max_dd_R_p50": 482.7491905252873,
+    "shuffle_max_dd_R_p95": 506.22591382730343,
+    "bootstrap_max_dd_R_p50": 481.7313698241809,
+    "bootstrap_max_dd_R_p95": 619.6797669590281,
+    "bootstrap_total_R_p05": -606.4636480509258,
+    "bootstrap_total_R_p50": -470.4570234598052,
+    "bootstrap_total_R_p95": -326.48464562305367,
+    "prob_total_R_negative": 1.0
+   },
+   "params": {
+    "lookback": 20,
+    "adx_min": 20,
+    "sl_atr": 2.0,
+    "trail_atr": 2.0,
+    "rr": null,
+    "max_bars": 200
+   },
+   "report_md": "# donchian_breakout 1h\n\n**Parameters:** lookback=20, adx_min=20, sl_atr=2.0, trail_atr=2.0, rr=None, max_bars=200\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 4,591 |\n| Win rate | 32.3% |\n| Expectancy (R) | -0.103 |\n| Profit factor | 0.801 |\n| Payoff ratio | 1.678 |\n| Total R | -472.5 |\n| Return % | -472.5 |\n| Max drawdown (R) | 478.8 |\n| Max drawdown % | 478.8 |\n| Sharpe (daily) | -2.391 |\n| t-stat of mean R | -5.633 |\n| Avg bars held | 13.669 |\n| Max consecutive losses | 30 |\n| Trades / month | 136.3 |\n| First trade | 2024-01-02 |\n| Last trade | 2026-10-23 |\n\n> Return below -100%: with fixed-size risk this strategy would have emptied the account. Read the R figures; the % is just arithmetic.\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 427 | 0.295 | -0.171 | -73.194 | 81.700 |\n| EURGBP | 384 | 0.286 | -0.295 | -113.1 | 113.1 |\n| EURJPY | 388 | 0.332 | -0.104 | -40.375 | 46.504 |\n| EURUSD | 441 | 0.331 | -0.122 | -53.750 | 53.750 |\n| GBPJPY | 400 | 0.335 | -0.098 | -39.028 | 45.624 |\n| GBPUSD | 454 | 0.315 | -0.093 | -42.085 | 44.285 |\n| GER40 | 171 | 0.345 | 0.003 | 0.471 | 21.786 |\n| JPN225 | 151 | 0.358 | 0.190 | 28.631 | 7.391 |\n| NAS100 | 149 | 0.356 | 0.046 | 6.894 | 15.009 |\n| SPX500 | 151 | 0.338 | -0.207 | -31.243 | 32.610 |\n| UK100 | 175 | 0.326 | 0.027 | 4.757 | 19.186 |\n| US30 | 147 | 0.333 | -0.069 | -10.197 | 25.079 |\n| USDCAD | 321 | 0.340 | -0.088 | -28.270 | 38.890 |\n| USDCHF | 406 | 0.303 | -0.168 | -68.089 | 73.853 |\n| USDJPY | 426 | 0.329 | -0.033 | -13.924 | 20.514 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2024 | 1,556 | 0.319 | -0.087 | -135.0 | 139.4 |\n| 2025 | 1,697 | 0.329 | -0.121 | -205.5 | 216.9 |\n| 2026 | 1,338 | 0.320 | -0.099 | -132.0 | 167.9 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 2,357 | 0.335 | -0.069 | -163.2 | 180.3 |\n| short | 2,234 | 0.310 | -0.138 | -309.3 | 310.4 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 3 | 0.667 | 0.346 | 1.039 | 0.212 |\n| stop | 1,137 | 0.000 | -1.045 | -1,188.6 | 1,188.6 |\n| time | 5 | 1.000 | 3.124 | 15.622 | 0.000 |\n| trail_stop | 3,446 | 0.428 | 0.203 | 699.4 | 23.101 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 106 | 0.340 | -0.110 | -11.670 | 17.426 |\n| 1 | 252 | 0.401 | 0.088 | 22.140 | 10.351 |\n| 2 | 120 | 0.342 | 0.065 | 7.790 | 14.856 |\n| 3 | 98 | 0.255 | -0.095 | -9.288 | 19.232 |\n| 4 | 105 | 0.343 | -0.059 | -6.152 | 21.864 |\n| 5 | 102 | 0.216 | -0.439 | -44.777 | 47.453 |\n| 6 | 107 | 0.336 | 0.025 | 2.722 | 12.930 |\n| 7 | 155 | 0.329 | -0.098 | -15.179 | 25.355 |\n| 8 | 311 | 0.338 | -0.034 | -10.628 | 33.499 |\n| 9 | 250 | 0.332 | -0.097 | -24.158 | 42.144 |\n| 10 | 210 | 0.300 | -0.208 | -43.734 | 44.000 |\n| 11 | 183 | 0.328 | -0.138 | -25.205 | 39.948 |\n| 12 | 207 | 0.251 | -0.240 | -49.610 | 64.261 |\n| 13 | 396 | 0.306 | -0.161 | -63.781 | 70.462 |\n| 14 | 487 | 0.337 | -0.032 | -15.668 | 49.600 |\n| 15 | 458 | 0.358 | -0.085 | -38.944 | 53.893 |\n| 16 | 256 | 0.340 | -0.088 | -22.490 | 22.490 |\n| 17 | 188 | 0.351 | 0.033 | 6.190 | 24.601 |\n| 18 | 158 | 0.266 | -0.160 | -25.272 | 39.390 |\n| 19 | 207 | 0.242 | -0.306 | -63.321 | 63.461 |\n| 20 | 97 | 0.351 | -0.062 | -5.976 | 12.636 |\n| 21 | 69 | 0.304 | -0.291 | -20.110 | 20.110 |\n| 22 | 37 | 0.324 | -0.227 | -8.411 | 10.454 |\n| 23 | 32 | 0.344 | -0.219 | -7.012 | 7.863 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 482.7 | 506.2 |\n| Max drawdown, bootstrap (R) | 481.7 | 619.7 |\n\nBootstrap total R: p5 -606.5, p50 -470.5, p95 -326.5. Probability the edge is actually negative: **100%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+   "assets": {
+    "equity.png": "backtest-donchian_breakout-1h/equity.png",
+    "r_distribution.png": "backtest-donchian_breakout-1h/r_distribution.png",
+    "metrics.json": "backtest-donchian_breakout-1h/metrics.json",
+    "report.md": "backtest-donchian_breakout-1h/report.md",
+    "trades.csv": "backtest-donchian_breakout-1h/trades.csv"
+   }
+  },
+  "ema_pullback-1d": {
+   "kind": "backtest-ema_pullback-1d",
+   "strategy": "ema_pullback",
+   "tf": "1d",
+   "run_id": "20261023-233528-backtest-ema_pullback-1d",
+   "run_stamp": "2026-10-23T23:35:28Z",
+   "metrics": {
+    "trades": 712,
+    "win_rate": 0.3890449438202247,
+    "expectancy_R": 0.04766431020289873,
+    "median_R": -1.0018382879889396,
+    "avg_win_R": 1.6530065336344062,
+    "avg_loss_R": -0.9745880941431415,
+    "payoff_ratio": 1.6961078670756087,
+    "profit_factor": 1.0800502969653876,
+    "total_R": 33.93698886446389,
+    "total_pnl": 3393.6988864463888,
+    "return_pct": 33.936988864463885,
+    "max_drawdown_R": 33.18273759642482,
+    "max_drawdown_pct": 33.182737596424836,
+    "avg_bars_held": 19.94241573033708,
+    "max_consec_losses": 15,
+    "max_consec_wins": 7,
+    "t_stat": 0.9475506537359936,
+    "sharpe_daily": 0.26151928531527513,
+    "trades_per_month": 5.496647222926706,
+    "first_trade": "2016-01-05",
+    "last_trade": "2026-10-22"
+   },
+   "monte_carlo": {
+    "runs": 1000,
+    "shuffle_max_dd_R_p50": 28.20384413665873,
+    "shuffle_max_dd_R_p95": 44.92300413720178,
+    "bootstrap_max_dd_R_p50": 29.190816818474786,
+    "bootstrap_max_dd_R_p95": 55.35285764469573,
+    "bootstrap_total_R_p05": -23.65961029246671,
+    "bootstrap_total_R_p50": 33.26096578280256,
+    "bootstrap_total_R_p95": 92.4143510451723,
+    "prob_total_R_negative": 0.161
+   },
+   "params": {
+    "ema_fast": 20,
+    "ema_mid": 50,
+    "ema_slow": 200,
+    "pullback_bars": 3,
+    "rsi_max": 70,
+    "sl_atr_buffer": 0.5,
+    "rr": 2.0,
+    "max_bars": 48
+   },
+   "report_md": "# ema_pullback 1d\n\n**Parameters:** ema_fast=20, ema_mid=50, ema_slow=200, pullback_bars=3, rsi_max=70, sl_atr_buffer=0.5, rr=2.0, max_bars=48\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 712 |\n| Win rate | 38.9% |\n| Expectancy (R) | 0.048 |\n| Profit factor | 1.080 |\n| Payoff ratio | 1.696 |\n| Total R | 33.937 |\n| Return % | 33.937 |\n| Max drawdown (R) | 33.183 |\n| Max drawdown % | 33.183 |\n| Sharpe (daily) | 0.262 |\n| t-stat of mean R | 0.948 |\n| Avg bars held | 19.942 |\n| Max consecutive losses | 15 |\n| Trades / month | 5.497 |\n| First trade | 2016-01-05 |\n| Last trade | 2026-10-22 |\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 30 | 0.267 | -0.200 | -6.002 | 9.448 |\n| EURGBP | 24 | 0.333 | -0.142 | -3.414 | 9.141 |\n| EURJPY | 22 | 0.545 | 0.128 | 2.821 | 4.776 |\n| EURUSD | 29 | 0.483 | 0.354 | 10.254 | 4.383 |\n| GBPJPY | 26 | 0.500 | 0.259 | 6.743 | 3.018 |\n| GBPUSD | 48 | 0.250 | -0.279 | -13.379 | 14.365 |\n| GER40 | 79 | 0.380 | 0.034 | 2.718 | 8.651 |\n| JPN225 | 84 | 0.393 | 0.069 | 5.789 | 14.677 |\n| NAS100 | 67 | 0.537 | 0.508 | 34.004 | 7.015 |\n| SPX500 | 75 | 0.467 | 0.269 | 20.177 | 5.042 |\n| UK100 | 75 | 0.333 | -0.115 | -8.652 | 22.003 |\n| US30 | 70 | 0.457 | 0.193 | 13.534 | 5.675 |\n| USDCAD | 26 | 0.231 | -0.334 | -8.674 | 11.327 |\n| USDCHF | 25 | 0.200 | -0.442 | -11.057 | 13.063 |\n| USDJPY | 32 | 0.250 | -0.341 | -10.926 | 13.813 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2016 | 72 | 0.319 | -0.189 | -13.628 | 24.103 |\n| 2017 | 66 | 0.500 | 0.352 | 23.207 | 7.051 |\n| 2018 | 73 | 0.356 | -0.021 | -1.542 | 20.058 |\n| 2019 | 80 | 0.325 | -0.158 | -12.675 | 20.378 |\n| 2020 | 67 | 0.373 | 0.070 | 4.678 | 15.949 |\n| 2021 | 84 | 0.452 | 0.195 | 16.348 | 8.710 |\n| 2022 | 56 | 0.304 | -0.188 | -10.540 | 13.521 |\n| 2023 | 48 | 0.292 | -0.160 | -7.657 | 13.651 |\n| 2024 | 45 | 0.556 | 0.467 | 21.003 | 6.111 |\n| 2025 | 51 | 0.431 | 0.275 | 14.006 | 11.284 |\n| 2026 | 70 | 0.400 | 0.011 | 0.737 | 12.057 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 482 | 0.444 | 0.195 | 94.208 | 21.344 |\n| short | 230 | 0.274 | -0.262 | -60.271 | 67.924 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 5 | 0.600 | 0.296 | 1.480 | 0.553 |\n| stop | 408 | 0.000 | -1.018 | -415.4 | 415.4 |\n| target | 190 | 1.000 | 2.008 | 381.4 | 0.000 |\n| time | 109 | 0.771 | 0.609 | 66.402 | 1.668 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 712 | 0.389 | 0.048 | 33.937 | 33.183 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 28.2 | 44.9 |\n| Max drawdown, bootstrap (R) | 29.2 | 55.4 |\n\nBootstrap total R: p5 -23.7, p50 +33.3, p95 +92.4. Probability the edge is actually negative: **16%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+   "assets": {
+    "equity.png": "backtest-ema_pullback-1d/equity.png",
+    "r_distribution.png": "backtest-ema_pullback-1d/r_distribution.png",
+    "metrics.json": "backtest-ema_pullback-1d/metrics.json",
+    "report.md": "backtest-ema_pullback-1d/report.md",
+    "trades.csv": "backtest-ema_pullback-1d/trades.csv"
+   }
+  },
+  "ema_pullback-1h": {
+   "kind": "backtest-ema_pullback-1h",
+   "strategy": "ema_pullback",
+   "tf": "1h",
+   "run_id": "20261023-233542-backtest-ema_pullback-1h",
+   "run_stamp": "2026-10-23T23:35:42Z",
+   "metrics": {
+    "trades": 4813,
+    "win_rate": 0.34822356118844794,
+    "expectancy_R": -0.10151818872324748,
+    "median_R": -1.0123682772194755,
+    "avg_win_R": 1.5736152875410039,
+    "avg_loss_R": -0.9964890864659588,
+    "payoff_ratio": 1.5791595802838332,
+    "profit_factor": 0.8436950770021372,
+    "total_R": -488.6070423249901,
+    "total_pnl": -48860.70423249902,
+    "return_pct": -488.6070423249902,
+    "max_drawdown_R": 506.155128691803,
+    "max_drawdown_pct": 506.15512869180304,
+    "avg_bars_held": 20.165177643881155,
+    "max_consec_losses": 27,
+    "max_consec_wins": 9,
+    "t_stat": -5.415727779977313,
+    "sharpe_daily": -2.4468185503716033,
+    "trades_per_month": 143.3539334637965,
+    "first_trade": "2024-01-05",
+    "last_trade": "2026-10-23"
+   },
+   "monte_carlo": {
+    "runs": 1000,
+    "shuffle_max_dd_R_p50": 501.5089963125422,
+    "shuffle_max_dd_R_p95": 524.1852119918062,
+    "bootstrap_max_dd_R_p50": 502.6186429943861,
+    "bootstrap_max_dd_R_p95": 653.3322616004724,
+    "bootstrap_total_R_p05": -641.0297286925235,
+    "bootstrap_total_R_p50": -486.36510364580727,
+    "bootstrap_total_R_p95": -340.8530147402908,
+    "prob_total_R_negative": 1.0
+   },
+   "params": {
+    "ema_fast": 20,
+    "ema_mid": 50,
+    "ema_slow": 200,
+    "pullback_bars": 3,
+    "rsi_max": 70,
+    "sl_atr_buffer": 0.5,
+    "rr": 2.0,
+    "max_bars": 48
+   },
+   "report_md": "# ema_pullback 1h\n\n**Parameters:** ema_fast=20, ema_mid=50, ema_slow=200, pullback_bars=3, rsi_max=70, sl_atr_buffer=0.5, rr=2.0, max_bars=48\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 4,813 |\n| Win rate | 34.8% |\n| Expectancy (R) | -0.102 |\n| Profit factor | 0.844 |\n| Payoff ratio | 1.579 |\n| Total R | -488.6 |\n| Return % | -488.6 |\n| Max drawdown (R) | 506.2 |\n| Max drawdown % | 506.2 |\n| Sharpe (daily) | -2.447 |\n| t-stat of mean R | -5.416 |\n| Avg bars held | 20.165 |\n| Max consecutive losses | 27 |\n| Trades / month | 143.4 |\n| First trade | 2024-01-05 |\n| Last trade | 2026-10-23 |\n\n> Return below -100%: with fixed-size risk this strategy would have emptied the account. Read the R figures; the % is just arithmetic.\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 474 | 0.342 | -0.111 | -52.816 | 56.543 |\n| EURGBP | 441 | 0.299 | -0.246 | -108.4 | 122.1 |\n| EURJPY | 438 | 0.349 | -0.106 | -46.389 | 47.644 |\n| EURUSD | 465 | 0.361 | -0.042 | -19.475 | 34.408 |\n| GBPJPY | 444 | 0.336 | -0.115 | -50.997 | 64.069 |\n| GBPUSD | 461 | 0.338 | -0.142 | -65.441 | 69.343 |\n| GER40 | 159 | 0.352 | -0.071 | -11.252 | 20.966 |\n| JPN225 | 109 | 0.422 | 0.147 | 15.998 | 8.131 |\n| NAS100 | 122 | 0.377 | -0.060 | -7.340 | 12.900 |\n| SPX500 | 129 | 0.380 | -0.030 | -3.836 | 14.393 |\n| UK100 | 183 | 0.355 | -0.008 | -1.373 | 20.425 |\n| US30 | 127 | 0.339 | -0.114 | -14.508 | 18.616 |\n| USDCAD | 392 | 0.401 | 0.002 | 0.791 | 44.377 |\n| USDCHF | 440 | 0.318 | -0.204 | -89.763 | 96.578 |\n| USDJPY | 429 | 0.359 | -0.079 | -33.840 | 41.095 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2024 | 1,675 | 0.355 | -0.091 | -151.7 | 191.3 |\n| 2025 | 1,715 | 0.341 | -0.103 | -177.3 | 180.6 |\n| 2026 | 1,423 | 0.350 | -0.112 | -159.7 | 202.5 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 2,791 | 0.365 | -0.066 | -183.5 | 190.6 |\n| short | 2,022 | 0.325 | -0.151 | -305.1 | 332.6 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| open_at_end | 9 | 0.556 | 0.029 | 0.260 | 0.646 |\n| stop | 2,904 | 0.000 | -1.050 | -3,048.7 | 3,048.7 |\n| target | 1,130 | 1.000 | 1.988 | 2,246.0 | 0.000 |\n| time | 770 | 0.703 | 0.408 | 313.8 | 2.335 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 0 | 142 | 0.345 | -0.056 | -7.894 | 17.397 |\n| 1 | 266 | 0.414 | 0.083 | 22.104 | 14.469 |\n| 2 | 160 | 0.338 | -0.109 | -17.449 | 32.832 |\n| 3 | 137 | 0.307 | -0.220 | -30.102 | 33.150 |\n| 4 | 143 | 0.301 | -0.178 | -25.512 | 34.222 |\n| 5 | 125 | 0.392 | 0.087 | 10.898 | 10.946 |\n| 6 | 151 | 0.318 | -0.132 | -19.928 | 31.333 |\n| 7 | 212 | 0.354 | -0.012 | -2.478 | 20.617 |\n| 8 | 350 | 0.320 | -0.179 | -62.556 | 64.116 |\n| 9 | 262 | 0.286 | -0.267 | -69.836 | 75.886 |\n| 10 | 214 | 0.383 | -0.007 | -1.539 | 18.489 |\n| 11 | 183 | 0.317 | -0.158 | -28.888 | 41.374 |\n| 12 | 226 | 0.350 | -0.106 | -23.883 | 24.542 |\n| 13 | 306 | 0.425 | 0.038 | 11.483 | 23.804 |\n| 14 | 386 | 0.355 | -0.118 | -45.624 | 57.210 |\n| 15 | 406 | 0.367 | -0.090 | -36.340 | 52.566 |\n| 16 | 278 | 0.399 | -0.029 | -8.189 | 35.788 |\n| 17 | 187 | 0.369 | -0.086 | -16.076 | 26.396 |\n| 18 | 179 | 0.341 | -0.065 | -11.620 | 35.327 |\n| 19 | 178 | 0.309 | -0.173 | -30.814 | 40.349 |\n| 20 | 131 | 0.290 | -0.270 | -35.425 | 49.203 |\n| 21 | 92 | 0.228 | -0.426 | -39.167 | 39.167 |\n| 22 | 46 | 0.304 | -0.174 | -8.012 | 12.026 |\n| 23 | 53 | 0.283 | -0.222 | -11.760 | 17.618 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 501.5 | 524.2 |\n| Max drawdown, bootstrap (R) | 502.6 | 653.3 |\n\nBootstrap total R: p5 -641.0, p50 -486.4, p95 -340.9. Probability the edge is actually negative: **100%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+   "assets": {
+    "equity.png": "backtest-ema_pullback-1h/equity.png",
+    "r_distribution.png": "backtest-ema_pullback-1h/r_distribution.png",
+    "metrics.json": "backtest-ema_pullback-1h/metrics.json",
+    "report.md": "backtest-ema_pullback-1h/report.md",
+    "trades.csv": "backtest-ema_pullback-1h/trades.csv"
+   }
+  },
+  "session_orb-1h": {
+   "kind": "backtest-session_orb-1h",
+   "strategy": "session_orb",
+   "tf": "1h",
+   "run_id": "20261023-233600-backtest-session_orb-1h",
+   "run_stamp": "2026-10-23T23:36:00Z",
+   "metrics": {
+    "trades": 7638,
+    "win_rate": 0.4325739722440429,
+    "expectancy_R": -0.07744989226665408,
+    "median_R": -0.1759684001086219,
+    "avg_win_R": 0.8093420829053487,
+    "avg_loss_R": -0.7534906596797359,
+    "payoff_ratio": 1.074123577390265,
+    "profit_factor": 0.8188519380935477,
+    "total_R": -591.5622771327039,
+    "total_pnl": -59156.22771327039,
+    "return_pct": -591.5622771327039,
+    "max_drawdown_R": 591.5622771327029,
+    "max_drawdown_pct": 591.5622771327052,
+    "avg_bars_held": 2.955223880597015,
+    "max_consec_losses": 21,
+    "max_consec_wins": 13,
+    "t_stat": -7.514075059984179,
+    "sharpe_daily": -3.4225411774302783,
+    "trades_per_month": 226.82997073170733,
+    "first_trade": "2024-01-02",
+    "last_trade": "2026-10-23"
+   },
+   "monte_carlo": {
+    "runs": 1000,
+    "shuffle_max_dd_R_p50": 599.5306719466016,
+    "shuffle_max_dd_R_p95": 613.8590684132562,
+    "bootstrap_max_dd_R_p50": 597.2157297159985,
+    "bootstrap_max_dd_R_p95": 733.6313903231934,
+    "bootstrap_total_R_p05": -722.5609354855249,
+    "bootstrap_total_R_p50": -587.4035507974118,
+    "bootstrap_total_R_p95": -452.74949652379075,
+    "prob_total_R_negative": 1.0
+   },
+   "params": {
+    "session": "auto",
+    "range_bars": 1,
+    "max_range_atr": 1.5,
+    "min_bars_left": 2,
+    "rr": 1.5,
+    "flat_at_session_end": true
+   },
+   "report_md": "# session_orb 1h\n\n**Parameters:** session=auto, range_bars=1, max_range_atr=1.5, min_bars_left=2, rr=1.5, flat_at_session_end=True\n\n**Costs modelled:** spread per instrument (config), slippage 0.2 pips/pts per side, commission 0.0 GBP/round trip, same-bar SL+TP \u2192 pessimistic.  \n**Sizing:** 1.0% of GBP 10,000 per trade, fixed.\n\n## Headline\n\n| Metric | Value |\n|---|---|\n| Trades | 7,638 |\n| Win rate | 43.3% |\n| Expectancy (R) | -0.077 |\n| Profit factor | 0.819 |\n| Payoff ratio | 1.074 |\n| Total R | -591.6 |\n| Return % | -591.6 |\n| Max drawdown (R) | 591.6 |\n| Max drawdown % | 591.6 |\n| Sharpe (daily) | -3.423 |\n| t-stat of mean R | -7.514 |\n| Avg bars held | 2.955 |\n| Max consecutive losses | 21 |\n| Trades / month | 226.8 |\n| First trade | 2024-01-02 |\n| Last trade | 2026-10-23 |\n\n> Return below -100%: with fixed-size risk this strategy would have emptied the account. Read the R figures; the % is just arithmetic.\n\n![equity](equity.png)\n\n![R distribution](r_distribution.png)\n\n## By instrument\n\n| instrument | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| AUDUSD | 733 | 0.413 | -0.094 | -69.153 | 70.607 |\n| EURGBP | 623 | 0.366 | -0.279 | -174.0 | 180.9 |\n| EURJPY | 592 | 0.421 | -0.088 | -51.918 | 51.918 |\n| EURUSD | 651 | 0.404 | -0.124 | -80.774 | 87.575 |\n| GBPJPY | 601 | 0.458 | -0.023 | -13.529 | 24.163 |\n| GBPUSD | 679 | 0.401 | -0.093 | -63.156 | 68.586 |\n| GER40 | 562 | 0.484 | 0.035 | 19.429 | 24.278 |\n| JPN225 | 233 | 0.421 | -0.076 | -17.794 | 21.114 |\n| NAS100 | 376 | 0.505 | 0.014 | 5.421 | 8.720 |\n| SPX500 | 428 | 0.472 | -0.009 | -4.016 | 10.304 |\n| UK100 | 272 | 0.460 | -0.088 | -23.842 | 32.202 |\n| US30 | 257 | 0.490 | 0.046 | 11.883 | 8.756 |\n| USDCAD | 278 | 0.428 | -0.093 | -25.826 | 30.950 |\n| USDCHF | 658 | 0.418 | -0.132 | -86.617 | 88.938 |\n| USDJPY | 695 | 0.442 | -0.025 | -17.719 | 38.091 |\n\n## By year\n\n| year | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2024 | 2,721 | 0.436 | -0.073 | -198.4 | 208.3 |\n| 2025 | 2,684 | 0.435 | -0.063 | -169.0 | 174.9 |\n| 2026 | 2,233 | 0.425 | -0.100 | -224.2 | 224.2 |\n\n## By direction\n\n| direction | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| long | 3,993 | 0.446 | -0.069 | -274.3 | 276.4 |\n| short | 3,645 | 0.418 | -0.087 | -317.3 | 318.0 |\n\n## By exit reason\n\n| exit_reason | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| session_end | 3,950 | 0.539 | 0.081 | 320.5 | 9.225 |\n| stop | 2,514 | 0.000 | -1.045 | -2,626.7 | 2,626.7 |\n| target | 1,174 | 1.000 | 1.460 | 1,714.6 | 0.000 |\n\n## By entry hour (UTC)\n\n| entry_hour_utc | trades | win_rate | expectancy_R | total_R | max_dd_R |\n|---|---|---|---|---|---|\n| 2 | 134 | 0.440 | -0.068 | -9.144 | 13.440 |\n| 3 | 50 | 0.360 | -0.163 | -8.129 | 8.773 |\n| 4 | 49 | 0.429 | -0.011 | -0.521 | 3.327 |\n| 9 | 1,553 | 0.458 | -0.042 | -64.460 | 107.2 |\n| 10 | 1,571 | 0.403 | -0.094 | -148.4 | 149.3 |\n| 11 | 829 | 0.411 | -0.132 | -109.4 | 110.1 |\n| 12 | 619 | 0.418 | -0.108 | -66.560 | 66.921 |\n| 13 | 709 | 0.425 | -0.107 | -75.814 | 80.721 |\n| 14 | 587 | 0.400 | -0.132 | -77.631 | 79.429 |\n| 15 | 608 | 0.480 | -0.015 | -9.356 | 30.232 |\n| 16 | 416 | 0.510 | 0.002 | 1.019 | 9.419 |\n| 17 | 269 | 0.424 | -0.041 | -11.093 | 13.942 |\n| 18 | 182 | 0.423 | -0.061 | -11.182 | 15.266 |\n| 19 | 62 | 0.484 | -0.015 | -0.913 | 4.433 |\n\n## Monte Carlo (1000 runs)\n\n| | p50 | p95 |\n|---|---|---|\n| Max drawdown, shuffled order (R) | 599.5 | 613.9 |\n| Max drawdown, bootstrap (R) | 597.2 | 733.6 |\n\nBootstrap total R: p5 -722.6, p50 -587.4, p95 -452.7. Probability the edge is actually negative: **100%**.\n\n---\n\n_Backtests use mid/bid prices from free feeds, one position per instrument, no overnight financing, no margin limits. They are research, not a forecast and not advice._",
+   "assets": {
+    "equity.png": "backtest-session_orb-1h/equity.png",
+    "r_distribution.png": "backtest-session_orb-1h/r_distribution.png",
+    "metrics.json": "backtest-session_orb-1h/metrics.json",
+    "report.md": "backtest-session_orb-1h/report.md",
+    "trades.csv": "backtest-session_orb-1h/trades.csv"
+   }
+  }
+ },
+ "history": [
+  {
+   "run_id": "20261031-004345-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-31T00:43:45Z",
+   "exported_utc": "2026-10-31T00:43:56Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 0,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261031-004334-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-31T00:43:34Z",
+   "exported_utc": "2026-10-31T00:43:56Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 0,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261030-204304-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-30T20:43:04Z",
+   "exported_utc": "2026-10-30T20:43:13Z",
+   "instruments": 15,
+   "setups": 9,
+   "fresh": 1,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261030-204252-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-30T20:42:52Z",
+   "exported_utc": "2026-10-30T20:43:13Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261030-155230-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-30T15:52:30Z",
+   "exported_utc": "2026-10-30T15:52:43Z",
+   "instruments": 15,
+   "setups": 9,
+   "fresh": 5,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261030-155210-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-30T15:52:10Z",
+   "exported_utc": "2026-10-30T15:52:43Z",
+   "instruments": 15,
+   "setups": 15,
+   "fresh": 3,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback",
+    "session_orb"
+   ]
+  },
+  {
+   "run_id": "20261030-083318-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-30T08:33:18Z",
+   "exported_utc": "2026-10-30T08:33:26Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 2,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261030-083308-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-30T08:33:08Z",
+   "exported_utc": "2026-10-30T08:33:26Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 0,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261030-015555-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-30T01:55:55Z",
+   "exported_utc": "2026-10-30T01:56:06Z",
+   "instruments": 15,
+   "setups": 7,
+   "fresh": 4,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261030-015538-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-30T01:55:38Z",
+   "exported_utc": "2026-10-30T01:56:06Z",
+   "instruments": 15,
+   "setups": 8,
+   "fresh": 2,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261029-214640-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-29T21:46:40Z",
+   "exported_utc": "2026-10-29T21:46:51Z",
+   "instruments": 15,
+   "setups": 3,
+   "fresh": 0,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261029-214625-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-29T21:46:25Z",
+   "exported_utc": "2026-10-29T21:46:51Z",
+   "instruments": 15,
+   "setups": 7,
+   "fresh": 0,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261029-165359-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-29T16:53:59Z",
+   "exported_utc": "2026-10-29T16:54:11Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 2,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261029-165338-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-29T16:53:38Z",
+   "exported_utc": "2026-10-29T16:54:11Z",
+   "instruments": 15,
+   "setups": 7,
+   "fresh": 4,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback",
+    "session_orb"
+   ]
+  },
+  {
+   "run_id": "20261029-095127-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-29T09:51:27Z",
+   "exported_utc": "2026-10-29T09:51:36Z",
+   "instruments": 15,
+   "setups": 7,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261029-095112-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-29T09:51:12Z",
+   "exported_utc": "2026-10-29T09:51:36Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 2,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261029-022524-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-29T02:25:24Z",
+   "exported_utc": "2026-10-29T02:25:34Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261029-022510-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-29T02:25:10Z",
+   "exported_utc": "2026-10-29T02:25:34Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 1,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261028-230928-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-28T23:09:28Z",
+   "exported_utc": "2026-10-28T23:09:33Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261028-230918-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-28T23:09:18Z",
+   "exported_utc": "2026-10-28T23:09:33Z",
+   "instruments": 15,
+   "setups": 2,
+   "fresh": 0,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261028-184937-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-28T18:49:37Z",
+   "exported_utc": "2026-10-28T18:49:45Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 2,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261028-184922-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-28T18:49:22Z",
+   "exported_utc": "2026-10-28T18:49:45Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 1,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261028-124408-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-28T12:44:08Z",
+   "exported_utc": "2026-10-28T12:44:17Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 1,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261028-124351-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-28T12:43:51Z",
+   "exported_utc": "2026-10-28T12:44:17Z",
+   "instruments": 15,
+   "setups": 8,
+   "fresh": 2,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "ema_pullback",
+    "session_orb"
+   ]
+  },
+  {
+   "run_id": "20261028-053043-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-28T05:30:43Z",
+   "exported_utc": "2026-10-28T05:30:53Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 1,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261028-053030-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-28T05:30:30Z",
+   "exported_utc": "2026-10-28T05:30:53Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 3,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-234427-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-27T23:44:27Z",
+   "exported_utc": "2026-10-27T23:44:36Z",
+   "instruments": 15,
+   "setups": 2,
+   "fresh": 0,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-234411-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-27T23:44:11Z",
+   "exported_utc": "2026-10-27T23:44:36Z",
+   "instruments": 15,
+   "setups": 7,
+   "fresh": 1,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-200240-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-27T20:02:40Z",
+   "exported_utc": "2026-10-27T20:02:45Z",
+   "instruments": 15,
+   "setups": 2,
+   "fresh": 0,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-200224-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-27T20:02:24Z",
+   "exported_utc": "2026-10-27T20:02:45Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 1,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-142355-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-27T14:23:55Z",
+   "exported_utc": "2026-10-27T14:24:05Z",
+   "instruments": 15,
+   "setups": 3,
+   "fresh": 1,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-142341-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-27T14:23:41Z",
+   "exported_utc": "2026-10-27T14:24:05Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 1,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "session_orb"
+   ]
+  },
+  {
+   "run_id": "20261027-074459-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-27T07:44:59Z",
+   "exported_utc": "2026-10-27T07:45:07Z",
+   "instruments": 15,
+   "setups": 3,
+   "fresh": 0,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-074447-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-27T07:44:47Z",
+   "exported_utc": "2026-10-27T07:45:07Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 3,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-020126-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-27T02:01:26Z",
+   "exported_utc": "2026-10-27T02:01:31Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261027-020112-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-27T02:01:12Z",
+   "exported_utc": "2026-10-27T02:01:31Z",
+   "instruments": 15,
+   "setups": 3,
+   "fresh": 2,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261026-223716-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-26T22:37:16Z",
+   "exported_utc": "2026-10-26T22:37:26Z",
+   "instruments": 15,
+   "setups": 8,
+   "fresh": 0,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261026-223704-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-26T22:37:04Z",
+   "exported_utc": "2026-10-26T22:37:26Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 2,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261026-171930-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-26T17:19:30Z",
+   "exported_utc": "2026-10-26T17:19:41Z",
+   "instruments": 15,
+   "setups": 9,
+   "fresh": 4,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261026-171915-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-26T17:19:15Z",
+   "exported_utc": "2026-10-26T17:19:41Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 1,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261026-110054-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-26T11:00:54Z",
+   "exported_utc": "2026-10-26T11:01:00Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 1,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261026-110042-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-26T11:00:42Z",
+   "exported_utc": "2026-10-26T11:01:00Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 1,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261026-043832-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-26T04:38:32Z",
+   "exported_utc": "2026-10-26T04:38:42Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 1,
+   "strategies_fired": [
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261026-043818-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-26T04:38:18Z",
+   "exported_utc": "2026-10-26T04:38:42Z",
+   "instruments": 15,
+   "setups": 4,
+   "fresh": 1,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261025-233156-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-25T23:31:56Z",
+   "exported_utc": "2026-10-25T23:32:06Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 0,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261025-233144-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-25T23:31:44Z",
+   "exported_utc": "2026-10-25T23:32:06Z",
+   "instruments": 15,
+   "setups": 1,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261025-232647-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-25T23:26:47Z",
+   "exported_utc": "2026-10-25T23:26:57Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 0,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261025-232635-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-25T23:26:35Z",
+   "exported_utc": "2026-10-25T23:26:57Z",
+   "instruments": 15,
+   "setups": 1,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261025-231752-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-25T23:17:52Z",
+   "exported_utc": "2026-10-25T23:18:02Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 0,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261025-231740-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-25T23:17:40Z",
+   "exported_utc": "2026-10-25T23:18:02Z",
+   "instruments": 15,
+   "setups": 1,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261025-231413-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-25T23:14:13Z",
+   "exported_utc": "2026-10-25T23:14:22Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 0,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261025-231402-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-25T23:14:02Z",
+   "exported_utc": "2026-10-25T23:14:22Z",
+   "instruments": 15,
+   "setups": 1,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261024-010751-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-24T01:07:51Z",
+   "exported_utc": "2026-10-24T01:08:35Z",
+   "instruments": 15,
+   "setups": 1,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261024-003050-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-24T00:30:50Z",
+   "exported_utc": "2026-10-24T00:31:04Z",
+   "instruments": 15,
+   "setups": 5,
+   "fresh": 0,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261024-003036-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-24T00:30:36Z",
+   "exported_utc": "2026-10-24T00:31:04Z",
+   "instruments": 15,
+   "setups": 1,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261023-233600-backtest-session_orb-1h",
+   "kind": "backtest-session_orb-1h",
+   "run_stamp": "2026-10-23T23:36:00",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "trades": 7638,
+   "expectancy_R": -0.07744989226665408,
+   "t_stat": -7.514075059984179,
+   "max_drawdown_R": 591.5622771327029
+  },
+  {
+   "run_id": "20261023-233554-backtest-bb_mean_reversion-1h",
+   "kind": "backtest-bb_mean_reversion-1h",
+   "run_stamp": "2026-10-23T23:35:54",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "trades": 2933,
+   "expectancy_R": -0.08642344626528513,
+   "t_stat": -4.287111078830939,
+   "max_drawdown_R": 260.9250041376022
+  },
+  {
+   "run_id": "20261023-233548-backtest-donchian_breakout-1h",
+   "kind": "backtest-donchian_breakout-1h",
+   "run_stamp": "2026-10-23T23:35:48",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "trades": 4591,
+   "expectancy_R": -0.1029276288320833,
+   "t_stat": -5.632856201106329,
+   "max_drawdown_R": 478.83526333739695
+  },
+  {
+   "run_id": "20261023-233542-backtest-ema_pullback-1h",
+   "kind": "backtest-ema_pullback-1h",
+   "run_stamp": "2026-10-23T23:35:42",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "trades": 4813,
+   "expectancy_R": -0.10151818872324748,
+   "t_stat": -5.415727779977313,
+   "max_drawdown_R": 506.155128691803
+  },
+  {
+   "run_id": "20261023-233536-backtest-bb_mean_reversion-1d",
+   "kind": "backtest-bb_mean_reversion-1d",
+   "run_stamp": "2026-10-23T23:35:36",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "trades": 798,
+   "expectancy_R": -0.08212672666360604,
+   "t_stat": -1.7436254731002256,
+   "max_drawdown_R": 106.95426242467704
+  },
+  {
+   "run_id": "20261023-233532-backtest-donchian_breakout-1d",
+   "kind": "backtest-donchian_breakout-1d",
+   "run_stamp": "2026-10-23T23:35:32",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "trades": 813,
+   "expectancy_R": -0.06600102784238285,
+   "t_stat": -1.6299617820744796,
+   "max_drawdown_R": 87.1046357812652
+  },
+  {
+   "run_id": "20261023-233528-backtest-ema_pullback-1d",
+   "kind": "backtest-ema_pullback-1d",
+   "run_stamp": "2026-10-23T23:35:28",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "trades": 712,
+   "expectancy_R": 0.04766431020289873,
+   "t_stat": 0.9475506537359936,
+   "max_drawdown_R": 33.18273759642482
+  },
+  {
+   "run_id": "20261023-233515-pipeline-4h",
+   "kind": "pipeline-4h",
+   "run_stamp": "2026-10-23T23:35:15",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "instruments": 15,
+   "setups": 6,
+   "fresh": 1,
+   "strategies_fired": [
+    "bb_mean_reversion",
+    "donchian_breakout",
+    "ema_pullback"
+   ]
+  },
+  {
+   "run_id": "20261023-231940-pipeline-1h",
+   "kind": "pipeline-1h",
+   "run_stamp": "2026-10-23T23:19:40",
+   "exported_utc": "2026-10-23T23:43:03Z",
+   "instruments": 15,
+   "setups": 1,
+   "fresh": 1,
+   "strategies_fired": [
+    "ema_pullback"
+   ]
+  }
+ ],
+ "history_total": 64,
+ "skipped": []
+}

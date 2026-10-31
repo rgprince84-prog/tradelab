@@ -1,0 +1,16 @@
+{
+ "run_id": "20261031-004334-pipeline-1h",
+ "kind": "pipeline-1h",
+ "stamp": "2026-10-31T00:43:34Z",
+ "files": [
+  "plans.json",
+  "scan.csv",
+  "setups.csv",
+  "summary.md",
+  "warnings.json",
+  "backtest-ema_pullback/equity.png",
+  "backtest-ema_pullback/metrics.json",
+  "backtest-ema_pullback/r_distribution.png",
+  "backtest-ema_pullback/report.md"
+ ]
+}

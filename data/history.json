@@ -1,0 +1,814 @@
+[
+{
+"run_id": "20261031-004345-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-31T00:43:45Z",
+"exported_utc": "2026-10-31T00:43:56Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 0,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261031-004334-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-31T00:43:34Z",
+"exported_utc": "2026-10-31T00:43:56Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 0,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261030-204304-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-30T20:43:04Z",
+"exported_utc": "2026-10-30T20:43:13Z",
+"instruments": 15,
+"setups": 9,
+"fresh": 1,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261030-204252-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-30T20:42:52Z",
+"exported_utc": "2026-10-30T20:43:13Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261030-155230-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-30T15:52:30Z",
+"exported_utc": "2026-10-30T15:52:43Z",
+"instruments": 15,
+"setups": 9,
+"fresh": 5,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261030-155210-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-30T15:52:10Z",
+"exported_utc": "2026-10-30T15:52:43Z",
+"instruments": 15,
+"setups": 15,
+"fresh": 3,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback",
+"session_orb"
+]
+},
+{
+"run_id": "20261030-083318-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-30T08:33:18Z",
+"exported_utc": "2026-10-30T08:33:26Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 2,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261030-083308-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-30T08:33:08Z",
+"exported_utc": "2026-10-30T08:33:26Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 0,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261030-015555-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-30T01:55:55Z",
+"exported_utc": "2026-10-30T01:56:06Z",
+"instruments": 15,
+"setups": 7,
+"fresh": 4,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261030-015538-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-30T01:55:38Z",
+"exported_utc": "2026-10-30T01:56:06Z",
+"instruments": 15,
+"setups": 8,
+"fresh": 2,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261029-214640-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-29T21:46:40Z",
+"exported_utc": "2026-10-29T21:46:51Z",
+"instruments": 15,
+"setups": 3,
+"fresh": 0,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261029-214625-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-29T21:46:25Z",
+"exported_utc": "2026-10-29T21:46:51Z",
+"instruments": 15,
+"setups": 7,
+"fresh": 0,
+"strategies_fired": [
+"bb_mean_reversion",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261029-165359-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-29T16:53:59Z",
+"exported_utc": "2026-10-29T16:54:11Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 2,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261029-165338-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-29T16:53:38Z",
+"exported_utc": "2026-10-29T16:54:11Z",
+"instruments": 15,
+"setups": 7,
+"fresh": 4,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback",
+"session_orb"
+]
+},
+{
+"run_id": "20261029-095127-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-29T09:51:27Z",
+"exported_utc": "2026-10-29T09:51:36Z",
+"instruments": 15,
+"setups": 7,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261029-095112-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-29T09:51:12Z",
+"exported_utc": "2026-10-29T09:51:36Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 2,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261029-022524-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-29T02:25:24Z",
+"exported_utc": "2026-10-29T02:25:34Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261029-022510-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-29T02:25:10Z",
+"exported_utc": "2026-10-29T02:25:34Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 1,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261028-230928-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-28T23:09:28Z",
+"exported_utc": "2026-10-28T23:09:33Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261028-230918-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-28T23:09:18Z",
+"exported_utc": "2026-10-28T23:09:33Z",
+"instruments": 15,
+"setups": 2,
+"fresh": 0,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261028-184937-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-28T18:49:37Z",
+"exported_utc": "2026-10-28T18:49:45Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 2,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261028-184922-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-28T18:49:22Z",
+"exported_utc": "2026-10-28T18:49:45Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 1,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261028-124408-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-28T12:44:08Z",
+"exported_utc": "2026-10-28T12:44:17Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 1,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261028-124351-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-28T12:43:51Z",
+"exported_utc": "2026-10-28T12:44:17Z",
+"instruments": 15,
+"setups": 8,
+"fresh": 2,
+"strategies_fired": [
+"bb_mean_reversion",
+"ema_pullback",
+"session_orb"
+]
+},
+{
+"run_id": "20261028-053043-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-28T05:30:43Z",
+"exported_utc": "2026-10-28T05:30:53Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 1,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261028-053030-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-28T05:30:30Z",
+"exported_utc": "2026-10-28T05:30:53Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 3,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-234427-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-27T23:44:27Z",
+"exported_utc": "2026-10-27T23:44:36Z",
+"instruments": 15,
+"setups": 2,
+"fresh": 0,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-234411-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-27T23:44:11Z",
+"exported_utc": "2026-10-27T23:44:36Z",
+"instruments": 15,
+"setups": 7,
+"fresh": 1,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-200240-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-27T20:02:40Z",
+"exported_utc": "2026-10-27T20:02:45Z",
+"instruments": 15,
+"setups": 2,
+"fresh": 0,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-200224-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-27T20:02:24Z",
+"exported_utc": "2026-10-27T20:02:45Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 1,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-142355-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-27T14:23:55Z",
+"exported_utc": "2026-10-27T14:24:05Z",
+"instruments": 15,
+"setups": 3,
+"fresh": 1,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-142341-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-27T14:23:41Z",
+"exported_utc": "2026-10-27T14:24:05Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 1,
+"strategies_fired": [
+"bb_mean_reversion",
+"session_orb"
+]
+},
+{
+"run_id": "20261027-074459-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-27T07:44:59Z",
+"exported_utc": "2026-10-27T07:45:07Z",
+"instruments": 15,
+"setups": 3,
+"fresh": 0,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-074447-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-27T07:44:47Z",
+"exported_utc": "2026-10-27T07:45:07Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 3,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-020126-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-27T02:01:26Z",
+"exported_utc": "2026-10-27T02:01:31Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261027-020112-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-27T02:01:12Z",
+"exported_utc": "2026-10-27T02:01:31Z",
+"instruments": 15,
+"setups": 3,
+"fresh": 2,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261026-223716-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-26T22:37:16Z",
+"exported_utc": "2026-10-26T22:37:26Z",
+"instruments": 15,
+"setups": 8,
+"fresh": 0,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261026-223704-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-26T22:37:04Z",
+"exported_utc": "2026-10-26T22:37:26Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 2,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261026-171930-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-26T17:19:30Z",
+"exported_utc": "2026-10-26T17:19:41Z",
+"instruments": 15,
+"setups": 9,
+"fresh": 4,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261026-171915-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-26T17:19:15Z",
+"exported_utc": "2026-10-26T17:19:41Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 1,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261026-110054-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-26T11:00:54Z",
+"exported_utc": "2026-10-26T11:01:00Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 1,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261026-110042-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-26T11:00:42Z",
+"exported_utc": "2026-10-26T11:01:00Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 1,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261026-043832-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-26T04:38:32Z",
+"exported_utc": "2026-10-26T04:38:42Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 1,
+"strategies_fired": [
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261026-043818-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-26T04:38:18Z",
+"exported_utc": "2026-10-26T04:38:42Z",
+"instruments": 15,
+"setups": 4,
+"fresh": 1,
+"strategies_fired": [
+"bb_mean_reversion",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261025-233156-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-25T23:31:56Z",
+"exported_utc": "2026-10-25T23:32:06Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 0,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261025-233144-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-25T23:31:44Z",
+"exported_utc": "2026-10-25T23:32:06Z",
+"instruments": 15,
+"setups": 1,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261025-232647-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-25T23:26:47Z",
+"exported_utc": "2026-10-25T23:26:57Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 0,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261025-232635-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-25T23:26:35Z",
+"exported_utc": "2026-10-25T23:26:57Z",
+"instruments": 15,
+"setups": 1,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261025-231752-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-25T23:17:52Z",
+"exported_utc": "2026-10-25T23:18:02Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 0,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261025-231740-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-25T23:17:40Z",
+"exported_utc": "2026-10-25T23:18:02Z",
+"instruments": 15,
+"setups": 1,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261025-231413-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-25T23:14:13Z",
+"exported_utc": "2026-10-25T23:14:22Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 0,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261025-231402-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-25T23:14:02Z",
+"exported_utc": "2026-10-25T23:14:22Z",
+"instruments": 15,
+"setups": 1,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261024-010751-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-24T01:07:51Z",
+"exported_utc": "2026-10-24T01:08:35Z",
+"instruments": 15,
+"setups": 1,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261024-003050-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-24T00:30:50Z",
+"exported_utc": "2026-10-24T00:31:04Z",
+"instruments": 15,
+"setups": 5,
+"fresh": 0,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261024-003036-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-24T00:30:36Z",
+"exported_utc": "2026-10-24T00:31:04Z",
+"instruments": 15,
+"setups": 1,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+},
+{
+"run_id": "20261023-233600-backtest-session_orb-1h",
+"kind": "backtest-session_orb-1h",
+"run_stamp": "2026-10-23T23:36:00",
+"exported_utc": "2026-10-23T23:43:03Z",
+"trades": 7638,
+"expectancy_R": -0.07744989226665408,
+"t_stat": -7.514075059984179,
+"max_drawdown_R": 591.5622771327029
+},
+{
+"run_id": "20261023-233554-backtest-bb_mean_reversion-1h",
+"kind": "backtest-bb_mean_reversion-1h",
+"run_stamp": "2026-10-23T23:35:54",
+"exported_utc": "2026-10-23T23:43:03Z",
+"trades": 2933,
+"expectancy_R": -0.08642344626528513,
+"t_stat": -4.287111078830939,
+"max_drawdown_R": 260.9250041376022
+},
+{
+"run_id": "20261023-233548-backtest-donchian_breakout-1h",
+"kind": "backtest-donchian_breakout-1h",
+"run_stamp": "2026-10-23T23:35:48",
+"exported_utc": "2026-10-23T23:43:03Z",
+"trades": 4591,
+"expectancy_R": -0.1029276288320833,
+"t_stat": -5.632856201106329,
+"max_drawdown_R": 478.83526333739695
+},
+{
+"run_id": "20261023-233542-backtest-ema_pullback-1h",
+"kind": "backtest-ema_pullback-1h",
+"run_stamp": "2026-10-23T23:35:42",
+"exported_utc": "2026-10-23T23:43:03Z",
+"trades": 4813,
+"expectancy_R": -0.10151818872324748,
+"t_stat": -5.415727779977313,
+"max_drawdown_R": 506.155128691803
+},
+{
+"run_id": "20261023-233536-backtest-bb_mean_reversion-1d",
+"kind": "backtest-bb_mean_reversion-1d",
+"run_stamp": "2026-10-23T23:35:36",
+"exported_utc": "2026-10-23T23:43:03Z",
+"trades": 798,
+"expectancy_R": -0.08212672666360604,
+"t_stat": -1.7436254731002256,
+"max_drawdown_R": 106.95426242467704
+},
+{
+"run_id": "20261023-233532-backtest-donchian_breakout-1d",
+"kind": "backtest-donchian_breakout-1d",
+"run_stamp": "2026-10-23T23:35:32",
+"exported_utc": "2026-10-23T23:43:03Z",
+"trades": 813,
+"expectancy_R": -0.06600102784238285,
+"t_stat": -1.6299617820744796,
+"max_drawdown_R": 87.1046357812652
+},
+{
+"run_id": "20261023-233528-backtest-ema_pullback-1d",
+"kind": "backtest-ema_pullback-1d",
+"run_stamp": "2026-10-23T23:35:28",
+"exported_utc": "2026-10-23T23:43:03Z",
+"trades": 712,
+"expectancy_R": 0.04766431020289873,
+"t_stat": 0.9475506537359936,
+"max_drawdown_R": 33.18273759642482
+},
+{
+"run_id": "20261023-233515-pipeline-4h",
+"kind": "pipeline-4h",
+"run_stamp": "2026-10-23T23:35:15",
+"exported_utc": "2026-10-23T23:43:03Z",
+"instruments": 15,
+"setups": 6,
+"fresh": 1,
+"strategies_fired": [
+"bb_mean_reversion",
+"donchian_breakout",
+"ema_pullback"
+]
+},
+{
+"run_id": "20261023-231940-pipeline-1h",
+"kind": "pipeline-1h",
+"run_stamp": "2026-10-23T23:19:40",
+"exported_utc": "2026-10-23T23:43:03Z",
+"instruments": 15,
+"setups": 1,
+"fresh": 1,
+"strategies_fired": [
+"ema_pullback"
+]
+}
+]
