@@ -1,0 +1,12 @@
+{
+ "run_id": "20261023-233600-backtest-session_orb-1h",
+ "kind": "backtest-session_orb-1h",
+ "stamp": "2026-10-23T23:36:00Z",
+ "files": [
+  "equity.png",
+  "metrics.json",
+  "r_distribution.png",
+  "report.md",
+  "trades.csv"
+ ]
+}

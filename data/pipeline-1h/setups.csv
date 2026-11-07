@@ -1,0 +1,2 @@
+instrument,tf,strategy,direction,signal_bar_utc,fresh,bars_ago,ref_price,stop,target,stop_pips,atr,entry_type,note
+EURGBP,1h,ema_pullback,short,2026-11-06 21:00,False,1,0.8347,0.83496,0.83419,2.6,0.00063,market,"pullback to EMA20 in down-trend, bearish close"

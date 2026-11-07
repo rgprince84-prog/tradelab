@@ -1,0 +1,4 @@
+instrument,tf,strategy,direction,signal_bar_utc,fresh,bars_ago,ref_price,stop,target,stop_pips,atr,entry_type,note
+JPN225,4h,donchian_breakout,short,2026-11-06 00:00,False,1,57411.0,60066.0,,2654.6,1327.0,market,"close below 20-bar low, ADX>20"
+UK100,4h,bb_mean_reversion,long,2026-11-06 12:00,False,1,10670.27,10487.39,10738.79,182.9,81.36,market,"re-entry above lower band, ADX<20"
+USDCAD,4h,donchian_breakout,long,2026-11-06 12:00,False,2,1.4128,1.40613,,66.7,0.00333,market,"close above 20-bar high, ADX>20"
