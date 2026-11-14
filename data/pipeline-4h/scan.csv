@@ -1,0 +1,16 @@
+instrument,tf,last_bar_utc,close,trend,regime,adx,rsi,atr,atr_pct,bb_width_pctile,squeeze,donchian_pos,breakout_20,ema20_dist_atr,pattern,setups,score
+AUDUSD,4h,2026-11-13 20:00,0.67742,down,trending,49.1,21.0,0.00174,0.258,82.0,False,0.02,down,-2.93,,donchian_breakout:short,6.5
+EURJPY,4h,2026-11-13 20:00,175.986,down,trending,26.4,31.2,0.412,0.234,59.0,False,0.06,down,-1.88,,ema_pullback:short,5.5
+JPN225,4h,2026-11-13 04:00,61156.0,down,weak_trend,23.3,47.3,1076.0,1.759,78.0,False,0.56,,-0.06,bearish_engulfing,ema_pullback:short,5.0
+EURUSD,4h,2026-11-13 20:00,1.10278,down,trending,34.5,25.9,0.0022,0.2,91.0,False,0.03,,-2.64,hammer,,2.5
+GBPUSD,4h,2026-11-13 20:00,1.3209,down,trending,47.3,23.9,0.00239,0.181,82.0,False,0.02,,-2.51,shooting_star,,2.5
+USDCAD,4h,2026-11-13 20:00,1.4267,up,trending,44.7,70.7,0.00277,0.194,42.0,False,0.73,,1.31,,,1.5
+USDCHF,4h,2026-11-13 20:00,0.8382,up,trending,44.5,71.6,0.0023,0.274,88.0,False,0.9,,2.28,,,1.5
+USDJPY,4h,2026-11-13 20:00,159.686,up,trending,26.5,60.8,0.357,0.224,70.0,False,0.67,,0.52,inside_bar,,1.5
+EURGBP,4h,2026-11-13 20:00,0.83427,down,ranging,17.4,41.6,0.00104,0.125,48.0,False,0.16,,-0.89,hammer,,1.0
+GER40,4h,2026-11-13 16:00,26755.98,up,weak_trend,25.0,62.7,175.05,0.654,100.0,False,0.82,,1.45,inside_bar,,1.0
+NAS100,4h,2026-11-13 20:00,27937.37,down,ranging,18.7,46.9,358.1,1.282,69.0,False,0.67,,-0.28,,,1.0
+US30,4h,2026-11-13 20:00,52342.03,up,ranging,9.7,51.8,336.82,0.643,64.0,False,0.77,,0.21,,,1.0
+GBPJPY,4h,2026-11-13 20:00,210.969,mixed,trending,36.4,35.6,0.504,0.239,28.0,False,0.13,,-1.31,,,0.5
+SPX500,4h,2026-11-13 20:00,7560.87,mixed,ranging,13.2,49.1,60.7,0.803,84.0,False,0.7,,-0.04,,,0.0
+UK100,4h,2026-11-13 16:00,10907.41,up,weak_trend,21.7,62.4,56.89,0.522,76.0,False,0.96,,1.56,,,0.0

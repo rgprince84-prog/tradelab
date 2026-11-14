@@ -1,0 +1,248 @@
+[
+  {
+    "instrument": "AUDUSD",
+    "strategy": "donchian_breakout",
+    "direction": "short",
+    "timeframe": "4h",
+    "as_of_utc": "2026-11-13 20:00",
+    "last_close": 0.67742,
+    "entry": {
+      "price": 0.67742,
+      "expected_fill": 0.67735,
+      "type": "market"
+    },
+    "stop": {
+      "price": 0.6809,
+      "distance": 0.00355,
+      "distance_pips": 35.5,
+      "unit": "pips",
+      "distance_atr": 2.04,
+      "method": "given"
+    },
+    "targets": {
+      "1R": 0.67379,
+      "2R": 0.67024,
+      "3R": 0.66668
+    },
+    "position": {
+      "units": 37219,
+      "lots": 0.37,
+      "unit_label": "units of base currency",
+      "risk_amount": 100.0,
+      "account_ccy": "GBP",
+      "risk_quote_ccy": 132.31,
+      "quote_ccy": "USD",
+      "quote_to_account_rate": 0.75578,
+      "notional_quote": 25210.0
+    },
+    "costs": {
+      "spread_pips": 1.0,
+      "slippage_pips_per_side": 0.2,
+      "round_trip_pips": 1.4,
+      "cost_in_R": 0.039,
+      "breakeven_move_pips": 1.4
+    },
+    "context": {
+      "trend": "down",
+      "ema20": 0.68253,
+      "ema50": 0.68808,
+      "ema200": 0.69689,
+      "adx": 49.1,
+      "rsi": 21.0,
+      "atr": 0.00174
+    },
+    "warnings": [
+      "RSI 21: entering with momentum already stretched."
+    ],
+    "note": "close below 20-bar low, ADX>20",
+    "strategy_stats": {
+      "trades": 1246,
+      "win_rate": 0.3611556982343499,
+      "expectancy_R": -0.02611920301844738,
+      "median_R": -0.4180067364873915,
+      "avg_win_R": 1.1993004536874126,
+      "avg_loss_R": -0.7188815717591973,
+      "payoff_ratio": 1.6682865451016742,
+      "profit_factor": 0.9431268156981826,
+      "total_R": -32.544526960985436,
+      "total_pnl": -3254.452696098545,
+      "return_pct": -32.54452696098545,
+      "max_drawdown_R": 113.42539687589597,
+      "max_drawdown_pct": 113.42539687589594,
+      "avg_bars_held": 13.892455858747994,
+      "max_consec_losses": 15,
+      "max_consec_wins": 8,
+      "t_stat": -0.7638093606630367,
+      "sharpe_daily": -0.3119714902607529,
+      "trades_per_month": 36.26026768642448,
+      "first_trade": "2024-01-02",
+      "last_trade": "2026-11-13",
+      "this_instrument_trades": 115,
+      "this_instrument_expectancy_R": -0.09128551515031408
+    }
+  },
+  {
+    "instrument": "EURJPY",
+    "strategy": "ema_pullback",
+    "direction": "short",
+    "timeframe": "4h",
+    "as_of_utc": "2026-11-13 20:00",
+    "last_close": 175.986,
+    "entry": {
+      "price": 175.986,
+      "expected_fill": 175.976,
+      "type": "market"
+    },
+    "stop": {
+      "price": 177.12,
+      "distance": 1.144,
+      "distance_pips": 114.4,
+      "unit": "pips",
+      "distance_atr": 2.77,
+      "method": "given"
+    },
+    "targets": {
+      "1R": 174.833,
+      "2R": 173.689,
+      "3R": 172.546,
+      "custom": 173.718,
+      "custom_R": 1.98
+    },
+    "position": {
+      "units": 18499,
+      "lots": 0.18,
+      "unit_label": "units of base currency",
+      "risk_amount": 100.0,
+      "account_ccy": "GBP",
+      "risk_quote_ccy": 21153.6,
+      "quote_ccy": "JPY",
+      "quote_to_account_rate": 0.004727,
+      "notional_quote": 3255367.0
+    },
+    "costs": {
+      "spread_pips": 1.5,
+      "slippage_pips_per_side": 0.2,
+      "round_trip_pips": 1.9,
+      "cost_in_R": 0.017,
+      "breakeven_move_pips": 1.9
+    },
+    "context": {
+      "trend": "down",
+      "ema20": 176.76,
+      "ema50": 176.883,
+      "ema200": 177.479,
+      "adx": 26.4,
+      "rsi": 31.2,
+      "atr": 0.412
+    },
+    "warnings": [],
+    "note": "pullback to EMA20 in down-trend, bearish close",
+    "strategy_stats": {
+      "trades": 1309,
+      "win_rate": 0.3834988540870894,
+      "expectancy_R": 0.010720717213545295,
+      "median_R": -1.0051682065774634,
+      "avg_win_R": 1.6122925095197946,
+      "avg_loss_R": -0.9855482291777029,
+      "payoff_ratio": 1.635934662340187,
+      "profit_factor": 1.0176446102785301,
+      "total_R": 14.033418832530792,
+      "total_pnl": 1403.341883253077,
+      "return_pct": 14.033418832530769,
+      "max_drawdown_R": 72.90111026882329,
+      "max_drawdown_pct": 72.90111026882342,
+      "avg_bars_held": 19.47440794499618,
+      "max_consec_losses": 14,
+      "max_consec_wins": 13,
+      "t_stat": 0.2916564045752954,
+      "sharpe_daily": 0.17098971608140764,
+      "trades_per_month": 40.04619095477387,
+      "first_trade": "2024-02-22",
+      "last_trade": "2026-11-13",
+      "this_instrument_trades": 127,
+      "this_instrument_expectancy_R": -0.0592887945589016
+    }
+  },
+  {
+    "instrument": "JPN225",
+    "strategy": "ema_pullback",
+    "direction": "short",
+    "timeframe": "4h",
+    "as_of_utc": "2026-11-13 04:00",
+    "last_close": 61156.0,
+    "entry": {
+      "price": 61156.0,
+      "expected_fill": 61151.0,
+      "type": "market"
+    },
+    "stop": {
+      "price": 62440.0,
+      "distance": 1289.0,
+      "distance_pips": 1289.1,
+      "unit": "pts",
+      "distance_atr": 1.2,
+      "method": "given"
+    },
+    "targets": {
+      "1R": 59862.0,
+      "2R": 58573.0,
+      "3R": 57284.0,
+      "custom": 58587.0,
+      "custom_R": 1.99
+    },
+    "position": {
+      "units": 16.41,
+      "lots": null,
+      "unit_label": "JPY per index point",
+      "risk_amount": 100.0,
+      "account_ccy": "GBP",
+      "risk_quote_ccy": 21153.6,
+      "quote_ccy": "JPY",
+      "quote_to_account_rate": 0.004727,
+      "notional_quote": 1003453.0
+    },
+    "costs": {
+      "spread_pips": 10.0,
+      "slippage_pips_per_side": 0.2,
+      "round_trip_pips": 10.4,
+      "cost_in_R": 0.008,
+      "breakeven_move_pips": 10.4
+    },
+    "context": {
+      "trend": "down",
+      "ema20": 61219.0,
+      "ema50": 62813.0,
+      "ema200": 64159.0,
+      "adx": 23.3,
+      "rsi": 47.3,
+      "atr": 1076.0
+    },
+    "warnings": [],
+    "note": "pullback to EMA20 in down-trend, bearish close",
+    "strategy_stats": {
+      "trades": 1309,
+      "win_rate": 0.3834988540870894,
+      "expectancy_R": 0.010720717213545295,
+      "median_R": -1.0051682065774634,
+      "avg_win_R": 1.6122925095197946,
+      "avg_loss_R": -0.9855482291777029,
+      "payoff_ratio": 1.635934662340187,
+      "profit_factor": 1.0176446102785301,
+      "total_R": 14.033418832530792,
+      "total_pnl": 1403.341883253077,
+      "return_pct": 14.033418832530769,
+      "max_drawdown_R": 72.90111026882329,
+      "max_drawdown_pct": 72.90111026882342,
+      "avg_bars_held": 19.47440794499618,
+      "max_consec_losses": 14,
+      "max_consec_wins": 13,
+      "t_stat": 0.2916564045752954,
+      "sharpe_daily": 0.17098971608140764,
+      "trades_per_month": 40.04619095477387,
+      "first_trade": "2024-02-22",
+      "last_trade": "2026-11-13",
+      "this_instrument_trades": 37,
+      "this_instrument_expectancy_R": 0.3391265132755189
+    }
+  }
+]

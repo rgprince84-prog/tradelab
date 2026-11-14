@@ -1,0 +1,12 @@
+{
+ "run_id": "20261023-233528-backtest-ema_pullback-1d",
+ "kind": "backtest-ema_pullback-1d",
+ "stamp": "2026-10-23T23:35:28Z",
+ "files": [
+  "equity.png",
+  "metrics.json",
+  "r_distribution.png",
+  "report.md",
+  "trades.csv"
+ ]
+}
