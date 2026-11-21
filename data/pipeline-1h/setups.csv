@@ -1,0 +1,8 @@
+instrument,tf,strategy,direction,signal_bar_utc,fresh,bars_ago,ref_price,stop,target,stop_pips,atr,entry_type,note
+USDCAD,1h,bb_mean_reversion,short,2026-11-20 21:00,False,1,1.4339,1.43652,1.43254,26.2,0.00177,market,"re-entry below upper band, ADX<20"
+EURGBP,1h,ema_pullback,long,2026-11-20 20:00,False,2,0.8381,0.83713,0.84005,9.7,0.00067,market,"pullback to EMA20 in up-trend, bullish close"
+JPN225,1h,donchian_breakout,short,2026-11-20 04:00,False,2,56576.0,57714.0,,1137.7,569.0,market,"close below 20-bar low, ADX>20"
+NAS100,1h,donchian_breakout,short,2026-11-20 18:30,False,2,25065.4,25653.05,,587.6,293.82,market,"close below 20-bar low, ADX>20"
+SPX500,1h,donchian_breakout,short,2026-11-20 18:30,False,2,6918.45,7028.34,,109.9,54.95,market,"close below 20-bar low, ADX>20"
+USDCAD,1h,ema_pullback,long,2026-11-20 20:00,False,2,1.4339,1.43152,1.43865,23.8,0.00175,market,"pullback to EMA20 in up-trend, bullish close"
+USDJPY,1h,donchian_breakout,short,2026-11-20 19:00,False,2,158.512,158.964,,45.2,0.226,market,"close below 20-bar low, ADX>20"

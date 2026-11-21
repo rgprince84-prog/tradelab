@@ -1,0 +1,16 @@
+{
+ "run_id": "20261121-004618-pipeline-4h",
+ "kind": "pipeline-4h",
+ "stamp": "2026-11-21T00:46:18Z",
+ "files": [
+  "plans.json",
+  "scan.csv",
+  "setups.csv",
+  "summary.md",
+  "warnings.json",
+  "backtest-donchian_breakout/equity.png",
+  "backtest-donchian_breakout/metrics.json",
+  "backtest-donchian_breakout/r_distribution.png",
+  "backtest-donchian_breakout/report.md"
+ ]
+}

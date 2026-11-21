@@ -1,0 +1,84 @@
+[
+  {
+    "instrument": "JPN225",
+    "strategy": "donchian_breakout",
+    "direction": "short",
+    "timeframe": "4h",
+    "as_of_utc": "2026-11-20 04:00",
+    "last_close": 56576.0,
+    "entry": {
+      "price": 56576.0,
+      "expected_fill": 56571.0,
+      "type": "market"
+    },
+    "stop": {
+      "price": 58673.0,
+      "distance": 2102.0,
+      "distance_pips": 2101.8,
+      "unit": "pts",
+      "distance_atr": 2.01,
+      "method": "given"
+    },
+    "targets": {
+      "1R": 54469.0,
+      "2R": 52368.0,
+      "3R": 50266.0
+    },
+    "position": {
+      "units": 9.94,
+      "lots": null,
+      "unit_label": "JPY per index point",
+      "risk_amount": 100.0,
+      "account_ccy": "GBP",
+      "risk_quote_ccy": 20899.3,
+      "quote_ccy": "JPY",
+      "quote_to_account_rate": 0.004785,
+      "notional_quote": 562520.0
+    },
+    "costs": {
+      "spread_pips": 10.0,
+      "slippage_pips_per_side": 0.2,
+      "round_trip_pips": 10.4,
+      "cost_in_R": 0.005,
+      "breakeven_move_pips": 10.4
+    },
+    "context": {
+      "trend": "down",
+      "ema20": 59550.0,
+      "ema50": 61465.0,
+      "ema200": 63649.0,
+      "adx": 24.8,
+      "rsi": 29.3,
+      "atr": 1048.0
+    },
+    "warnings": [
+      "RSI 29: entering with momentum already stretched."
+    ],
+    "note": "close below 20-bar low, ADX>20",
+    "strategy_stats": {
+      "trades": 1258,
+      "win_rate": 0.3656597774244833,
+      "expectancy_R": -0.01320339764426471,
+      "median_R": -0.4110398309173914,
+      "avg_win_R": 1.2141629222730215,
+      "avg_loss_R": -0.7207077925840538,
+      "payoff_ratio": 1.684681274112098,
+      "profit_factor": 0.971119531443064,
+      "total_R": -16.609874236485005,
+      "total_pnl": -1660.9874236484989,
+      "return_pct": -16.60987423648499,
+      "max_drawdown_R": 112.41821877497372,
+      "max_drawdown_pct": 112.41821877497371,
+      "avg_bars_held": 13.930842607313195,
+      "max_consec_losses": 15,
+      "max_consec_wins": 12,
+      "t_stat": -0.3837098797433549,
+      "sharpe_daily": -0.13281505948147979,
+      "trades_per_month": 36.36611585944919,
+      "first_trade": "2024-01-02",
+      "last_trade": "2026-11-20",
+      "this_instrument_trades": 43,
+      "this_instrument_expectancy_R": -0.04178772857358697
+    }
+  }
+]

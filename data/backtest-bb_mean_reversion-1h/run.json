@@ -1,0 +1,12 @@
+{
+ "run_id": "20261023-233554-backtest-bb_mean_reversion-1h",
+ "kind": "backtest-bb_mean_reversion-1h",
+ "stamp": "2026-10-23T23:35:54Z",
+ "files": [
+  "equity.png",
+  "metrics.json",
+  "r_distribution.png",
+  "report.md",
+  "trades.csv"
+ ]
+}
