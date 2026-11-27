@@ -1,0 +1,6 @@
+instrument,tf,strategy,direction,signal_bar_utc,fresh,bars_ago,ref_price,stop,target,stop_pips,atr,entry_type,note
+EURGBP,1h,donchian_breakout,short,2026-11-27 21:00,False,1,0.83481,0.83582,,10.1,0.00051,market,"close below 20-bar low, ADX>20"
+EURJPY,1h,donchian_breakout,short,2026-11-27 21:00,False,1,174.479,174.76,,28.1,0.14,market,"close below 20-bar low, ADX>20"
+UK100,1h,donchian_breakout,long,2026-11-27 15:00,False,1,10701.79,10635.77,,66.0,33.01,market,"close above 20-bar high, ADX>20"
+US30,1h,bb_mean_reversion,short,2026-11-27 16:30,False,1,50807.39,51010.17,49976.07,202.8,359.96,market,"re-entry below upper band, ADX<20"
+NAS100,1h,session_orb,long,2026-11-27 15:30,False,2,26757.2,26167.35,27641.97,589.8,347.07,market,NEWYORK opening-range (1 bar) breakout up

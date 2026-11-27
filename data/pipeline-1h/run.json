@@ -1,0 +1,24 @@
+{
+ "run_id": "20261127-232430-pipeline-1h",
+ "kind": "pipeline-1h",
+ "stamp": "2026-11-27T23:24:30Z",
+ "files": [
+  "plans.json",
+  "scan.csv",
+  "setups.csv",
+  "summary.md",
+  "warnings.json",
+  "backtest-session_orb/equity.png",
+  "backtest-session_orb/metrics.json",
+  "backtest-session_orb/r_distribution.png",
+  "backtest-session_orb/report.md",
+  "backtest-bb_mean_reversion/equity.png",
+  "backtest-bb_mean_reversion/metrics.json",
+  "backtest-bb_mean_reversion/r_distribution.png",
+  "backtest-bb_mean_reversion/report.md",
+  "backtest-donchian_breakout/equity.png",
+  "backtest-donchian_breakout/metrics.json",
+  "backtest-donchian_breakout/r_distribution.png",
+  "backtest-donchian_breakout/report.md"
+ ]
+}

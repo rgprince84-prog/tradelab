@@ -1,0 +1,46 @@
+{
+  "metrics": {
+    "trades": 1329,
+    "win_rate": 0.38148984198645597,
+    "expectancy_R": 0.006468570353850125,
+    "median_R": -1.0051191874914114,
+    "avg_win_R": 1.6169131707250195,
+    "avg_loss_R": -0.9868348510429659,
+    "payoff_ratio": 1.638484057404475,
+    "profit_factor": 1.0105978310268477,
+    "total_R": 8.596730000266817,
+    "total_pnl": 859.6730000266807,
+    "return_pct": 8.596730000266808,
+    "max_drawdown_R": 73.90690850781226,
+    "max_drawdown_pct": 73.9069085078124,
+    "avg_bars_held": 19.44469525959368,
+    "max_consec_losses": 14,
+    "max_consec_wins": 13,
+    "t_stat": 0.17719535792623758,
+    "sharpe_daily": 0.11477433437082091,
+    "trades_per_month": 40.09391476709614,
+    "first_trade": "2024-02-22",
+    "last_trade": "2026-11-27"
+  },
+  "monte_carlo": {
+    "runs": 1000,
+    "shuffle_max_dd_R_p50": 49.9382640702504,
+    "shuffle_max_dd_R_p95": 74.34537861620056,
+    "bootstrap_max_dd_R_p50": 51.18969139366125,
+    "bootstrap_max_dd_R_p95": 103.02465975142087,
+    "bootstrap_total_R_p05": -75.03273115510869,
+    "bootstrap_total_R_p50": 8.006278663881174,
+    "bootstrap_total_R_p95": 87.26357650819814,
+    "prob_total_R_negative": 0.433
+  },
+  "params": {
+    "ema_fast": 20,
+    "ema_mid": 50,
+    "ema_slow": 200,
+    "pullback_bars": 3,
+    "rsi_max": 70,
+    "sl_atr_buffer": 0.5,
+    "rr": 2.0,
+    "max_bars": 48
+  }
+}

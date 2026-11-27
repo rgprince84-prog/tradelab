@@ -1,0 +1,16 @@
+instrument,tf,last_bar_utc,close,trend,regime,adx,rsi,atr,atr_pct,bb_width_pctile,squeeze,donchian_pos,breakout_20,ema20_dist_atr,pattern,setups,score
+USDCAD,1h,2026-11-27 22:00,1.4245,down,ranging,10.4,52.3,0.00146,0.103,1.0,True,0.62,,0.13,inside_bar,,3.5
+SPX500,1h,2026-11-27 17:30,7304.1,mixed,ranging,16.7,60.5,62.76,0.859,59.0,False,1.0,up,1.65,,,2.0
+EURGBP,1h,2026-11-27 22:00,0.83481,down,trending,42.0,38.2,0.0005,0.06,88.0,False,0.19,,-0.99,inside_bar,,1.5
+USDCHF,1h,2026-11-27 22:00,0.8357,mixed,trending,25.1,55.1,0.00101,0.121,32.0,False,0.58,,0.33,inside_bar,,1.5
+EURJPY,1h,2026-11-27 22:00,174.479,down,weak_trend,24.6,41.5,0.137,0.078,51.0,False,0.19,,-0.88,inside_bar,,1.0
+GBPJPY,1h,2026-11-27 22:00,208.996,mixed,ranging,15.8,50.8,0.186,0.089,18.0,False,0.28,,-0.06,inside_bar,,1.0
+JPN225,1h,2026-11-27 06:00,58717.0,mixed,ranging,17.0,60.4,399.0,0.68,26.0,False,0.99,,1.66,inside_bar,,1.0
+US30,1h,2026-11-27 17:30,50807.39,mixed,ranging,19.3,65.0,345.69,0.68,43.0,False,0.99,,1.96,hammer,,1.0
+USDJPY,1h,2026-11-27 22:00,159.515,up,ranging,14.9,57.6,0.09,0.057,31.0,False,0.81,,0.58,inside_bar,,1.0
+EURUSD,1h,2026-11-27 22:00,1.09385,down,trending,29.9,30.8,0.00073,0.067,66.0,False,0.09,,-1.89,,,0.5
+GER40,1h,2026-11-27 16:00,25431.35,mixed,trending,26.8,59.4,98.21,0.386,62.0,False,0.95,,1.42,,,0.5
+UK100,1h,2026-11-27 16:00,10701.79,mixed,trending,37.4,68.7,31.83,0.297,72.0,False,0.96,,2.26,,,0.5
+AUDUSD,1h,2026-11-27 22:00,0.66507,mixed,weak_trend,24.7,48.1,0.00068,0.102,52.0,False,0.27,,-0.46,,,0.0
+GBPUSD,1h,2026-11-27 22:00,1.30989,down,weak_trend,22.0,40.9,0.0009,0.069,40.0,False,0.16,,-0.97,,,0.0
+NAS100,1h,2026-11-27 17:30,26757.2,mixed,ranging,18.2,59.4,324.25,1.212,63.0,False,0.94,,1.7,,,0.0

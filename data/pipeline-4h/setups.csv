@@ -1,0 +1,8 @@
+instrument,tf,strategy,direction,signal_bar_utc,fresh,bars_ago,ref_price,stop,target,stop_pips,atr,entry_type,note
+EURGBP,4h,bb_mean_reversion,long,2026-11-27 16:00,True,0,0.83496,0.83398,0.83654,9.8,0.00106,market,"re-entry above lower band, ADX<20"
+GBPUSD,4h,ema_pullback,short,2026-11-27 16:00,True,0,1.30969,1.31474,1.29959,50.5,0.00246,market,"pullback to EMA20 in down-trend, bearish close"
+US30,4h,donchian_breakout,long,2026-11-27 16:00,True,0,50807.39,49761.54,,1045.8,522.92,market,"close above 20-bar high, ADX>20"
+EURJPY,4h,ema_pullback,short,2026-11-27 12:00,False,1,174.488,175.179,173.107,69.1,0.403,market,"pullback to EMA20 in down-trend, bearish close"
+EURUSD,4h,ema_pullback,short,2026-11-27 12:00,False,1,1.09385,1.09982,1.08192,59.7,0.00208,market,"pullback to EMA20 in down-trend, bearish close"
+EURGBP,4h,ema_pullback,short,2026-11-27 08:00,False,2,0.83496,0.83776,0.82936,28.0,0.00112,market,"pullback to EMA20 in down-trend, bearish close"
+UK100,4h,donchian_breakout,long,2026-11-27 08:00,False,2,10701.79,10573.14,,128.7,64.33,market,"close above 20-bar high, ADX>20"

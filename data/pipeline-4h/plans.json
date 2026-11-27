@@ -1,0 +1,251 @@
+[
+  {
+    "instrument": "EURGBP",
+    "strategy": "bb_mean_reversion",
+    "direction": "long",
+    "timeframe": "4h",
+    "as_of_utc": "2026-11-27 16:00",
+    "last_close": 0.83496,
+    "entry": {
+      "price": 0.83496,
+      "expected_fill": 0.83504,
+      "type": "market"
+    },
+    "stop": {
+      "price": 0.83398,
+      "distance": 0.00106,
+      "distance_pips": 10.6,
+      "unit": "pips",
+      "distance_atr": 1.0,
+      "method": "given"
+    },
+    "targets": {
+      "1R": 0.8361,
+      "2R": 0.83716,
+      "3R": 0.83822,
+      "custom": 0.83654,
+      "custom_R": 1.42
+    },
+    "position": {
+      "units": 94341,
+      "lots": 0.94,
+      "unit_label": "units of base currency",
+      "risk_amount": 100.0,
+      "account_ccy": "GBP",
+      "risk_quote_ccy": 100.0,
+      "quote_ccy": "GBP",
+      "quote_to_account_rate": 1.0,
+      "notional_quote": 78779.0
+    },
+    "costs": {
+      "spread_pips": 1.2,
+      "slippage_pips_per_side": 0.2,
+      "round_trip_pips": 1.6,
+      "cost_in_R": 0.151,
+      "breakeven_move_pips": 1.6
+    },
+    "context": {
+      "trend": "down",
+      "ema20": 0.83635,
+      "ema50": 0.83623,
+      "ema200": 0.83857,
+      "adx": 19.0,
+      "rsi": 37.1,
+      "atr": 0.00106
+    },
+    "warnings": [
+      "Costs are 15% of 1R \u2014 stop is tight relative to spread; widen the stop or trade a lower-spread instrument.",
+      "Long against the EMA50/200 trend on this timeframe."
+    ],
+    "note": "re-entry above lower band, ADX<20",
+    "strategy_stats": {
+      "trades": 838,
+      "win_rate": 0.5119331742243437,
+      "expectancy_R": -0.019760941141920146,
+      "median_R": 0.042466010782409816,
+      "avg_win_R": 0.9538400614857184,
+      "avg_loss_R": -1.0409707947537954,
+      "payoff_ratio": 0.9162985804143673,
+      "profit_factor": 0.9611053569627471,
+      "total_R": -16.559668676929082,
+      "total_pnl": -1655.9668676929077,
+      "return_pct": -16.559668676929075,
+      "max_drawdown_R": 59.17376368213152,
+      "max_drawdown_pct": 59.17376368213154,
+      "avg_bars_held": 4.072792362768497,
+      "max_consec_losses": 11,
+      "max_consec_wins": 9,
+      "t_stat": -0.5002771581848489,
+      "sharpe_daily": -0.14464205645468467,
+      "trades_per_month": 24.294019047619052,
+      "first_trade": "2024-01-04",
+      "last_trade": "2026-11-20",
+      "this_instrument_trades": 72,
+      "this_instrument_expectancy_R": -0.15947324098847615
+    }
+  },
+  {
+    "instrument": "GBPUSD",
+    "strategy": "ema_pullback",
+    "direction": "short",
+    "timeframe": "4h",
+    "as_of_utc": "2026-11-27 16:00",
+    "last_close": 1.30969,
+    "entry": {
+      "price": 1.30969,
+      "expected_fill": 1.30961,
+      "type": "market"
+    },
+    "stop": {
+      "price": 1.31474,
+      "distance": 0.00513,
+      "distance_pips": 51.3,
+      "unit": "pips",
+      "distance_atr": 2.09,
+      "method": "given"
+    },
+    "targets": {
+      "1R": 1.30448,
+      "2R": 1.29935,
+      "3R": 1.29422,
+      "custom": 1.29959,
+      "custom_R": 1.95
+    },
+    "position": {
+      "units": 25529,
+      "lots": 0.26,
+      "unit_label": "units of base currency",
+      "risk_amount": 100.0,
+      "account_ccy": "GBP",
+      "risk_quote_ccy": 130.99,
+      "quote_ccy": "USD",
+      "quote_to_account_rate": 0.76342,
+      "notional_quote": 33433.0
+    },
+    "costs": {
+      "spread_pips": 1.2,
+      "slippage_pips_per_side": 0.2,
+      "round_trip_pips": 1.6,
+      "cost_in_R": 0.031,
+      "breakeven_move_pips": 1.6
+    },
+    "context": {
+      "trend": "down",
+      "ema20": 1.31044,
+      "ema50": 1.3128,
+      "ema200": 1.32457,
+      "adx": 14.0,
+      "rsi": 47.4,
+      "atr": 0.00246
+    },
+    "warnings": [],
+    "note": "pullback to EMA20 in down-trend, bearish close",
+    "strategy_stats": {
+      "trades": 1329,
+      "win_rate": 0.38148984198645597,
+      "expectancy_R": 0.006468570353850125,
+      "median_R": -1.0051191874914114,
+      "avg_win_R": 1.6169131707250195,
+      "avg_loss_R": -0.9868348510429659,
+      "payoff_ratio": 1.638484057404475,
+      "profit_factor": 1.0105978310268477,
+      "total_R": 8.596730000266817,
+      "total_pnl": 859.6730000266807,
+      "return_pct": 8.596730000266808,
+      "max_drawdown_R": 73.90690850781226,
+      "max_drawdown_pct": 73.9069085078124,
+      "avg_bars_held": 19.44469525959368,
+      "max_consec_losses": 14,
+      "max_consec_wins": 13,
+      "t_stat": 0.17719535792623758,
+      "sharpe_daily": 0.11477433437082091,
+      "trades_per_month": 40.09391476709614,
+      "first_trade": "2024-02-22",
+      "last_trade": "2026-11-27",
+      "this_instrument_trades": 117,
+      "this_instrument_expectancy_R": -0.04099051610396406
+    }
+  },
+  {
+    "instrument": "US30",
+    "strategy": "donchian_breakout",
+    "direction": "long",
+    "timeframe": "4h",
+    "as_of_utc": "2026-11-27 16:00",
+    "last_close": 50807.39,
+    "entry": {
+      "price": 50807.39,
+      "expected_fill": 50808.84,
+      "type": "market"
+    },
+    "stop": {
+      "price": 49761.54,
+      "distance": 1047.3,
+      "distance_pips": 1047.3,
+      "unit": "pts",
+      "distance_atr": 2.0,
+      "method": "given"
+    },
+    "targets": {
+      "1R": 51856.14,
+      "2R": 52903.44,
+      "3R": 53950.74
+    },
+    "position": {
+      "units": 0.13,
+      "lots": null,
+      "unit_label": "USD per index point",
+      "risk_amount": 100.0,
+      "account_ccy": "GBP",
+      "risk_quote_ccy": 130.99,
+      "quote_ccy": "USD",
+      "quote_to_account_rate": 0.76342,
+      "notional_quote": 6355.0
+    },
+    "costs": {
+      "spread_pips": 2.5,
+      "slippage_pips_per_side": 0.2,
+      "round_trip_pips": 2.9,
+      "cost_in_R": 0.003,
+      "breakeven_move_pips": 2.9
+    },
+    "context": {
+      "trend": "down",
+      "ema20": 50141.93,
+      "ema50": 50763.51,
+      "ema200": 51508.87,
+      "adx": 26.0,
+      "rsi": 56.2,
+      "atr": 522.92
+    },
+    "warnings": [
+      "Long against the EMA50/200 trend on this timeframe."
+    ],
+    "note": "close above 20-bar high, ADX>20",
+    "strategy_stats": {
+      "trades": 1269,
+      "win_rate": 0.3609141055949567,
+      "expectancy_R": -0.028593613215688776,
+      "median_R": -0.4197454588917963,
+      "avg_win_R": 1.1972449035476815,
+      "avg_loss_R": -0.7208673995012913,
+      "payoff_ratio": 1.6608392949604276,
+      "profit_factor": 0.9379339051687742,
+      "total_R": -36.285295170709055,
+      "total_pnl": -3628.529517070906,
+      "return_pct": -36.285295170709055,
+      "max_drawdown_R": 113.16694492200952,
+      "max_drawdown_pct": 113.16694492200956,
+      "avg_bars_held": 13.857368006304176,
+      "max_consec_losses": 15,
+      "max_consec_wins": 8,
+      "t_stat": -0.8431941012759667,
+      "sharpe_daily": -0.3473616238738555,
+      "trades_per_month": 36.476260623229464,
+      "first_trade": "2024-01-02",
+      "last_trade": "2026-11-27",
+      "this_instrument_trades": 43,
+      "this_instrument_expectancy_R": 0.1051471034156059
+    }
+  }
+]

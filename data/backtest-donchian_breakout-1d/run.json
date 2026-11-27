@@ -1,0 +1,12 @@
+{
+ "run_id": "20261023-233532-backtest-donchian_breakout-1d",
+ "kind": "backtest-donchian_breakout-1d",
+ "stamp": "2026-10-23T23:35:32Z",
+ "files": [
+  "equity.png",
+  "metrics.json",
+  "r_distribution.png",
+  "report.md",
+  "trades.csv"
+ ]
+}
